@@ -2,11 +2,11 @@
 <!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-->
 <!--  Snap Backup                                    -->
 <!--  Ant Build File (build.xml)                     -->
-<!--  Command line (unix prompt) usage:              -->
+<!--  Command line usage:                            -->
 <!--     $ ant build                                 -->
-<!--     $ ant run                                   -->
-<!--  The first command creates the executable jar   -->
-<!--  and second command launches the program.       -->
+<!--  Use this Ant configuration file to create the  -->
+<!--  "snapbackup.jar" executable JAR file.          -->
+<!--  Copyright (c) 2007 Center Key Software         -->
 <!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-->
 <project>
    <property name="Home"        location="../.."/>
@@ -25,16 +25,11 @@
          <fileset dir="${Resources}/graphics/application"/>
          </copy>
       <copy file="${Resources}/SnapBackupUserGuide.html" todir="${HtmlFolder}"/>
-      <jar destfile="${JavaClasses}/../SnapBackupRegular.jar" basedir="${JavaClasses}">
+      <jar destfile="${JavaClasses}/../snapbackup.jar" basedir="${JavaClasses}">
          <fileset dir="." includes="*.class"/>
          <manifest>
             <attribute name="Main-Class" value="com.snapbackup.Main"/>
             </manifest>
          </jar>
       </target>
-
-   <target name="run">
-      <java jar="SnapBackup.jar" fork="true"/>
-      </target>
-
    </project>
