@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-->
+<!--  Snap Backup                                    -->
+<!--  Ant Build File (build.xml)                     -->
+<!--  Command line (unix prompt) usage:              -->
+<!--     $ ant build                                 -->
+<!--     $ ant run                                   -->
+<!--  The first command creates the executable jar   -->
+<!--  and second command launches the program.       -->
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-->
+<project>
+   <property name="Home"        location="../.."/>
+   <property name="JavaSource"  location="${Home}/src/java"/>
+   <property name="Resources"   location="${Home}/src/resources"/>
+   <property name="JavaClasses" location="${Home}/build/classes"/>
+   <property name="HtmlFolder"  location="${Home}/build/classes/com/snapbackup/ui/userguide/html"/>
+
+   <target name="build">
+      <delete dir="${JavaClasses}"/>
+      <mkdir  dir="${JavaClasses}"/>
+      <javac srcdir="${JavaSource}" destdir="${JavaClasses}"/>
+      <native2ascii encoding="UTF8" src="${Resources}/properties" dest="${JavaClasses}"/>
+      <copy file="${JavaClasses}/SnapBackup.properties" tofile="${JavaClasses}/SnapBackup_en.properties"/>
+      <copy todir="${JavaClasses}/com/snapbackup/ui/images">
+         <fileset dir="${Resources}/graphics/application"/>
+         </copy>
+      <copy file="${Resources}/SnapBackupUserGuide.html" todir="${HtmlFolder}"/>
+      <jar destfile="${JavaClasses}/../SnapBackupRegular.jar" basedir="${JavaClasses}">
+         <fileset dir="." includes="*.class"/>
+         <manifest>
+            <attribute name="Main-Class" value="com.snapbackup.Main"/>
+            </manifest>
+         </jar>
+      </target>
+
+   <target name="run">
+      <java jar="SnapBackup.jar" fork="true"/>
+      </target>
+
+   </project>
