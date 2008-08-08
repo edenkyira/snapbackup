@@ -6,7 +6,7 @@
 <!--     $ ant build                                 -->
 <!--  Use this Ant configuration file to create the  -->
 <!--  "snapbackup.jar" executable JAR file.          -->
-<!--  Copyright (c) 2007 Center Key Software         -->
+<!--  http://code.google.com/p/snapbackup/           -->
 <!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-->
 <project>
    <property name="Home"        location="../.."/>
@@ -16,20 +16,29 @@
    <property name="HtmlFolder"  location="${Home}/build/classes/com/snapbackup/ui/userguide/html"/>
 
    <target name="build">
+
+      <!--  Create Class Files  -->
       <delete dir="${JavaClasses}"/>
       <mkdir  dir="${JavaClasses}"/>
       <javac srcdir="${JavaSource}" destdir="${JavaClasses}"/>
+
+      <!--  Prepare Resources  -->
       <native2ascii encoding="UTF8" src="${Resources}/properties" dest="${JavaClasses}"/>
-      <copy file="${JavaClasses}/SnapBackup.properties" tofile="${JavaClasses}/SnapBackup_en.properties"/>
+      <copy file="${JavaClasses}/SnapBackup.properties"
+            tofile="${JavaClasses}/SnapBackup_en.properties"/>
       <copy todir="${JavaClasses}/com/snapbackup/ui/images">
          <fileset dir="${Resources}/graphics/application"/>
          </copy>
       <copy file="${Resources}/SnapBackupUserGuide.html" todir="${HtmlFolder}"/>
+
+      <!--  Create Executable JAR File -->
       <jar destfile="${JavaClasses}/../snapbackup.jar" basedir="${JavaClasses}">
          <fileset dir="." includes="*.class"/>
          <manifest>
             <attribute name="Main-Class" value="com.snapbackup.Main"/>
             </manifest>
          </jar>
+
       </target>
+
    </project>
