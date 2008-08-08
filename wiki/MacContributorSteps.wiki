@@ -1,0 +1,30 @@
+#labels Phase-Implementation
+= Mac OS X Contributor Steps =
+
+Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup source code and submit your changes.
+
+== One-Time SVN Setup ==
+Download the Mac OS X openCollabNet
+http://subversion.tigris.org/getting.html#binary-packages
+
+== Steps ==
+1) Get your password
+http://code.google.com/hosting/settings
+
+2) Terminal
+{{{
+$ mk ~/Projects
+$ cd ~/Projects
+$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>
+}}}
+
+3) edit code
+...
+
+4) checkin
+{{{
+$ svn update
+$ svn status
+$ svn commit --message "<COMMENT HERE>."
+$ svn status
+}}}
