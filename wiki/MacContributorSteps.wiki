@@ -12,11 +12,9 @@ http://subversion.tigris.org/getting.html#binary-packages
 http://code.google.com/hosting/settings
 
 2) Terminal
-{{{
-$ mk ~/Projects
-$ cd ~/Projects
-$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>
-}}}
+   `$ mk ~/Projects`
+   `$ cd ~/Projects`
+   `$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>`
 
 3) edit code
 ...
