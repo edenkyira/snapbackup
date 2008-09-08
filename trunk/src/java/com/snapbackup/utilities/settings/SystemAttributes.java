@@ -34,7 +34,7 @@ public class SystemAttributes {
    //Bootstrap data needed before reading properties file
    public static final String   appName = "SnapBackup";  //".properties" name
    public static final String   appVersion = "4.5";
-   // 4.5 - 4/12/2007 -  Convert to Open Source
+   // 4.5 - 9/7/2008 -   Slovene (Slovenian)
    // 4.4 - 6/9/2006 -   Korean, user guide print button, and exclude .DS_Store on Macs
    // 4.3 - 5/7/2006 -   Portuguese
    // 4.2 - 4/22/2006 -  Spanish
@@ -52,7 +52,8 @@ public class SystemAttributes {
    public static final String   appAuthors = "Dem Pilafian";
    public static final String   errMsgHeader = "ERROR -- '";
    public static final String   errMsgMissingResource = "' property not found in: ";
-   public static final String[] localeCodes = { "en", "eo", "es", "de", "fr", "it", "ko", "nl", "pt", "ru" };
+   public static final String[] localeCodes = {
+      "en", "eo", "es", "de", "fr", "it", "ko", "nl", "pt", "ru", "sl" };
    public static final String   prefLocale = "locale";
    public static final String   prefChar = ".";
    public static final String   prefPrefix = appName.toLowerCase() + prefChar;
@@ -75,7 +76,8 @@ public class SystemAttributes {
       "Oscar Laurens Schrover", "http://www.macfan.nl/",                         //"nl"
       "Angel Herr\u00e1ez",     "http://www2.uah.es/biomodel/",                  //"es"
       "Antonio de Rezende Jr.", "http://en.wikipedia.org/wiki/Portuguese_language", //"pt"
-      "Steve",                  "http://www.transkoreanservices.com/"            //"ko"
+      "Steve",                  "http://www.transkoreanservices.com/",           //"ko"
+      "Sa\u0161o Topolovec",    "http://en.wikipedia.org/wiki/Slovene_language"  //"sl"
       };
 
    //Useful constants
