@@ -20,12 +20,12 @@
       <!--  Create Class Files  -->
       <delete dir="${JavaClasses}"/>
       <mkdir  dir="${JavaClasses}"/>
-      <javac srcdir="${JavaSource}" destdir="${JavaClasses}"/>
+      <javac  srcdir="${JavaSource}" destdir="${JavaClasses}" source="1.4" target="1.4"/>
 
       <!--  Prepare Resources  -->
       <native2ascii encoding="UTF8" src="${Resources}/properties" dest="${JavaClasses}"/>
       <copy file="${JavaClasses}/SnapBackup.properties"
-            tofile="${JavaClasses}/SnapBackup_en.properties"/>
+         tofile="${JavaClasses}/SnapBackup_en.properties"/>
       <copy todir="${JavaClasses}/com/snapbackup/ui/images">
          <fileset dir="${Resources}/graphics/application"/>
          </copy>
