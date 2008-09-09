@@ -1,16 +1,21 @@
 #labels Phase-Implementation
-= Mac OS X Contributor Steps =
+= Snap Backup Contributor Steps for Mac OS X =
 
 Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup source code and submit your changes.
 
 == One-Time SVN Setup ==
-1) Download and Install SVN Client
+1) Download and Install Xcode
+   Get *Xcode for Mac Development* at:
+      http://developer.apple.com/tools/download/
+   Open the downloaded *.dmg* file and run the *XcodeTools.mpkg* file to complete the Xcode installation.  Use the default options.
+
+2) Download and Install SVN Client
    Follow the *openCollabNet* link for Mac OS X at http://subversion.tigris.org/getting.html#binary-packages to get the installer (binary).
 
-2) Get Your Password
+3) Get Your Password
    Visit http://code.google.com/hosting/settings to obtain your password
 
-3) Download Code
+4) Download Code
    Run *Terminal* (it's in `/Applications/Utilities`) and enter the following commands at the Unix prompt:
    || `$ mk ~/Projects` ||
    || `$ cd ~/Projects` ||
