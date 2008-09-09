@@ -1,0 +1,6 @@
+#labels Phase-Implementation,Featured
+= Contributor Steps =
+
+Instructions:
+   * ContributorStepsMac
+   * ContributorStepsWindows
