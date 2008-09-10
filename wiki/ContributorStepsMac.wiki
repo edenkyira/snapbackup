@@ -42,3 +42,21 @@ In the above instructions, replace "`<USERNAME HERE>`" with your Google Code use
    || `$ svn commit --message "<COMMENT HERE>."` ||
    || `$ svn status` ||
 In the above instructions, replace "`<COMMENT HERE>`" with a short description of the changes you made.
+
+*5) Create Mac Application (optional)*
+   Using _Finder_, navigate into the _/Developer/Applications/Utilities_ folder and double-click _Jar Bundler_.
+   Steps:
+      a) For the "Main Class:", use the "Choose..." button and go to and choose "ShowTime.jar".
+      b) Check the "Use Macintosh Menu Bar" option.
+      c) Use the "Choose Icon" button to choose the "SnapBackup.icns" file (you'll need to navigate to the "Users" folder to find the "ItsShowtime" folder).
+      d) Click the "Properties" tab and enter "1.0" into the "Version:" field.
+      e) Also enter "1.0" into the "Get-Info String:" filed.
+      f) Click the "Create Application..." button.
+      g) In the "File:" field, enter "Show Time".
+      h) Navigate into the "ItsShowtime" folder.
+      i) Use the "New Folder" button to create a folder called "Show Time Mac App".
+      j) Click the "Create" button. 
+   Quit "Jar Bundler".
+
+*6) Create an Installer (optional)*
+   Using _Finder_, navigate into the _~/Projects/snapbackup/src/installer/mac_ folder and double-click _snap-backup.pmdoc_.  
