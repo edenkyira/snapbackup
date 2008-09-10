@@ -12,7 +12,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
    Install the JDK with all the default options.
 
 *2) Download and Install Apache Ant*
-   Obtain the file _apache-ant-X.Y.Z-bin.zip_ (where _X.Y.Z is the current version, such as _1.7.1_):
+   Obtain the file _apache-ant-X.Y.Z-bin.zip_ (where _X.Y.Z_ is the current version, such as _1.7.1_):
       http://ant.apache.org/bindownload.cgi
   Unzip the file into _C:\Apps\Ant\_ so you have folder at: _C:\Apps\Ant\apache-ant-X.Y.Z_
 
