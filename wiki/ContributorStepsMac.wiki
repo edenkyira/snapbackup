@@ -43,6 +43,9 @@ In the above instructions, replace "`<USERNAME HERE>`" with your Google Code use
    || `$ svn status` ||
 In the above instructions, replace "`<COMMENT HERE>`" with a short description of the changes you made.
 
+
+===INCOMPLETE BELOW THIS POINT===
+
 *5) Create Mac Application (optional)*
    Using _Finder_, navigate into the _/Developer/Applications/Utilities_ folder and double-click _Jar Bundler_.
    Steps:
