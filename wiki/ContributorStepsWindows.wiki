@@ -1,11 +1,22 @@
-= Microsoft Windows Contributor Steps =
+#labels Phase-Implementation
+= Snap Backup Contributor Steps for Microsoft Windows =
 
 ...IN PROGRESS...
 
-Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup source code and submit your changes.
+Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup source code and submit your changes.
 
-== One-Time SVN Setup ==
-1) Download and Install SVN Client
+== One-Time Environment Setup ==
+*1) Download and Install JDK*
+   Click the _&raquo; Download_ button for _JDK 6 Update X_ (where _X_ is the current update version) at:
+      http://java.sun.com/javase/downloads/
+   Install the JDK with all the default options.
+
+*2) Download and Install Apache Ant*
+   Obtain the file _apache-ant-X.Y.Z-bin.zip_ (where _X.Y.Z is the current version, such as _1.7.1_):
+      http://ant.apache.org/bindownload.cgi
+  Unzip the file into _C:\Apps\Ant\_ so you have folder at: _C:\Apps\Ant\apache-ant-X.Y.Z_
+
+*3) Download and Install SVN Client*
    Follow the *openCollabNet* link for Mac OS X at http://subversion.tigris.org/getting.html#binary-packages to get the installer (binary).
 
 2) Get Your Password
