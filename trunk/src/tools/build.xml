@@ -14,6 +14,7 @@
    <property name="Resources"   location="${Home}/src/resources"/>
    <property name="JavaClasses" location="${Home}/build/classes"/>
    <property name="HtmlFolder"  location="${Home}/build/classes/com/snapbackup/ui/userguide/html"/>
+   <property name="WebFolder"   location="${Home}/build/web"/>
 
    <target name="build">
 
@@ -38,6 +39,13 @@
             <attribute name="Main-Class" value="com.snapbackup.Main"/>
             </manifest>
          </jar>
+
+      <!--  Generate Files for Web Site  -->
+      <copy file="${Resources}/SnapBackupUserGuide.html" todir="${WebFolder}"/>
+      <copy todir="${WebFolder}">
+         <fileset dir="${Resources}/properties"/>
+         <globmapper from="*" to="*.txt"/>
+         </copy>
 
       </target>
 
