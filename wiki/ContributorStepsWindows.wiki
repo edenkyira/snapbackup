@@ -17,16 +17,20 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
   Unzip the file into _C:\Apps\Ant\_ so you have folder at: _C:\Apps\Ant\apache-ant-X.Y.Z_
 
 *3) Download and Install SVN Client*
-   Follow the *openCollabNet* link for Mac OS X at http://subversion.tigris.org/getting.html#binary-packages to get the installer (binary).
+   Click the download icon for Windows version of Silk SVN at:
+      http://www.sliksvn.com/en/download
+   Install the default options.
 
-2) Get Your Password
-   Visit http://code.google.com/hosting/settings to obtain your password
+*4) Get Your GoogleCode.com Password*
+   To obtain your password, visit:
+      http://code.google.com/hosting/settings
 
-3) Download Code
-   Run *Terminal* (it's in `/Applications/Utilities`) and enter the following commands at the Unix prompt:
-   || `$ mk ~/Projects` ||
-   || `$ cd ~/Projects` ||
-   || `$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
+*5) Download Code*
+   Launch _Command Prompt_ (_Start -->  Programs  --> Accessories  -->  Command Prompt_), and enter the following commands:
+   || `> cd %HOMEPATH%` ||
+   || `> mkdir Projects` ||
+   || `> cd Projects` ||
+   || `> svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
 In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.
 
 
