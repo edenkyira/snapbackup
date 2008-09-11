@@ -1,8 +1,6 @@
 #labels Phase-Implementation
 = Snap Backup Contributor Steps for Microsoft Windows =
 
-...IN PROGRESS...
-
 Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup source code and submit your changes.
 
 == One-Time Environment Setup ==
@@ -21,7 +19,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
       http://www.sliksvn.com/en/download
    Install the default options.
 
-*4) Get Your GoogleCode.com Password*
+*4) Get Your !GoogleCode.com Password*
    To obtain your password, visit:
       http://code.google.com/hosting/settings
 
@@ -36,7 +34,7 @@ In the above instructions, replace "`<USERNAME HERE>`" with your Google Code use
 
 == Contributor Steps ==
 1) Build Current Project and Verify
-   In *Finder*, go to the `~/Projects/snapbackup/src/tools/` and double-click the *build.sh.command* file.  Now go to the `~/Projects/snapbackup/build/` folder and double-click *snapbackup.jar*`.  Verify the Snap Backup application is working properly.
+   In _Windows Explorer_, go to the `~/Projects/snapbackup/src/tools/` and double-click the *build.sh.command* file.  Now go to the `~/Projects/snapbackup/build/` folder and double-click *snapbackup.jar*`.  Verify the Snap Backup application is working properly.
 
 2) Edit Code
    The project files are all under the `~/Projects/snapbackup` folder.  Use your editor to makes changes to the appropriate files.  (Note to translators: the language files are at `~/Projects/snapbackup/src/resources/properties`).
