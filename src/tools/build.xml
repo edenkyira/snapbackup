@@ -47,6 +47,16 @@
          <globmapper from="*" to="*.txt"/>
          </copy>
 
+      <!--  Create Installer  -->
+      <condition property="is.windows"><os family="windows"/></condition>
+      <copy todir="${Home}/build">
+         <fileset dir="${Home}/src/installer/windows"/>
+         </copy>
+      <exec dir="${Home}/build" executable="\Program Files\NSIS\makensis.exe" osfamily="windows">
+         <!-- arg value="/V2" / -->
+         <arg value="snap-backup.nsi" />
+         </exec>
+
       </target>
 
    </project>
