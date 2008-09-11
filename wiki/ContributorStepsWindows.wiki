@@ -17,7 +17,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
 *3) Download and Install SVN Client*
    Click the download icon for Windows version of Silk SVN at:
       http://www.sliksvn.com/en/download
-   Install the default options.
+   Install with the default options.
 
 *4) Get Your !GoogleCode.com Password*
    To obtain your password, visit:
@@ -30,6 +30,11 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
    || `> cd Projects` ||
    || `> svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
 In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.
+
+*6) Download and Install NSIS (optional)*
+   Click the _Download_ link to get Nullsoft Scriptable Install System (NSIS) from:
+      http://nsis.sourceforge.net/Download
+   Install with the default options.
 
 
 == Contributor Steps ==
