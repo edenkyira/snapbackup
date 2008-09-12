@@ -12,6 +12,7 @@
    <property name="Home"        location="../.."/>
    <property name="JavaSource"  location="${Home}/src/java"/>
    <property name="Resources"   location="${Home}/src/resources"/>
+   <property name="BuildFolder" location="${Home}/build"/>
    <property name="JavaClasses" location="${Home}/build/classes"/>
    <property name="HtmlFolder"  location="${Home}/build/classes/com/snapbackup/ui/userguide/html"/>
    <property name="WebFolder"   location="${Home}/build/web"/>
@@ -19,7 +20,7 @@
    <target name="build">
 
       <!--  Create Class Files  -->
-      <delete dir="${JavaClasses}"/>
+      <delete dir="${BuildFolder}"/>
       <mkdir  dir="${JavaClasses}"/>
       <javac  srcdir="${JavaSource}" destdir="${JavaClasses}" source="1.4" target="1.4"/>
 
@@ -46,16 +47,25 @@
          <fileset dir="${Resources}/properties"/>
          <globmapper from="*" to="*.txt"/>
          </copy>
+      <move file="${WebFolder}/SnapBackup.properties.txt"
+         tofile="${WebFolder}/SnapBackup_en.properties.txt"/>
+      <zip destfile="${WebFolder}/SnapBackup.properties.zip" basedir="${WebFolder}"
+         includes="SnapBackup_*.properties.txt"/>
 
       <!--  Create Installer  -->
       <condition property="is.windows"><os family="windows"/></condition>
-      <copy todir="${Home}/build">
+      <copy todir="${BuildFolder}">
          <fileset dir="${Home}/src/installer/windows"/>
          </copy>
-      <exec dir="${Home}/build" executable="\Program Files\NSIS\makensis.exe" osfamily="windows">
+      <exec dir="${BuildFolder}" executable="\Program Files\NSIS\makensis.exe" osfamily="windows">
          <!-- arg value="/V2" / -->
          <arg value="snap-backup.nsi" />
          </exec>
+      <delete file="${BuildFolder}/snap-backup.nsi"/>
+      <delete file="${BuildFolder}/SnapBackupIcon16.ico"/>
+      <delete file="${BuildFolder}/SnapBackupIcon32.ico"/>
+      <delete file="${BuildFolder}/SnapBackupLicense.txt"/>
+      <delete file="${BuildFolder}/Uninstall.txt"/>
 
       </target>
 
