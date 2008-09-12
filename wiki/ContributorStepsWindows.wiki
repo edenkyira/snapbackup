@@ -5,7 +5,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
 
 == One-Time Environment Setup ==
 *1) Download and Install JDK*
-   Click the _&raquo; Download_ button for _JDK 6 Update X_ (where _X_ is the current update version) at:
+   Click the _>> Download_ button for _JDK 6 Update X_ (where _X_ is the current update version) at:
       http://java.sun.com/javase/downloads/
    Install the JDK with all the default options.
 
@@ -25,9 +25,8 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
 
 *5) Download Code*
    Launch _Command Prompt_ (_Start -->  Programs  --> Accessories  -->  Command Prompt_), and enter the following commands:
-   || `> cd %HOMEPATH%` ||
-   || `> mkdir Projects` ||
-   || `> cd Projects` ||
+   || `> mkdir \Projects` ||
+   || `> cd \Projects` ||
    || `> svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
 In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.
 
@@ -38,17 +37,17 @@ In the above instructions, replace "`<USERNAME HERE>`" with your Google Code use
 
 
 == Contributor Steps ==
-1) Build Current Project and Verify
-   In _Windows Explorer_, go to the `~/Projects/snapbackup/src/tools/` and double-click the *build.sh.command* file.  Now go to the `~/Projects/snapbackup/build/` folder and double-click *snapbackup.jar*`.  Verify the Snap Backup application is working properly.
+*1) Build Current Project and Verify*
+   In _Windows Explorer_, go to the `\Projects\snapbackup\src\tools` folder and double-click the _build.bat_ file.  Now go to the `\Projects\snapbackup\build` folder and double-click _snapbackup.jar_`.  Verify the Snap Backup application is working properly.
 
-2) Edit Code
-   The project files are all under the `~/Projects/snapbackup` folder.  Use your editor to makes changes to the appropriate files.  (Note to translators: the language files are at `~/Projects/snapbackup/src/resources/properties`).
+*2) Edit Code*
+   The project files are all under the `\Projects\snapbackup` folder.  Use your editor to makes changes to the appropriate files.  (Note to translators: the language files are at `\Projects\snapbackup\src\resources\properties`).
 
-3) Build the Project and Verify
+*3) Build the Project and Verify*
    Repeat step #1 above.
 
-4) Check Changes into SVN Repository (Server)
-   || `$ cd ~/Projects/snapbackup` ||
+*4) Check Changes into SVN Repository (Server)*
+   || `> cd \Projects\snapbackup` ||
    || `$ svn update` ||
    || `$ svn status` ||
    || `$ svn commit --message "<COMMENT HERE>."` ||
