@@ -26,10 +26,10 @@ In the above instructions, replace "`<USERNAME HERE>`" with your Google Code use
 
 == Contributor Steps ==
 *1) Build Current Project and Verify*
-   In *Finder*, go to the `~/Projects/snapbackup/src/tools/` and double-click the _build.sh.command_ file.  Now go to the `~/Projects/snapbackup/build/` folder and double-click _snapbackup.jar_.  Verify the Snap Backup application is working properly.
+   Open _Finder_ --> Go to the folder _~/Projects/snapbackup/src/tools/_ --> Double-click the file _build.sh.command_ --> Go to the folder _~/Projects/snapbackup/build/_ --> Double-click the file _snapbackup.jar_ -->  Verify that the Snap Backup application launches and works properly
 
 *2) Edit Code*
-   The project files are all under the `~/Projects/snapbackup` folder.  Use your editor to makes changes to the appropriate files.  (Note to translators: the language files are at `~/Projects/snapbackup/src/resources/properties`).
+   The project files are all under the _~/Projects/snapbackup_ folder.  Use your editor to makes changes to the appropriate files.  (Note to translators: the language files are at _~/Projects/snapbackup/src/resources/properties_).
 
 *3) Build the Project and Verify*
    Repeat step #1 above.
