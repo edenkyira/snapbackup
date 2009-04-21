@@ -14,16 +14,15 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup
       http://subversion.tigris.org/getting.html#binary-packages
 
 *3) Get Your Password*
-   To obtain your password, visit:
+   To obtain your password (needed for next step), visit:
       http://code.google.com/hosting/settings
 
 *4) Download Code*
    Run _Terminal_ (it's in `/Applications/Utilities`) and enter the following commands at the Unix prompt:
-   || `$ mk ~/Projects` ||
+   || `$ mkdir ~/Projects` ||
    || `$ cd ~/Projects` ||
    || `$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
-In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.
-
+In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.  If you get an "Error validating server certificate", you can enter "p" to permanently accept the certificate.
 
 == Contributor Steps ==
 *1) Build Current Project and Verify*
