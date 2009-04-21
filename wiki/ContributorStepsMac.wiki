@@ -10,7 +10,7 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup
    Open the downloaded _.dmg_ file and run _!XcodeTools.mpkg_ to complete the Xcode installation.  Use the default options.
 
 *B) Download and Install SVN Client*
-   To get the installer (binary), follow the _openCollabNet_ link for Mac OS X at:
+   To get the installer (binary), follow the "openCollabNet" link in the _Mac OS X_ section at:
       http://subversion.tigris.org/getting.html#binary-packages
 
 *C) Get Your Password*
