@@ -42,12 +42,12 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup
    || `$ svn status` ||
    In the above instructions, replace "`<COMMENT HERE>`" with a short description of the changes you made.
 
-== 3. Create Mac Application with Installer ==
-*A) Mac OS X Application (optional)*
+== 3. Mac OS X Application with Installer ==
+*A) Create Mac Application (optional)*
    To turn the Executable Java Archive (Jar) file into a proper [http://www.centerkey.com/mac/java/ Mac OS X application], open _Jar Bundler_  (it's in _/Developer/Applications/Utilities_) and follow these steps:
       # For the "Main Class:", use the *Choose...* button and go to and choose "ShowTime.jar"
       # Check the "Use Macintosh Menu Bar" option
-      # Use the *Choose Icon* button to choose the "SnapBackup.icns" file (you'll need to navigate to the _Users_ folder to find the _ItsShowtime" folder)
+      # Use the *Choose Icon* button to choose the "SnapBackup.icns" file (you'll need to navigate to the _Users_ folder to find the "ItsShowtime" folder)
       # Click the *Properties* tab and enter "1.0" into the "Version:" field
       # Also enter "1.0" into the "Get-Info String:" filed
       # Click the *Create Application...* button
@@ -57,7 +57,7 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup
       # Click the *Create* button
       # Quit _Jar Bundler_
 
-*B) Mac OS X Installer (optional)*
+*B) Create Mac Installer (optional)*
    To wrap the application into a native [http://www.centerkey.com/mac/java/ Mac OS X installer], follow these steps:
       # Using _Finder_, navigate into the _~/Projects/snapbackup/src/installer/mac_ folder
       # Double-click _snap-backup.pmdoc_
