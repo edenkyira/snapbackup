@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-->
 <!--  Snap Backup                                    -->
 <!--  Ant Build File (build.xml)                     -->
@@ -22,7 +22,7 @@
       <!--  Create Class Files  -->
       <delete dir="${BuildFolder}"/>
       <mkdir  dir="${JavaClasses}"/>
-      <javac  srcdir="${JavaSource}" destdir="${JavaClasses}" source="1.4" target="1.4"/>
+      <javac  srcdir="${JavaSource}" destdir="${JavaClasses}" source="1.5" target="1.5"/>
 
       <!--  Prepare Resources  -->
       <native2ascii encoding="UTF8" src="${Resources}/properties" dest="${JavaClasses}"/>

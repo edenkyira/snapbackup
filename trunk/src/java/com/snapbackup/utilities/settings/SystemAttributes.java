@@ -33,7 +33,8 @@ public class SystemAttributes {
 
    //Bootstrap data needed before reading properties file
    public static final String   appName = "SnapBackup";  //".properties" name
-   public static final String   appVersion = "4.5";
+   public static final String   appVersion = "5.0";
+   // 5.0 - 4/21/2009 -  Switch to Java 5.0 and new SwingManager
    // 4.5 - 9/7/2008 -   Slovene (Slovenian)
    // 4.4 - 6/9/2006 -   Korean, user guide print button, and exclude .DS_Store on Macs
    // 4.3 - 5/7/2006 -   Portuguese
