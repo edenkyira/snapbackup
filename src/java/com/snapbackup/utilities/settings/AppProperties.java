@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -34,7 +34,8 @@ import java.util.ResourceBundle;
 // values.  Additional properties with values may added at run-time.
 public class AppProperties {
 
-   private static final Hashtable supplimentalProperty = new Hashtable();
+   private static final Hashtable<String, String> supplimentalProperty =
+      new Hashtable<String, String>();
 
    private static ResourceBundle applicationResources =
       ResourceBundle.getBundle(SystemAttributes.appName,
@@ -47,7 +48,7 @@ public class AppProperties {
          return applicationResources.getString(propertyName);
          }
       catch (MissingResourceException e) {
-         String propertyValue = (String)supplimentalProperty.get(propertyName);
+         String propertyValue = supplimentalProperty.get(propertyName);
          if (propertyValue == null)
             propertyValue = SystemAttributes.errMsgHeader + propertyName +
             SystemAttributes.errMsgMissingResource +

@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -98,7 +98,7 @@ public class DataModel {
 
    
    //User selections not owned by a UI control
-   static List
+   static List<String>
       zipItemList, zipIncludeList, zipExcludeList, zipExcludeFolderList, zipExcludeSizeList;
 
    //Command-line data
@@ -110,8 +110,8 @@ public class DataModel {
    static String  archivePath;
    static boolean filtersOn;
 
-   public static Vector getProfilesNames() {
-      Vector names = UserPreferences.getProfileNames();
+   public static Vector<String> getProfilesNames() {
+      Vector<String> names = UserPreferences.getProfileNames();
       if (names.size() == 0)
          names.add(AppProperties.getProperty(prefCurrentProfile));
       return names;
@@ -195,7 +195,7 @@ public class DataModel {
       }
 
    private static String list2StrList(List list) {
-   	//Converts multi-line data (List) into a single long string using the "splitStr" delimiter
+   	  //Converts multi-line data (List) into a single long string using the "splitStr" delimiter
       StringBuffer strList = new StringBuffer();
       ListIterator iter = list.listIterator();
       if (iter.hasNext())
@@ -206,17 +206,18 @@ public class DataModel {
       return strList.toString();
       }
 
-   private static List strList2List(String strList, int minSize) {
-   	//Creates a List of lines from a string of multi-line data delimited with "splitStr"
-      List list = new ArrayList(Arrays.asList(strList.split(SystemAttributes.splitStr)));
+   private static List<String> strList2List(String strList, int minSize) {
+   	  //Creates a List of lines from a string of multi-line data delimited with "splitStr"
+      List<String> list = 
+            new ArrayList<String>(Arrays.asList(strList.split(SystemAttributes.splitStr)));
       if (strList.equals(nullStr))
-         list = new ArrayList();
+         list = new ArrayList<String>();
       while (list.size() < minSize)
          list.add(nullStr);
       return list;
       }
 
-   private static List strList2List(String strList) {
+   private static List<String> strList2List(String strList) {
        return strList2List(strList, 0);
        }
 
@@ -287,29 +288,29 @@ public class DataModel {
       while (iter.hasNext()) {
          loc = iter.nextIndex();
          zipListModel.addElement(buildZipListLine((String)iter.next(),
-            (String)zipIncludeList.get(loc), (String)zipExcludeList.get(loc),
-            (String)zipExcludeFolderList.get(loc), (String)zipExcludeSizeList.get(loc), f));
+            zipIncludeList.get(loc), zipExcludeList.get(loc),
+            zipExcludeFolderList.get(loc), zipExcludeSizeList.get(loc), f));
          }
       }
 
    public static String getCurrentZipItem(SnapBackupFrame f) {
-      return (String)zipItemList.get(f.getSrcZipList().getSelectedIndex());
+      return zipItemList.get(f.getSrcZipList().getSelectedIndex());
       }
    
    public static String getCurrentZipIncludeFilter(SnapBackupFrame f) {
-      return (String)zipIncludeList.get(f.getSrcZipList().getSelectedIndex());
+      return zipIncludeList.get(f.getSrcZipList().getSelectedIndex());
       }
     
    public static String getCurrentZipExcludeFilter(SnapBackupFrame f) {
-      return (String)zipExcludeList.get(f.getSrcZipList().getSelectedIndex());
+      return zipExcludeList.get(f.getSrcZipList().getSelectedIndex());
       }
     
    public static String getCurrentZipExcludeFolderFilter(SnapBackupFrame f) {
-      return (String)zipExcludeFolderList.get(f.getSrcZipList().getSelectedIndex());
+      return zipExcludeFolderList.get(f.getSrcZipList().getSelectedIndex());
       }
     
    public static String getCurrentZipExcludeSizeFilter(SnapBackupFrame f) {
-      return (String)zipExcludeSizeList.get(f.getSrcZipList().getSelectedIndex());
+      return zipExcludeSizeList.get(f.getSrcZipList().getSelectedIndex());
       }
 
    public static void setCurrentZipFilter(String includeFilter,
