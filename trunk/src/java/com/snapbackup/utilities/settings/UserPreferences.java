@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -148,8 +148,8 @@ public class UserPreferences {
       return allKeys;
       }
 
-   public static Vector getProfileNames() {
-      Vector names = new Vector();
+   public static Vector<String> getProfileNames() {
+      Vector<String> names = new Vector<String>();
       String[] allKeys = getAllKeys();
       for (int count = 0; count < allKeys.length; count++)
          if (allKeys[count].endsWith(SystemAttributes.prefChar + prefProfileName))

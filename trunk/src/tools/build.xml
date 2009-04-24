@@ -22,7 +22,14 @@
       <!--  Create Class Files  -->
       <delete dir="${BuildFolder}"/>
       <mkdir  dir="${JavaClasses}"/>
-      <javac  srcdir="${JavaSource}" destdir="${JavaClasses}" source="1.5" target="1.5"/>
+      <javac
+            srcdir="${JavaSource}"
+            destdir="${JavaClasses}"
+            source="1.5"
+            target="1.5"
+            includeAntRuntime="false">
+         <compilerarg value="-Xlint"/>
+         </javac>
 
       <!--  Prepare Resources  -->
       <native2ascii encoding="UTF8" src="${Resources}/properties" dest="${JavaClasses}"/>
