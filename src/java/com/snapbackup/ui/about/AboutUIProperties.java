@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -29,7 +29,7 @@ import com.snapbackup.utilities.settings.AppProperties;
 import com.snapbackup.utilities.settings.SystemAttributes;
 
 public class AboutUIProperties {
-   private static final String space = SystemAttributes.space;
+   private static final String space =  SystemAttributes.space;
    //
    //From .properties File
    //
@@ -39,11 +39,11 @@ public class AboutUIProperties {
    public final String aboutCreatedBy =          AppProperties.getProperty("AboutCreatedBy") + space + SystemAttributes.appAuthors;
    public final String aboutTranslatedBy =       AppProperties.getProperty("AboutTranslatedBy");
    public final String aboutAnd =                AppProperties.getProperty("AboutAnd");
-   public final String aboutCopyright =          AppProperties.getPropertyHtml("AboutCopyright");
    public final String aboutLicense =            AppProperties.getProperty("AboutLicense");
-   public final String aboutConfigurationTitle = AppProperties.getPropertyPadded("AboutConfigurationTitle");
    public final String aboutDownload =           AppProperties.getProperty("AboutDownload");
+   public final String aboutConfigurationTitle = AppProperties.getPropertyPadded("AboutConfigurationTitle");
    public final String aboutContact =            AppProperties.getProperty("AboutContactInfo");
+   public final String aboutCopyright =          AppProperties.getProperty("AboutCopyright");
    public final String aboutButtonWeb =          AppProperties.getProperty("AboutButtonWeb");
    public final String aboutButtonClose =        AppProperties.getProperty("AboutButtonClose");
    }
