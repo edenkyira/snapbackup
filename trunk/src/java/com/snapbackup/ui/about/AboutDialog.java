@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -71,12 +71,12 @@ public class AboutDialog extends JDialog {
    private static final String homeURL =       "http://www.snapbackup.com";
    private static final String launchURL =     homeURL + "/app?v=" + SystemAttributes.appVersion;
    private static final String downloadURL =   homeURL + "/download";
-   private static final String feedbackEMail = "feedback2@snapbackup.com";
    private static final String urlKey =        "url";  //used as key to save URL for each translator
    private static final String hey =           "Hey, don't press the '[' key!";
    private static final String[] translators = SystemAttributes.appTranslators;
-   private AboutUIProperties ui = new AboutUIProperties();   //make singleton for performance????
 
+   private AboutUIProperties ui = new AboutUIProperties();   //make singleton for performance????
+   private final String contactInfoStr = ui.aboutContact + newLine + SystemAttributes.postalAddress + newLine + homeURL + newLine + SystemAttributes.feedbackEMail;
 
    //Define About Controls
    private JPanel    aboutPanel =   new JPanel();
@@ -86,10 +86,10 @@ public class AboutDialog extends JDialog {
    private JLabel    author =       new JLabel(ui.aboutCreatedBy);
    private JPanel    translatorsPanel =  new JPanel();
    private JLabel    translatedBy = new JLabel(ui.aboutTranslatedBy + space);
-   private JLabel    copyright =    new JLabel(ui.aboutCopyright);
+   private JLabel    copyright =    new JLabel("<html>" + ui.aboutCopyright + space + SystemAttributes.appCopyright + "</html>");
    private JTextArea license =      new JTextArea(ui.aboutLicense + newLine + newLine + ui.aboutDownload + newLine + tab + downloadURL);
    private JTextArea configInfo =   new JTextArea();
-   private JTextArea contactInfo =  new JTextArea(ui.aboutContact.replaceAll(newLine, newLine + tab) + newLine + tab + homeURL + newLine + tab + feedbackEMail);
+   private JTextArea contactInfo =  new JTextArea(contactInfoStr.replaceAll(newLine, newLine + tab));
    private JButton   webButton =    new JButton(ui.aboutButtonWeb);
    private JButton   closeButton =  new JButton(ui.aboutButtonClose);
    private JButton[] buttonList =   { webButton, closeButton };

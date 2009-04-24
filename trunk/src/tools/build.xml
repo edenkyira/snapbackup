@@ -28,7 +28,7 @@
             source="1.5"
             target="1.5"
             includeAntRuntime="false">
-         <compilerarg value="-Xlint"/>
+         <compilerarg value="-Xlint:all,-serial"/>
          </javac>
 
       <!--  Prepare Resources  -->

@@ -31,8 +31,9 @@ import java.util.Properties;
 //Constant values that do not belong in the properties file.
 public class SystemAttributes {
 
-   //Bootstrap data needed before reading properties file
+   //Release constants
    public static final String   appName = "SnapBackup";  //".properties" name
+   public static final String   appCopyright = "&copy; 2009 Center Key Software";
    public static final String   appVersion = "5.0";
    // 5.0 - 4/21/2009 -  Switch to Java 5.0 and new SwingManager
    // 4.5 - 9/7/2008 -   Slovene (Slovenian)
@@ -50,20 +51,7 @@ public class SystemAttributes {
    // 3.2 - 6/17/2005 -  Italian
    // 3.1 - 6/1/2005 -   Filters
    // 3.0 - 5/9/2005 -   Multiple profiles
-   public static final String   appAuthors = "Dem Pilafian";
-   public static final String   errMsgHeader = "ERROR -- '";
-   public static final String   errMsgMissingResource = "' property not found in: ";
-   public static final String[] localeCodes = {
-      "en", "eo", "es", "de", "fr", "it", "ko", "nl", "pt", "ru", "sl" };
-   public static final String   prefLocale = "locale";
-   public static final String   prefChar = ".";
-   public static final String   prefPrefix = appName.toLowerCase() + prefChar;
-   public static final String   prefProfilePrefix = prefPrefix + "~";
-   public static final String   prefProfilePostfix = "~" + prefChar;
-   public static final String   trueStr =  "true";  //Used to save pref data as text
-   public static final String   falseStr = "false";
-   public static final String   splitStr = "~@~";  //Delimitter for multi-line data
-   public static final String   cmdLineDefaultProfile = "~";
+   public static final String   appAuthors = "Dem Pilafian";  //Names of code contributor go here
    public static final String[] appTranslators = {
       //Codes -- http://www.ics.uci.edu/pub/ietf/http/related/iso639.txt
       //Flags -- http://www.paypal.com/be/cgi-bin/webscr?cmd=_display-approved-signup-countries-outside
@@ -80,11 +68,14 @@ public class SystemAttributes {
       "Steve",                  "http://www.transkoreanservices.com/",           //"ko"
       "Sa\u0161o Topolovec",    "http://en.wikipedia.org/wiki/Slovene_language"  //"sl"
       };
+   public static final String[] localeCodes = {
+      "en", "eo", "es", "de", "fr", "it", "ko", "nl", "pt", "ru", "sl" };
 
    //Useful constants
    public static final String nullStr =         "";
    public static final String space =           " ";
    public static final String comma =           ",";
+   public static final String atSign =           "@";
    public static final String dataPrompt =      ": ";
    public static final String tab =             "     ";
    public static final String dividerStr =      " / ";
@@ -93,6 +84,21 @@ public class SystemAttributes {
    public static final String headerMid =       "</font></b>";
    public static final String headerSplashTag = "<br><br><b><font color=gray>Center Key Software</font></b>";
    public static final String headerPost =      "<br>&nbsp;</center></html>";
+   public static final String feedbackEMail =   "feedback" + atSign + "snapbackup.com";
+   public static final String postalAddress = "Center Key Software\nBox 21\nSan Carlos, California  94070\nUSA";
+
+   //Bootstrap data needed before reading properties file
+   public static final String   errMsgHeader = "ERROR -- '";
+   public static final String   errMsgMissingResource = "' property not found in: ";
+   public static final String   prefLocale = "locale";
+   public static final String   prefChar = ".";
+   public static final String   prefPrefix = appName.toLowerCase() + prefChar;
+   public static final String   prefProfilePrefix = prefPrefix + "~";
+   public static final String   prefProfilePostfix = "~" + prefChar;
+   public static final String   trueStr =  "true";  //Used to save pref data as text
+   public static final String   falseStr = "false";
+   public static final String   splitStr = "~@~";  //Delimitter for multi-line data
+   public static final String   cmdLineDefaultProfile = "~";
 
    //System information retrieved from JVM
    private static final Properties sysInfo = System.getProperties();

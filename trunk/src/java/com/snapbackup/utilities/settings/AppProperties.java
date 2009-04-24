@@ -62,7 +62,8 @@ public class AppProperties {
       }
 
    public static String getPropertyHtml(String propertyName) {
-      return "<html>" + getProperty(propertyName).replaceAll("\\(c\\)", "&copy;") + "</html>";
+      //return "<html>" + getProperty(propertyName).replaceAll("\\(c\\)", "&copy;") + "</html>";
+      return "<html>" + getProperty(propertyName) + "</html>";
       }
 
    public static void addSupplimentalProperty(String propertyName, String propertyValue) {
