@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -64,6 +64,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -76,6 +77,8 @@ import javax.swing.event.ListSelectionListener;
 import com.snapbackup.business.DataModel;
 import com.snapbackup.ui.about.AboutDialog;
 import com.snapbackup.ui.filter.FilterDialog;
+import com.snapbackup.ui.prefexport.ExportDialog;
+//import com.snapbackup.ui.importsettings.ImportSettingsDialog;
 import com.snapbackup.ui.options.Options;
 import com.snapbackup.ui.options.OptionsDialog;
 import com.snapbackup.ui.userguide.UserGuideDialog;
@@ -110,6 +113,8 @@ public class SnapBackupFrame extends JFrame {
                                            new JRadioButtonMenuItem(ui.menuItemProfilesOff);
    private ButtonGroup profilesGroup =     new ButtonGroup();
    private JMenu       skinMenuItem =      new JMenu(ui.menuItemSkin);
+   private JMenuItem   exportMenuItem =    new JMenuItem(ui.menuItemExport);
+   private JMenuItem   importMenuItem =    new JMenuItem(ui.menuItemImport);
    private JMenuItem   optionsMenuItem =   new JMenuItem(ui.menuItemOptions);
    private JMenuItem   exitMenuItem =      new JMenuItem(ui.menuItemExit);
    private JMenu       helpMenuGroup =     new JMenu(ui.menuGroupHelp);
@@ -195,7 +200,7 @@ public class SnapBackupFrame extends JFrame {
       configureContols();
       addContols();
       setupMenuCallbacks();
-      setupMenuFastKeys();
+      UIUtilities.addFastKeys(menuBar);
       setupCallbacks();
       pack();
       destPanel.setMaximumSize(new Dimension(100000, destPanel.getSize().height));
@@ -328,6 +333,12 @@ public class SnapBackupFrame extends JFrame {
       fileMenuGroup.add(filtersMenuItem);   //menu: File | Backup Filters
       fileMenuGroup.add(profilesMenuItem);  //menu: File | Multiple Profiles
       fileMenuGroup.add(skinMenuItem);      //menu: File | Look & Feel
+      //fileMenuGroup.add(new JSeparator());  //hangs!
+      //fileMenuGroup.addSeparator();         //hangs!
+      fileMenuGroup.add(exportMenuItem);    //menu: File | Export Settings...
+      fileMenuGroup.add(importMenuItem);    //menu: File | Import Settings...
+      //fileMenuGroup.add(new JSeparator());  //hangs!
+      //fileMenuGroup.addSeparator();         //hangs!
       fileMenuGroup.add(optionsMenuItem);   //menu: File | Options...    ###############################
       fileMenuGroup.add(exitMenuItem);      //menu: File | Exit
       menuBar.add(helpMenuGroup);           //menu: Help
@@ -429,6 +440,7 @@ public class SnapBackupFrame extends JFrame {
 
       }
 
+   /*
    void setFastKeys(JMenu menuGroup) {
       Component[] menuItems = menuGroup.getMenuComponents();
       for (int count = 0; count < menuItems.length; count++) {
@@ -442,13 +454,7 @@ public class SnapBackupFrame extends JFrame {
             setFastKeys((JMenu)menuItems[count]);
         }
       }
-
-   void setupMenuFastKeys() {
-      fileMenuGroup.setMnemonic(fileMenuGroup.getText().charAt(0));
-      helpMenuGroup.setMnemonic(helpMenuGroup.getText().charAt(0));
-      setFastKeys(fileMenuGroup);
-      setFastKeys(helpMenuGroup);
-      }
+   */
 
    //
    // GridBagConstraints Utilities
@@ -601,9 +607,15 @@ public class SnapBackupFrame extends JFrame {
       profilesMenuItemButtonOff.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) { profilesMenuItemAction(e); }
          } );
+      exportMenuItem.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) { exportMenuItemAction(e); }
+         } );
+      importMenuItem.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) { importMenuItemAction(e); }
+         } );
       optionsMenuItem.addActionListener(new ActionListener() {
-          public void actionPerformed(ActionEvent e) { optionsMenuItemAction(e); }
-          } );
+         public void actionPerformed(ActionEvent e) { optionsMenuItemAction(e); }
+         } );
       //Skin (Look and Feel)
       String currentSkinName = UserPreferences.readPref(DataModel.prefSkinName);
       currentSkinName = UIManager.getLookAndFeel().getClass().getName();
@@ -748,6 +760,13 @@ public class SnapBackupFrame extends JFrame {
       }
    public void exitMenuItemAction(ActionEvent e) {
       DataModel.exit();
+      }
+   public void exportMenuItemAction(ActionEvent e) {
+      ExportDialog exportDialog = new ExportDialog();
+      UIUtilities.centerDialog(exportDialog, this);
+      }
+   public void importMenuItemAction(ActionEvent e) {
+      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       }
    public void optionsMenuItemAction(ActionEvent e) {
       String oldNumRowsSrc = UserPreferences.readPref(Options.prefNumRowsSrc);

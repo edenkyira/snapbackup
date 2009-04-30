@@ -52,6 +52,8 @@ import com.snapbackup.utilities.settings.SystemAttributes;
 import com.snapbackup.utilities.settings.UserPreferences;
 import com.snapbackup.utilities.zip.ZipEngine;
 
+//import org.jdesktop.swingworker.SwingWorker;
+
 public class DataModel {
 
    //Top-lever user prefereences

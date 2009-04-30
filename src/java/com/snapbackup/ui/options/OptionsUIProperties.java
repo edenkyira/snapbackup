@@ -56,9 +56,6 @@ class OptionsUIProperties {
    final String numRowsLogPrompt =          " " + AppProperties.getProperty("LogTitle") + ": ";
       
    final String buttonCancel =              AppProperties.getProperty("OptionsButtonCancel");
-   final char   buttonCancelFast =          AppProperties.getProperty("OptionsButtonCancelFast").charAt(0);
    final String buttonDefaults =            AppProperties.getProperty("OptionsButtonDefaults");
-   final char   buttonDefaultsFast =        AppProperties.getProperty("OptionsButtonDefaultsFast").charAt(0);
    final String buttonOk =                  AppProperties.getProperty("OptionsButtonOk");
-   final char   buttonOkFast =              AppProperties.getProperty("OptionsButtonOkFast").charAt(0);
    }

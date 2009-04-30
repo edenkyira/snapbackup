@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -90,6 +90,8 @@ public class UIProperties {
    public final String menuItemProfilesOff =  AppProperties.getProperty("MenuItemProfilesOff");
 
    public final String menuItemSkin =         AppProperties.getProperty("MenuItemLook");
+   public final String menuItemExport =       AppProperties.getProperty("MenuItemExport");
+   public final String menuItemImport =       AppProperties.getProperty("MenuItemImport");
    public final String menuItemOptions =      AppProperties.getProperty("MenuItemOptions");
    public final String menuItemExit =         AppProperties.getProperty("MenuItemExit");
 
