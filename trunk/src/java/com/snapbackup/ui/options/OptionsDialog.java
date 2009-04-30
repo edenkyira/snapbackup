@@ -64,7 +64,7 @@ public class OptionsDialog extends JDialog {
    	return array;
       }
 
-   //Define About Controls
+   //Define Options Controls
    String coreBackupName;
    OptionsUIProperties ui = new OptionsUIProperties();   //make singleton for performance????
 
@@ -167,8 +167,6 @@ public class OptionsDialog extends JDialog {
 
    	buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
       buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-   	cancelButton.setMnemonic(ui.buttonCancelFast);
-   	okButton.setMnemonic(ui.buttonOkFast);
       cancelButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) { actionCancel(); } } );
       defaultsButton.addActionListener(new ActionListener() {

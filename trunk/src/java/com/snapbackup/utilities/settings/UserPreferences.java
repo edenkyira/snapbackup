@@ -65,7 +65,7 @@ public class UserPreferences {
    public static boolean readBooleanPref(String prefName) {
       //Returns user's preference.  If none, default app property is returned.
       //return string2Boolean(readPref(prefName));
-   	String fallback = boolean2String(AppProperties.getProperty(prefName).equals(
+      String fallback = boolean2String(AppProperties.getProperty(prefName).equals(
          AppProperties.getProperty("True")));
       return string2Boolean(prefs.get(prefix + prefName.toLowerCase(), fallback));
       }
@@ -89,22 +89,23 @@ public class UserPreferences {
    // Profiles
 
    public static void setCmdLineProfileName(String profileName) {
-   	cmdLineProfileName = profileName.toLowerCase();
+      cmdLineProfileName = profileName.toLowerCase();
       }
 
    private static String profilePrefix(String profileName) {
       return SystemAttributes.prefProfilePrefix + profileName.toLowerCase() +
          SystemAttributes.prefProfilePostfix;
       }
+
    private static String profilePrefix() {
-   	String profileName = cmdLineProfileName;
-   	if (profileName == null)
-   		profileName = SnapBackupFrame.current.getCurrentProfileName();
+      String profileName = cmdLineProfileName;
+      if (profileName == null)
+         profileName = SnapBackupFrame.current.getCurrentProfileName();
       return profilePrefix(profileName);
       }
 
    public static String getCurrentProfileName() {
-   	return cmdLineProfileName == null ?
+      return cmdLineProfileName == null ?
          SnapBackupFrame.current.getCurrentProfileName() : cmdLineProfileName;
       }
 

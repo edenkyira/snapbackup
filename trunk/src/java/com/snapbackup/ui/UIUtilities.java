@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -124,17 +124,23 @@ public class UIUtilities {
       }
 
    public static void centerDialog(JDialog dialog, JFrame frame) {
-      centerDialog(dialog, frame.getSize(), frame.getLocation().x, frame.getLocation().y);
+      centerDialog(dialog, frame.getSize(), frame.getLocation().x,
+            frame.getLocation().y);
+      }
+
+   public static void addFastKeys(JMenuBar menuBar) {
+      for (Component menu : menuBar.getComponents())
+         for (int count = 0; count < ((JMenu)menu).getItemCount(); count++) {
+            JMenuItem menuItem = ((JMenu)menu).getItem(count);
+            menuItem.setMnemonic(menuItem.getText().charAt(menuItem.getText().indexOf('&') + 1));
+            menuItem.setText(menuItem.getText().replace("&", ""));
+            }
       }
 
    public static void addFastKeys(JButton[] buttonList) {
-      for (int count = 0; count < buttonList.length; count++) {
-         String buttonText = buttonList[count].getText();
-         int hitLoc = buttonText.indexOf('&');  //default is -1
-         char mnemonic = buttonText.charAt(hitLoc + 1);
-         if (hitLoc > 0)       //strip out hit character ('&')
-            buttonList[count].setText(buttonText.substring(0, hitLoc) + buttonText.substring(hitLoc + 1));
-         buttonList[count].setMnemonic(mnemonic);
+      for (JButton button : buttonList) {
+         button.setMnemonic(button.getText().charAt(button.getText().indexOf('&') + 1));
+         button.setText(button.getText().replace("&", ""));
          }
       }
 
