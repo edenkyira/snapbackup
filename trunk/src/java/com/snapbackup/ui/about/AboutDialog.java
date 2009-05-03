@@ -182,7 +182,7 @@ public class AboutDialog extends JDialog {
             JComponent.WHEN_IN_FOCUSED_WINDOW);
       getRootPane().registerKeyboardAction(actionListener,  //Easter egg for '['
             KeyStroke.getKeyStroke(KeyEvent.VK_OPEN_BRACKET, 0),
-            JComponent.WHEN_IN_FOCUSED_WINDOW);
+            JComponent.WHEN_IN_FOCUSED_WINDOW);  //registerKeyboardAction is now obsolete
       }
 
    public void addContols() {

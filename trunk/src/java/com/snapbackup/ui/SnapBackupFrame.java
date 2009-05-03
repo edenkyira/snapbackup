@@ -64,7 +64,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -294,12 +293,12 @@ public class SnapBackupFrame extends JFrame {
       
       //Configure Destination (Backup & Archive) Controls
       destPanel.setBorder(BorderFactory.createTitledBorder(ui.destTitle));
-      destBackupChooserButton.setIcon(Icons.folderIcon);
+      //destBackupChooserButton.setIcon(Icons.folderIcon);
       destBackupChooserButton.setToolTipText(ui.destBackupCmd);
       UIUtilities.makeEmphasized(destBackupPathLabel);
       destBackupTagLabel.setIcon(Icons.zipIcon);
       destArchivePromptCheckBox.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-      destArchiveChooserButton.setIcon(Icons.folderIcon);
+      //destArchiveChooserButton.setIcon(Icons.folderIcon);
       destArchiveChooserButton.setToolTipText(ui.destArchiveCmd);
       destArchiveTagLabel.setIcon(Icons.driveIcon);
       UIUtilities.makeEmphasized(destArchivePathLabel);
@@ -333,12 +332,10 @@ public class SnapBackupFrame extends JFrame {
       fileMenuGroup.add(filtersMenuItem);   //menu: File | Backup Filters
       fileMenuGroup.add(profilesMenuItem);  //menu: File | Multiple Profiles
       fileMenuGroup.add(skinMenuItem);      //menu: File | Look & Feel
-      //fileMenuGroup.add(new JSeparator());  //hangs!
-      //fileMenuGroup.addSeparator();         //hangs!
+      fileMenuGroup.addSeparator();
       fileMenuGroup.add(exportMenuItem);    //menu: File | Export Settings...
       fileMenuGroup.add(importMenuItem);    //menu: File | Import Settings...
-      //fileMenuGroup.add(new JSeparator());  //hangs!
-      //fileMenuGroup.addSeparator();         //hangs!
+      fileMenuGroup.addSeparator();
       fileMenuGroup.add(optionsMenuItem);   //menu: File | Options...    ###############################
       fileMenuGroup.add(exitMenuItem);      //menu: File | Exit
       menuBar.add(helpMenuGroup);           //menu: Help
