@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Snap Backup(tm)                                                            //
-// ExportSettingsUIProperties.java                                                   //
+// Export.java                                                                //
 //                                                                            //
 // GNU General Public License:                                                //
 // This program is free software; you can redistribute it and/or modify it    //
@@ -19,25 +19,23 @@
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
-// Export Settings UI Properties:                                                     //
-//    This object..                                                           //
+// Export Settings Dialog:                                                    //
+//    This object...                                                          //
 ////////////////////////////////////////////////////////////////////////////////
 
 package com.snapbackup.ui.prefexport;
 
+import com.snapbackup.utilities.settings.SystemAttributes;
 import com.snapbackup.utilities.settings.AppProperties;
 
-class ExportUIProperties {
-   final String title =            AppProperties.getProperty("ExportTitle");
+class Export {
+   //Constants
+   public static final String prefSettingsFileName = "ExportDefaultFileName";
+   public static final int    fileNameCols =         25;
 
-   final String locationTitle =    AppProperties.getPropertyPadded("ExportLocationTitle");
-   final String locationPrompt =   AppProperties.getProperty("ExportLocationPrompt");
-   final String locationDetails1 = AppProperties.getProperty("ExportLocationDetails1");
-   final String locationDetails2 = AppProperties.getProperty("ExportLocationDetails2");
-   final String locationCmd =      AppProperties.getProperty("ExportLocationCommand");
-
-   final String buttonCancel =     AppProperties.getProperty("ExportButtonCancel");
-   final String buttonExport =     AppProperties.getProperty("ExportButtonAction");
-
-   final String msgSuccess =       AppProperties.getProperty("ExportMsgSuccess");
+   //Setup
+   final String Settings =        AppProperties.getProperty("ExportSettings");
+   final String defaultSettingsFileName =
+         SystemAttributes.userHomeDir + SystemAttributes.fileSeparator +
+         SystemAttributes.appName + Settings + ".xml";
    }

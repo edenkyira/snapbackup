@@ -29,64 +29,73 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.io.File;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import com.snapbackup.ui.Icons;
 import com.snapbackup.ui.UIUtilities;
+import com.snapbackup.utilities.settings.UserPreferences;
+import com.snapbackup.utilities.settings.AppProperties;
+import com.snapbackup.business.ExportDataModel;
 
 public class ExportDialog extends JDialog {
 
-   //User Preference Keys
-   static final String prefSettingsFileName = "SettingsFileName";
-
    //Define Controls
    ExportUIProperties ui = new ExportUIProperties();
-   JPanel       exportSettingsPanel =  new JPanel();
-   JPanel       fileNamePanel =        new JPanel();
-   JLabel       fileNamePromptLabel =  new JLabel();
-   JLabel       fileNameDetailsLabel = new JLabel();
-   JPanel       buttonPanel =          new JPanel();
-   JButton      cancelButton =         new JButton(ui.buttonCancel);
-   JButton      actionButton =         new JButton(ui.buttonExport);
-   JButton[]    buttonList =           { cancelButton, actionButton };
+   JPanel       basePanel =               new JPanel();
+   JPanel       locationPanel =           new JPanel();
+   JPanel       locationInnerPanel =      new JPanel();
+   JLabel       locationPromptLabel =     new JLabel(ui.locationPrompt);
+   JTextField   locationTextField =       new JTextField(Export.fileNameCols);
+   JButton      locationChooserButton =   new JButton(Icons.folderIcon);
+   JLabel       locationDetails1Label =   new JLabel(ui.locationDetails1);
+   JLabel       locationDetails2Label =   new JLabel(ui.locationDetails2);
+   JPanel       buttonPanel =             new JPanel();
+   JButton      cancelButton =            new JButton(ui.buttonCancel);
+   JButton      actionButton =            new JButton(ui.buttonExport);
+   JButton[]    buttonList =              { cancelButton, actionButton };
 
    public ExportDialog() {
-      initGUI();
-      setModal(true);
-      setResizable(false);
-      pack();
-      }
-
-   void initGUI() {
+      AppProperties.addSupplimentalProperty(Export.prefSettingsFileName,
+            new Export().defaultSettingsFileName);
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
       setTitle(ui.title);
       configureContols();
       addContols();
       initValues();
-      getContentPane().add(exportSettingsPanel);
+      getContentPane().add(basePanel);
+      setModal(true);
+      setResizable(false);
+      pack();
       }
 
    void configureContols() {
-      exportSettingsPanel.setLayout(new BoxLayout(exportSettingsPanel, BoxLayout.PAGE_AXIS));
-      exportSettingsPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-
-      fileNamePanel.setLayout(new BoxLayout(fileNamePanel, BoxLayout.PAGE_AXIS));
-   	fileNamePanel.setBorder(BorderFactory.createCompoundBorder(
-         BorderFactory.createTitledBorder(ui.fileNameTitle),
+      basePanel.setLayout(new BoxLayout(basePanel, BoxLayout.PAGE_AXIS));
+      basePanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+      locationPanel.setLayout(new BoxLayout(locationPanel, BoxLayout.PAGE_AXIS));
+   	locationPanel.setBorder(BorderFactory.createCompoundBorder(
+         BorderFactory.createTitledBorder(ui.locationTitle),
          BorderFactory.createEmptyBorder(0, 5, 5, 5)));
-
+      locationInnerPanel.setLayout(new BoxLayout(locationInnerPanel, BoxLayout.LINE_AXIS));
+      locationTextField.setText(UserPreferences.readPref(Export.prefSettingsFileName));
+      locationChooserButton.setToolTipText(ui.locationCmd);
+      locationChooserButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) { locationChooserButtonAction(e); }
+         } );
    	buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
-      buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+      buttonPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
       cancelButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) { actionCancel(); } } );
       actionButton.addActionListener(new ActionListener() {
@@ -94,23 +103,22 @@ public class ExportDialog extends JDialog {
       UIUtilities.addFastKeys(buttonList);
       UIUtilities.makeBold(actionButton);
       getRootPane().setDefaultButton(actionButton);
-      getRootPane().registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	actionCancel(); } },
-            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-            JComponent.WHEN_IN_FOCUSED_WINDOW);
       }
 
    void addContols() {
-   	fileNamePanel.add(fileNamePromptLabel);
-   	fileNamePanel.add(fileNameDetailsLabel);
-   	exportSettingsPanel.add(fileNamePanel);
-      exportSettingsPanel.add(Box.createRigidArea(new Dimension(0,10)));
+   	locationInnerPanel.add(locationPromptLabel);
+      locationInnerPanel.add(locationTextField);
+      locationInnerPanel.add(locationChooserButton);
+   	locationPanel.add(locationInnerPanel);
+   	locationPanel.add(locationDetails1Label);
+   	locationPanel.add(locationDetails2Label);
+   	basePanel.add(locationPanel);
+      basePanel.add(Box.createRigidArea(new Dimension(0,10)));
 
    	buttonPanel.add(cancelButton);
       buttonPanel.add(Box.createRigidArea(new Dimension(5,0)));
    	buttonPanel.add(actionButton);
-   	exportSettingsPanel.add(buttonPanel);
+   	basePanel.add(buttonPanel);
       }
 
    void initValues() {
@@ -120,6 +128,20 @@ public class ExportDialog extends JDialog {
    //
    // Callback Methods (Event Actions)
    //
+
+   public void locationChooserButtonAction(ActionEvent e) {
+      JFileChooser destFileChooser = new JFileChooser();
+      destFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+      destFileChooser.setCurrentDirectory(
+         new File(locationTextField.getText()));
+      int returnStatus =
+         destFileChooser.showDialog(this, ui.locationCmd);
+      if (returnStatus == JFileChooser.APPROVE_OPTION)
+         locationTextField.setText(
+            destFileChooser.getSelectedFile().getAbsolutePath());
+      }
+
+
    // Buttons
 
    void actionCancel() {
@@ -127,11 +149,13 @@ public class ExportDialog extends JDialog {
       }
 
    void actionExport() {
-      //UserPreferences.savePref(ExportSettings.prefSpacer, (String)spacerDropDown.getSelectedItem());
-      //String profileName =
-      //   JOptionPane.showInputDialog(null, ui.profilesAddPrompt, ui.profilesAddTitle, JOptionPane.PLAIN_MESSAGE);
-
-      this.dispose();
+      if (new ExportDataModel().doExport(locationTextField.getText()))
+         {
+            JOptionPane.showMessageDialog(this, ui.msgSuccess);
+            this.dispose();
+            }
+         else
+            JOptionPane.showMessageDialog(this, "Error!!!!");
       }
    
    }

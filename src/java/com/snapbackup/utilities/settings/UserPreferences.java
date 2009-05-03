@@ -142,11 +142,16 @@ public class UserPreferences {
       String[] allKeys;
       try {
          allKeys = prefs.keys();
+         java.util.Arrays.sort(allKeys);
          }
       catch (BackingStoreException e) {
          allKeys = new String[0];
          }
       return allKeys;
+      }
+
+   public static String readPrefByKey(String key) {
+      return prefs.get(key, prefValueNotFound);
       }
 
    public static Vector<String> getProfileNames() {

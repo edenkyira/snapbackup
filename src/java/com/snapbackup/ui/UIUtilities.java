@@ -129,12 +129,20 @@ public class UIUtilities {
       }
 
    public static void addFastKeys(JMenuBar menuBar) {
-      for (Component menu : menuBar.getComponents())
-         for (int count = 0; count < ((JMenu)menu).getItemCount(); count++) {
-            JMenuItem menuItem = ((JMenu)menu).getItem(count);
-            menuItem.setMnemonic(menuItem.getText().charAt(menuItem.getText().indexOf('&') + 1));
-            menuItem.setText(menuItem.getText().replace("&", ""));
+      for (Component menuComponent : menuBar.getComponents()) {  //iterate over menus
+         JMenu menu = (JMenu)menuComponent;
+         menu.setMnemonic(menu.getText().charAt(menu.getText().indexOf('&') + 1));
+         menu.setText(menu.getText().replace("&", ""));
+         for (int count = 0; count < menu.getMenuComponentCount(); count++) {  //iterate over menu items
+            Component menuItemComponent = menu.getMenuComponent(count);
+            if (menuItemComponent instanceof JMenuItem) {   //skip sparators
+               JMenuItem menuItem = (JMenuItem)menuItemComponent;
+               menuItem.setMnemonic(menuItem.getText().charAt(
+                     menuItem.getText().indexOf('&') + 1));
+               menuItem.setText(menuItem.getText().replace("&", ""));
+               }
             }
+         }
       }
 
    public static void addFastKeys(JButton[] buttonList) {
