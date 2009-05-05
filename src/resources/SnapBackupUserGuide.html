@@ -20,10 +20,11 @@ Contents:<ul><b>
    2) Getting Started<br>
    3) Configuration Settings<br>
    4) Advanced Configuration Settings<br>
-   5) 100% Java<br>
-   6) Command-Line Option<br>
-   7) Upgrading<br>
-   8) Known Issues
+   5) Export/Import Settings<br>
+   6) 100% Java<br>
+   7) Command-Line Option<br>
+   8) Upgrading<br>
+   9) Known Issues
    </b></ul>
 The "Best Practices" section covers backup philosophy, while the sections for
    "Getting Started" and "Configuration Settings" cover the details of using
@@ -89,12 +90,9 @@ it is easy to backup your data daily.&nbsp;  Snap Backup automatically
 puts the current date in the backup file name, alleviating you from the
 tedious task of renaming your backup file for each backup.&nbsp;  Snap
 Backup also optionally copies your backup file to an external archive
-location, like a USB drive, ZipDrive<small><small><sup>&reg;</sup></small></small>,
-or a folder on your local network.&nbsp;  The
-backup file is a single compressed file that can be read by zip
-programs such as StuffIt<small><sup>&reg;</sup></small>, gzip, or
-WinZip<small><small><sup>&reg;</sup></small></small> in the event that
-you need to restore you data files.<br>
+location.&nbsp;  The backup file is a single compressed file that can be read
+by zip programs such as Unarchiver, gzip, 7-Zip, and Mac's built-in Archive
+Utility in the event that you need to restore you data files.<br>
 <br>
 
 <b>2) Getting Started</b><br>
@@ -103,9 +101,9 @@ The first time you run Snap Backup, configure where your data files
    specify an optional archive location, such as a USB drive, for
    storing copies of the backup files.&nbsp;  After saving your settings,
    they will be automatically available next time you run Snap Backup.&nbsp;
-   Clicking the "Do Backup Now" button will start the backup process.&nbsp;
+   Clicking the "Backup Now" button will start the backup process.&nbsp;
    Click the "Exit" button when the backup is finished.<br>
-   Tip: <i>The "Do Backup Now" button is the default button when
+   Tip: <i>The "Backup Now" button is the default button when
    Snap Backup starts up, and it can be fired by just hitting the
    "Enter" key.&nbsp;  After the backup completes, "Exit" becomes the
    default button, so you can complete the entire backup process by
@@ -118,7 +116,7 @@ settings described below.<br>
 <br>
 <i>Folder and Files to Backup</i><br>
    Use the "Add Folder or File" button to add a folder or file to the list of
-   items to be backed up when you press the "Do Backup Button".&nbsp;  If you
+   items to be backed up when you press the "Backup Button".&nbsp;  If you
    specify a folder, all its contents (sub-folders and files) will be included
    in the backup.&nbsp;  To delete a folder or file from the list, use the
    "Remove" button.<br>
@@ -136,8 +134,8 @@ settings described below.<br>
 <i>Copy Backup To</i><br>
    Use the checkbox to specify whether or not to make a copy of the backup
    file.&nbsp;  This feature is typically used to archive the backup file by
-   coping it to an external location, like a
-   ZipDrive<small><sup>&reg;</sup></small> or portable USB drive.&nbsp;
+   coping it to a another location, like a USB flash drive (memory stick)
+   or external hard drive.&nbsp;
    (Note: On Mac OS X, USB drives show up in the "Volumes" folder with the
    name given to the drive, such as "/Volumes/MyData".&nbsp;  On
    Windows, the USB Drive will show up under a drive letter, such as
@@ -159,14 +157,13 @@ settings described below.<br>
    Note that your new settings will not be saved until you hit the
    "Save Settings" button.<br>
    <br>
-<i>Do Backup Now</i><br>
-   Use the "Do Backup Now" button to kick off the backup process.<br>
+<i>Backup Now</i><br>
+   Use the "Backup Now" button to kick off the backup process.<br>
    <br>
 <i>Exit</i><br>
    Use the "Exit" button to close Snap Backup after your backup
    is complete.<br>
    <br>
-
 
 <b>4) Advanced Configuration Settings</b><br>
 Some Snap Backup options need to be turned on from the "File" menu before
@@ -197,8 +194,20 @@ they can be used.<br>
    best for your tastes.<br>
    <br>
 
+<b>5) Export/Import Settings</b><br>
+Once you have your configuration settings properly setup, you should back them
+   up so the settings can be restored if needed.&nbsp;  Choose "Export
+   Settings..." from the "File" menu to save your settings to a file.&nbsp;
+   If you need to restore your previously saved settings, choose the "Import
+   Settings..." also in the "File" menu.<br><br>
+Note that settings relative to your home folder are restored using your
+   home folder at the time of import.&nbsp;  For example, if your user name is
+   "michelle", you might configure Snap Backup to zip up the folder
+   "/Users/michelle/Documents".&nbsp;  If you export your settings and then
+   import them on a system where your user name is "mjohnson", Snap Backup will
+   adjust your settings to zip up the folder "/Users/mjohnson/Documents".<br><br>
 
-<b>5) 100% Java</b><br>
+<b>6) 100% Java</b><br>
 Snap Backup is 100% Java and designed to run on any computer with
    Java 1.4 or greater.&nbsp;  Snap Backup is fully internationalized.&nbsp;
    Visit the Snap Backup web site (http://www.snapbackup.com) for
@@ -209,7 +218,7 @@ Your feedback is important for improving Snap Backup.&nbsp;  Please submit
    include the "System Information" found in the About Box (Help | About
    Snap Backup).<br><br>
 
-<b>6) Command-Line Option</b><br>
+<b>7) Command-Line Option</b><br>
 To facilitate launching backups from scripts and schedulers, Snap Backup can be
 run from the command-line.&nbsp;  The form of the command is:<br><br>
    <code>&nbsp; &nbsp; &nbsp;
@@ -247,12 +256,12 @@ Then go into the "Control Panel" and open "Scheduled Tasks".&nbsp;  From there,
 use "Add Scheduled Task" to "Browse..." to the "Snap Backup.bat" file and
 schedule your backups.<br><br>
 
-<b>7) Upgrading</b><br>
+<b>8) Upgrading</b><br>
 To upgrade your version of Snap Backup, simply install the new
 version.&nbsp;  The new version will cleanly replace the old version, and all
 your backup settings will automatically be preserved.<br><br>
 
-<b>8) Known Issues</b><ui>
+<b>9) Known Issues</b><ui>
 <li><b>Backup the Backup File Lock:</b> Putting the backup file into a
    folder designated to be backed up will cause a lock up (as the backup
    file will contain itself).

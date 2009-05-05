@@ -35,7 +35,7 @@ public class SystemAttributes {
    public static final String   appName = "SnapBackup";  //".properties" name
    public static final String   appCopyright = "&copy; 2009 Center Key Software";
    public static final String   appVersion = "5.0";
-   // 5.0 - 4/21/2009 -  Switch to Java 5.0 and new SwingManager
+   // 5.0 - 5/3/2009 -  Switch to Java 5.0 and new SwingManager
    // 4.5 - 9/7/2008 -   Slovene (Slovenian)
    // 4.4 - 6/9/2006 -   Korean, user guide print button, and exclude .DS_Store on Macs
    // 4.3 - 5/7/2006 -   Portuguese
@@ -85,7 +85,7 @@ public class SystemAttributes {
    public static final String headerSplashTag = "<br><br><b><font color=gray>Center Key Software</font></b>";
    public static final String headerPost =      "<br>&nbsp;</center></html>";
    public static final String feedbackEMail =   "feedback" + atSign + "snapbackup.com";
-   public static final String postalAddress = "Center Key Software\nBox 21\nSan Carlos, California  94070\nUSA";
+   public static final String postalAddress =   "Center Key Software\nBox 21\nSan Carlos, California  94070\nUSA";
 
    //Bootstrap data needed before reading properties file
    public static final String   errMsgHeader = "ERROR -- '";

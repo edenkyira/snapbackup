@@ -40,15 +40,15 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import com.snapbackup.business.ExportDataModel;
 import com.snapbackup.ui.Icons;
 import com.snapbackup.ui.UIUtilities;
-import com.snapbackup.utilities.settings.UserPreferences;
 import com.snapbackup.utilities.settings.AppProperties;
-import com.snapbackup.business.ExportDataModel;
+import com.snapbackup.utilities.settings.SystemAttributes;
+import com.snapbackup.utilities.settings.UserPreferences;
 
 public class ExportDialog extends JDialog {
 
@@ -57,9 +57,10 @@ public class ExportDialog extends JDialog {
    JPanel       basePanel =               new JPanel();
    JPanel       locationPanel =           new JPanel();
    JPanel       locationInnerPanel =      new JPanel();
-   JLabel       locationPromptLabel =     new JLabel(ui.locationPrompt);
+   JLabel       locationPromptLabel =     new JLabel(ui.locationPrompt + SystemAttributes.space);
    JTextField   locationTextField =       new JTextField(Export.fileNameCols);
    JButton      locationChooserButton =   new JButton(Icons.folderIcon);
+   JButton      resetButton =             new JButton(ui.locationReset);
    JLabel       locationDetails1Label =   new JLabel(ui.locationDetails1);
    JLabel       locationDetails2Label =   new JLabel(ui.locationDetails2);
    JPanel       buttonPanel =             new JPanel();
@@ -74,7 +75,6 @@ public class ExportDialog extends JDialog {
       setTitle(ui.title);
       configureContols();
       addContols();
-      initValues();
       getContentPane().add(basePanel);
       setModal(true);
       setResizable(false);
@@ -89,13 +89,17 @@ public class ExportDialog extends JDialog {
          BorderFactory.createTitledBorder(ui.locationTitle),
          BorderFactory.createEmptyBorder(0, 5, 5, 5)));
       locationInnerPanel.setLayout(new BoxLayout(locationInnerPanel, BoxLayout.LINE_AXIS));
+      locationInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+      locationPanel.setAlignmentY(Component.LEFT_ALIGNMENT);
       locationTextField.setText(UserPreferences.readPref(Export.prefSettingsFileName));
       locationChooserButton.setToolTipText(ui.locationCmd);
       locationChooserButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) { locationChooserButtonAction(e); }
          } );
-   	buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
-      buttonPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+      resetButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) { actionReset(); } } );
+      buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
+      buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
       cancelButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) { actionCancel(); } } );
       actionButton.addActionListener(new ActionListener() {
@@ -106,56 +110,55 @@ public class ExportDialog extends JDialog {
       }
 
    void addContols() {
-   	locationInnerPanel.add(locationPromptLabel);
+   	basePanel.add(locationPanel);
+   	locationPanel.add(locationInnerPanel);
+      locationInnerPanel.add(locationPromptLabel);
       locationInnerPanel.add(locationTextField);
       locationInnerPanel.add(locationChooserButton);
-   	locationPanel.add(locationInnerPanel);
+      locationInnerPanel.add(resetButton);
+      locationPanel.add(Box.createRigidArea(new Dimension(0,10)));
    	locationPanel.add(locationDetails1Label);
    	locationPanel.add(locationDetails2Label);
-   	basePanel.add(locationPanel);
       basePanel.add(Box.createRigidArea(new Dimension(0,10)));
-
+   	basePanel.add(buttonPanel);
+      buttonPanel.add(Box.createHorizontalGlue());
    	buttonPanel.add(cancelButton);
       buttonPanel.add(Box.createRigidArea(new Dimension(5,0)));
    	buttonPanel.add(actionButton);
-   	basePanel.add(buttonPanel);
       }
 
-   void initValues() {
-      //set file name here
-      }
-   
    //
    // Callback Methods (Event Actions)
    //
-
-   public void locationChooserButtonAction(ActionEvent e) {
-      JFileChooser destFileChooser = new JFileChooser();
-      destFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-      destFileChooser.setCurrentDirectory(
-         new File(locationTextField.getText()));
-      int returnStatus =
-         destFileChooser.showDialog(this, ui.locationCmd);
+   void locationChooserButtonAction(ActionEvent e) {
+      JFileChooser locationFileChooser = new JFileChooser();
+      locationFileChooser.setSelectedFile(new File(locationTextField.getText()));
+      locationFileChooser.setFileFilter(new ExportDataModel().xmlFilter);
+      int returnStatus = locationFileChooser.showSaveDialog(this);
       if (returnStatus == JFileChooser.APPROVE_OPTION)
          locationTextField.setText(
-            destFileChooser.getSelectedFile().getAbsolutePath());
+               locationFileChooser.getSelectedFile().getAbsolutePath());
       }
 
-
-   // Buttons
+   void actionReset() {
+      locationTextField.setText(new Export().defaultSettingsFileName);
+      }
 
    void actionCancel() {
       this.dispose();
       }
 
    void actionExport() {
-      if (new ExportDataModel().doExport(locationTextField.getText()))
-         {
-            JOptionPane.showMessageDialog(this, ui.msgSuccess);
-            this.dispose();
-            }
-         else
-            JOptionPane.showMessageDialog(this, "Error!!!!");
+      UserPreferences.savePref(Export.prefSettingsFileName, locationTextField.getText());
+      String errMsg = new ExportDataModel().doExport(locationTextField.getText());
+      if (errMsg == null) {
+         JOptionPane.showMessageDialog(this, ui.msgSuccess, new Export().Settings,
+               JOptionPane.PLAIN_MESSAGE);
+         this.dispose();
+         }
+      else
+         JOptionPane.showMessageDialog(this, errMsg, ui.locationCmd,
+               JOptionPane.ERROR_MESSAGE);
       }
-   
+
    }
