@@ -25,33 +25,50 @@
 
 package com.snapbackup.business;
 
+import java.io.File;
+
+import javax.swing.filechooser.FileFilter;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.OutputKeys;
-
-import java.io.File;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.NodeList;
 
 import com.snapbackup.utilities.settings.UserPreferences;
+import com.snapbackup.utilities.settings.SystemAttributes;
 
 public class ExportDataModel {
 
+   public static final String xmlExtention =            ".xml";
+   public static final String xmlTopNodeName =          "SnapBackupSettings";
+   public static final String xmlSettingsNodeName =     "UserSettings";
+   public static final String xmlSettingNodeName =      "Setting";
+   public static final String xmlSettingAttributeName = "Key";
+   public static final String xmlInfoNodeName =         "SystemInformation";
+   public static final String userHomeFolderMarker =    "[[[%HOME FOLDER%]]]";
+   public final XmlFileFilter xmlFilter =        new XmlFileFilter();
 
+   public class XmlFileFilter extends FileFilter {
+      public boolean accept(File f) {
+         return f.isDirectory() || f.getName().toLowerCase().endsWith(
+               ExportDataModel.xmlExtention);
+         }
+      public String getDescription() {
+         return "XML files";
+         }
+      }
 
-
-   void writeXmlFile(Document doc, String filename) {
+   String writeXmlFile(Document doc, String filename) {
       //Output DOM to an XML file
+      String errMsg = null;
       try {
          Source source = new DOMSource(doc);
          Result result = new StreamResult(new File(filename));
@@ -60,10 +77,12 @@ public class ExportDataModel {
          xformer.transform(source, result);
          }
       catch (Exception e) {
-         System.out.println(e.getLocalizedMessage());
+         errMsg = e.getLocalizedMessage();
          }
+      return errMsg;
       }
 
+   /*
    Document createDOM (String topLevelNodeName) {
       Document xmlDoc = null;
       try {
@@ -77,38 +96,45 @@ public class ExportDataModel {
          }
       return xmlDoc;
       }
+   */
 
-   public boolean doExport(String fileName) {
-
-         // Create DOM with Top Level Node
-         Document xmlDoc = null;
-         DocumentBuilder xmlBuilder = null;
-         try {
-         xmlBuilder =
-            DocumentBuilderFactory.newInstance().newDocumentBuilder();
+   public String doExport(String fileName) {
+      // Create DOM with Top Level Node
+      String errMsg = null;
+      Document xmlDoc = null;
+      DocumentBuilder xmlBuilder = null;
+      try {
+         xmlBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
          }
       catch (Exception e) {
-         System.out.println("Error: " + e.getLocalizedMessage());
+         errMsg = e.getLocalizedMessage();
          }
-         xmlDoc = xmlBuilder.newDocument();
-         Element topNode = xmlDoc.createElement("SnapBackupSettings");  ///!!!!!!
-         xmlDoc.appendChild(topNode);
+      xmlDoc = xmlBuilder.newDocument();
+      Element topNode = xmlDoc.createElement(xmlTopNodeName);
+      xmlDoc.appendChild(topNode);
 
-         //Add Sample Data to DOM
+      //Add System Info to DOM
+      Element infoNode = xmlDoc.createElement(xmlInfoNodeName);
+      topNode.appendChild(infoNode);
+      infoNode.appendChild(xmlDoc.createTextNode(SystemAttributes.osInfo +
+         SystemAttributes.dividerStr + SystemAttributes.javaVersion));
+
+      //Add Settings Data to DOM
       String[] data = UserPreferences.getAllKeys();
-      Element settingsNode = xmlDoc.createElement("UserSettings");  ///!!!!!!
-      topNode.appendChild(settingsNode);
+      Element settingNode = xmlDoc.createElement(xmlSettingsNodeName);
+      topNode.appendChild(settingNode);
       Element setting;
       for (String key : data) {
-            setting = xmlDoc.createElement("Setting");
-            setting.setAttribute("Type", key);
-            setting.appendChild(xmlDoc.createTextNode(UserPreferences.readPrefByKey(key)));
-            settingsNode.appendChild(setting);
-            }
-
-         //Action
-         writeXmlFile(xmlDoc, fileName);
-      return true;
+         setting = xmlDoc.createElement(xmlSettingNodeName);
+         setting.setAttribute(xmlSettingAttributeName, key);
+         setting.appendChild(xmlDoc.createTextNode(
+               UserPreferences.readPrefByKey(key).replace(
+               SystemAttributes.userHomeDir, userHomeFolderMarker)));
+         settingNode.appendChild(setting);
+         }
+      if (errMsg == null)
+         errMsg = writeXmlFile(xmlDoc, fileName);
+      return errMsg;
       }
 
    }

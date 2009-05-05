@@ -869,7 +869,8 @@ public class SnapBackupFrame extends JFrame {
       srcAddFileChooser.setFileSelectionMode(fileSelectionMode);
       //jFileChooserData.setCurrentDirectory(new File(nullStr));
       final int returnStatus =
-         srcAddFileChooser.showDialog(this, ui.srcAddCmd);
+         //srcAddFileChooser.showDialog(this, ui.srcAddCmd);
+         srcAddFileChooser.showOpenDialog(this);
       if (returnStatus == JFileChooser.APPROVE_OPTION)
          DataModel.addZipItem(srcAddFileChooser.getSelectedFile().getAbsolutePath(), this);
       }
@@ -889,7 +890,8 @@ public class SnapBackupFrame extends JFrame {
       destFileChooser.setCurrentDirectory(
          new File(destDirTextField.getText()));
       int returnStatus =
-         destFileChooser.showDialog(this, msg);
+         //destFileChooser.showDialog(this, msg);
+         destFileChooser.showOpenDialog(this);
       if (returnStatus == JFileChooser.APPROVE_OPTION)
          destDirTextField.setText(
             destFileChooser.getSelectedFile().getAbsolutePath());

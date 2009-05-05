@@ -33,6 +33,7 @@ class ExportUIProperties {
    final String locationTitle =    AppProperties.getPropertyPadded("ExportLocationTitle");
    final String locationPrompt =   AppProperties.getProperty("ExportLocationPrompt");
    final String locationDetails1 = AppProperties.getProperty("ExportLocationDetails1");
+   final String locationReset =    AppProperties.getProperty("ExportLocationReset");
    final String locationDetails2 = AppProperties.getProperty("ExportLocationDetails2");
    final String locationCmd =      AppProperties.getProperty("ExportLocationCommand");
 
