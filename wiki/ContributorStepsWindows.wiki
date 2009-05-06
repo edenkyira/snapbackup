@@ -5,14 +5,14 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
 
 == One-Time Environment Setup ==
 *1) Download and Install JDK*
-   Click the _>> Download_ button for _JDK 6 Update X_ (where _X_ is the current update version) at:
+   Click the _*>> Download*_ button for _*JDK 6 Update X*_ (where _*X*_ is the current update version) at:
       http://java.sun.com/javase/downloads/
    Install the JDK with all the default options.
 
 *2) Download and Install Apache Ant*
-   Obtain the file _apache-ant-X.Y.Z-bin.zip_ (where _X.Y.Z_ is the current version, such as _1.7.1_):
+   Obtain the file _*apache-ant-X.Y.Z-bin.zip*_ (where _*X.Y.Z*_ is the current version, such as _1.7.1_):
       http://ant.apache.org/bindownload.cgi
-  Unzip the file into _C:\Apps\Ant\_ so you have folder at: _C:\Apps\Ant\apache-ant-X.Y.Z_
+   Unzip the file into `C:\Apps\Ant\` so you have folder at: `C:\Apps\Ant\apache-ant-X.Y.Z`
 
 *3) Download and Install SVN Client*
    Click the download icon for Windows version of Silk SVN at:
@@ -24,21 +24,21 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
       http://code.google.com/hosting/settings
 
 *5) Download Code*
-   Launch _Command Prompt_ (_Start -->  Programs  --> Accessories  -->  Command Prompt_), and enter the following commands:
+   Launch _*Command Prompt*_ (_*Start* -->  *Programs*  --> *Accessories*  -->  *Command Prompt*_), and enter the following commands:
    || `> mkdir \Projects` ||
    || `> cd \Projects` ||
    || `> svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
-In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.
+   In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.
 
 *6) Download and Install NSIS (optional)*
-   Click the _Download_ link to get Nullsoft Scriptable Install System (NSIS) from:
+   Click the _*Download*_ link to get Nullsoft Scriptable Install System (NSIS) from:
       http://nsis.sourceforge.net/Download
    Install with the default options.
 
 
 == Contributor Steps ==
 *1) Build Current Project and Verify*
-   In _Windows Explorer_, go to the `\Projects\snapbackup\src\tools` folder and double-click the _build.bat_ file.  Now go to the `\Projects\snapbackup\build` folder and double-click _snapbackup.jar_`.  Verify the Snap Backup application is working properly.
+   In _Windows Explorer_, go to the `\Projects\snapbackup\src\tools` folder and double-click the _*build.bat*_ file.  Now go to the `\Projects\snapbackup\build` folder and double-click _*snapbackup.jar*_.  Verify the Snap Backup application is working properly.
 
 *2) Edit Code*
    The project files are all under the `\Projects\snapbackup` folder.  Use your editor to makes changes to the appropriate files.  (Note to translators: the language files are at `\Projects\snapbackup\src\resources\properties`).
