@@ -3,50 +3,50 @@
 
 Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup source code and submit your changes.
 
-== One-Time Environment Setup ==
-*1) Download and Install JDK*
+== 1. One-Time Environment and SVN Setup ==
+*A) Download and Install JDK*
    Click the _*Download*_ button for _*JDK 6 Update X*_ (where _*X*_ is the current update version) at:
       http://java.sun.com/javase/downloads/
    Install the JDK with all the default options.
 
-*2) Download and Install Apache Ant*
+*B) Download and Install Apache Ant*
    Obtain the file _*apache-ant-X.Y.Z-bin.zip*_ (where _*X.Y.Z*_ is the current version, such as _1.7.1_):
       http://ant.apache.org/bindownload.cgi
    Unzip the file into `C:\Apps\Ant\` so you have folder at: `C:\Apps\Ant\apache-ant-X.Y.Z`
 
-*3) Download and Install SVN Client*
+*C) Download and Install SVN Client*
    Click the _*Silk SVN*_ download icon (there's a 32-bit edition and a 64-bit edition) at:
       http://www.sliksvn.com/en/download
    Install with the default options.
 
-*4) Get Your !GoogleCode.com Password*
+*D) Get Your !GoogleCode.com Password*
    To obtain your password, visit:
       http://code.google.com/hosting/settings
 
-*5) Download Code*
+*E) Download Code*
    Launch _*Command Prompt*_ (_*Start* -->  *Programs*  --> *Accessories*  -->  *Command Prompt*_), and enter the following commands:
    || `> mkdir \Projects` ||
    || `> cd \Projects` ||
    || `> svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
    In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.
 
-*6) Download and Install NSIS (optional)*
+*F) Download and Install NSIS*
    Click the _*Download*_ link to get Nullsoft Scriptable Install System (NSIS) from:
       http://nsis.sourceforge.net/Download
    Install with the default options.
 
 
-== Contributor Steps ==
-*1) Build Current Project and Verify*
+== 2. Contributor Steps ==
+*A) Build Current Project and Verify*
    In _Windows Explorer_, go to the `\Projects\snapbackup\src\tools` folder and double-click the _*build.bat*_ file.  Now go to the `\Projects\snapbackup\build` folder and double-click _*snapbackup.jar*_.  Verify the Snap Backup application is working properly.
 
-*2) Edit Code*
+*B) Edit Code*
    The project files are all under the `\Projects\snapbackup` folder.  Use your editor to makes changes to the appropriate files.  (Note to translators: the language files are at `\Projects\snapbackup\src\resources\properties`).
 
-*3) Build the Project and Verify*
+*C) Build the Project and Verify*
    Repeat step #1 above.
 
-*4) Check Changes into SVN Repository (Server)*
+*D) Check Changes into SVN Repository (Server)*
    || `> cd \Projects\snapbackup` ||
    || `$ svn update` ||
    || `$ svn status` ||
