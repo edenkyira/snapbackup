@@ -5,12 +5,12 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup
 
 == 1. One-Time SVN Setup ==
 *A) Download and Install Xcode*
-   Get _Xcode for Mac Development_ at:
+   Get _*Xcode for Mac Development*_ at:
       http://developer.apple.com/tools/download/
-   Open the downloaded _.dmg_ file and run _!XcodeTools.mpkg_ to complete the Xcode installation.  Use the default options.
+   Open the downloaded _*.dmg*_ file and run _*!XcodeTools.mpkg*_ to complete the Xcode installation.  Use the default options.
 
 *B) Download and Install SVN Client*
-   To get the installer (binary), follow the "openCollabNet" link in the _Mac OS X_ section at:
+   To get the installer (binary), follow the _*openCollabNet*_ link in the _Mac OS X_ section at:
       http://subversion.tigris.org/getting.html#binary-packages
 
 *C) Get Your Password*
@@ -26,10 +26,10 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup
 
 == 2. Core Contributor Steps ==
 *A) Build Current Project and Verify*
-   Open _Finder_ --> Go to the folder _~/Projects/snapbackup/src/tools/_ --> Double-click the file _build.sh.command_ --> Go to the folder _~/Projects/snapbackup/build/_ --> Double-click the file _snapbackup.jar_ -->  Verify that the Snap Backup application launches and works properly
+   Open _Finder_ --> Go to the folder `~/Projects/snapbackup/src/tools/` --> Double-click the file _*build.sh.command*_ --> Go to the folder `~/Projects/snapbackup/build/` --> Double-click the file _*snapbackup.jar*_ -->  Verify that the Snap Backup application launches and works properly
 
 *B) Edit Code*
-   The project files are under the _~/Projects/snapbackup_ folder.  (Note to translators: the language files are at _~/Projects/snapbackup/src/resources/properties_.)  Use your editor to makes changes to the appropriate files.
+   The project files are under the `~/Projects/snapbackup_ folder`  (Note to translators: the language files are at `~/Projects/snapbackup/src/resources/properties`.)  Use your editor to makes changes to the appropriate files.
 
 *C) Build the Project and Verify*
    Repeat step A above.
