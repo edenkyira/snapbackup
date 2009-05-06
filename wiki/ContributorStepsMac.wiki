@@ -50,17 +50,22 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup
       # Use the _*Choose Icon*_ button to navigate to the `~/Projects/snapbackup/src/installer/mac` folder and then _*Open*_ the _*snap-backup.icns*_ file
       # Click the _*Properties*_ tab and enter the version number (ex: `5.0`) from step 2C into the fields "Version:" and "Get-Info String:"
       # Click the _*Create Application...*_ button
-      # Navigate into the ~/Projects/snapbackup/build` folder
-      # In the "File:" field, enter `Show Time`
+      # Navigate to the `~/Projects/snapbackup/build` folder
+      # In the "File:" field, enter `Snap Backup`
       # Click the _*Create*_ button
       # Quit _Jar Bundler_
+   The new Mac application you just created will be at: `~/Projects/snapbackup/build/Snap Backup`
 
 *B) Create Mac Installer (optional)*
    To wrap the application into a native [http://www.centerkey.com/mac/java/ Mac OS X installer], follow these steps:
-      # Using _Finder_, navigate into the `~/Projects/snapbackup/src/installer/mac_ folder`
+      # Using _Finder_, navigate to the `~/Projects/snapbackup/src/installer/mac` folder
       # Double-click _*snap-backup.pmdoc*_
-      # what
-      # Quit _PackageMaker_
+      # Click the _*Build*_ hammer icon
+      # Navigate to the `~/Projects/snapbackup/build` folder
+      # Deselect the "Hide extension" option
+      # Click the _*Save*_ button
+      # Quit _!PackageMaker_ and choose _*Don't Save*_ your changes
+   The new installer you just created will be at: `~/Projects/snapbackup/build/SnapBackupInstaller.mpkg`
 
 
 ----
