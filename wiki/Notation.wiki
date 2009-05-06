@@ -4,7 +4,7 @@
 || Selectable or clickable items || _*Bold/Italics*_ || Click the _*Download*_ button. ||
 || Text label || "Quoted" || Enter the version number into the "Info:" field. ||
 || Text to be entered by user || `Monospace` || In the location "Field:", enter: `California` ||
-|| File names a path names || `Monospace` || Copy the file to the `/projects/snapbackup/` folder. ||
+|| File names a path names || `Monospace` || Copy the file into the `/projects/snapbackup/` folder. ||
 || Application or tool || _Italics_ || Launch _Finder_. ||
 
 
