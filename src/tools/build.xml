@@ -75,6 +75,12 @@
       <delete file="${BuildFolder}/SnapBackupLicense.txt"/>
       <delete file="${BuildFolder}/Uninstall.txt"/>
 
+      <!--  Display Snap Backup Version  -->
+      <loadfile srcfile="${JavaSource}/com/snapbackup/utilities/settings/SystemAttributes.java" property="version">
+         <filterchain><linecontains><contains value="appVersion"/></linecontains></filterchain>
+         </loadfile>
+      <echo message="${version}"/>
+
       </target>
 
    </project>
