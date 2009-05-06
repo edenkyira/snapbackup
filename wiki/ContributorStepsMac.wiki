@@ -3,7 +3,7 @@
 
 Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup source code and submit your changes.
 
-== 1. One-Time SVN Setup ==
+== 1. One-Time Environment and SVN Setup ==
 *A) Download and Install Xcode*
    Get _*Xcode for Mac Development*_ at:
       http://developer.apple.com/tools/download/
