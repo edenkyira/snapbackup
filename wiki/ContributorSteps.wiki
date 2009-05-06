@@ -4,3 +4,7 @@
 Instructions:
    * ContributorStepsMac
    * ContributorStepsWindows
+
+
+----
+[http://www.snapbackup.com/about/ Snap Backup Contributors]
