@@ -4,3 +4,7 @@
 || Selectable or clickable items || _*Bold/Italics*_ || Click the _*Download*_ button. ||
 || File names a path names || `Monospace` || Copy the file to the `/projects/snapbackup/` folder ||
 || Application or tool || _Italics_ || Launch _Finder_. ||
+
+
+----
+[http://www.snapbackup.com/about/ Snap Backup Contributors]
