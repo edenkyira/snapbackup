@@ -48,13 +48,22 @@ import com.snapbackup.utilities.settings.SystemAttributes;
 public class ExportDataModel {
 
    public static final String xmlExtention =            ".xml";
-   public static final String xmlTopNodeName =          "SnapBackupSettings";
-   public static final String xmlSettingsNodeName =     "UserSettings";
-   public static final String xmlSettingNodeName =      "Setting";
-   public static final String xmlSettingAttributeName = "Key";
-   public static final String xmlInfoNodeName =         "SystemInformation";
-   public static final String userHomeFolderMarker =    "[[[%HOME FOLDER%]]]";
-   public final XmlFileFilter xmlFilter =        new XmlFileFilter();
+   public static final String xmlTopNodeName =          "snapbackup";
+   public static final String xmlSettingsNodeName =     "usersettings";
+   public static final String xmlSettingNodeName =      "setting";
+   public static final String xmlSettingAttributeName = "key";
+   public static final String xmlInfoNodeName =         "systeminformation";
+   public static final String userHomeFolderMarker =    "[%HOME FOLDER%]";
+   public final XmlFileFilter xmlFilter = new XmlFileFilter();
+
+   public static String dataToXml (String data) {
+      //See ImportDataModel.xmlToData
+      return data.replace(
+         //"<", "&lt;").replace(
+         //">", "&gt;").replace(
+         //"&", "&amp;").replace(
+         SystemAttributes.userHomeDir, userHomeFolderMarker);
+   }
 
    public class XmlFileFilter extends FileFilter {
       public boolean accept(File f) {
@@ -81,22 +90,6 @@ public class ExportDataModel {
          }
       return errMsg;
       }
-
-   /*
-   Document createDOM (String topLevelNodeName) {
-      Document xmlDoc = null;
-      try {
-         DocumentBuilder xmlBuilder =
-            DocumentBuilderFactory.newInstance().newDocumentBuilder();
-         xmlDoc = xmlBuilder.newDocument();
-         xmlDoc.appendChild(xmlDoc.createElement(topLevelNodeName));
-         }
-      catch (Exception e) {
-         System.out.println("Error: " + e.getLocalizedMessage());
-         }
-      return xmlDoc;
-      }
-   */
 
    public String doExport(String fileName) {
       // Create DOM with Top Level Node
@@ -128,8 +121,7 @@ public class ExportDataModel {
          setting = xmlDoc.createElement(xmlSettingNodeName);
          setting.setAttribute(xmlSettingAttributeName, key);
          setting.appendChild(xmlDoc.createTextNode(
-               UserPreferences.readPrefByKey(key).replace(
-               SystemAttributes.userHomeDir, userHomeFolderMarker)));
+            dataToXml(UserPreferences.readPrefByKey(key))));
          settingNode.appendChild(setting);
          }
       if (errMsg == null)

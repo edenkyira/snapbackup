@@ -77,7 +77,7 @@ import com.snapbackup.business.DataModel;
 import com.snapbackup.ui.about.AboutDialog;
 import com.snapbackup.ui.filter.FilterDialog;
 import com.snapbackup.ui.prefexport.ExportDialog;
-//import com.snapbackup.ui.importsettings.ImportSettingsDialog;
+import com.snapbackup.ui.prefimport.ImportDialog;
 import com.snapbackup.ui.options.Options;
 import com.snapbackup.ui.options.OptionsDialog;
 import com.snapbackup.ui.userguide.UserGuideDialog;
@@ -763,7 +763,8 @@ public class SnapBackupFrame extends JFrame {
       UIUtilities.centerDialog(exportDialog, this);
       }
    public void importMenuItemAction(ActionEvent e) {
-      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      ImportDialog importDialog = new ImportDialog();
+      UIUtilities.centerDialog(importDialog, this);
       }
    public void optionsMenuItemAction(ActionEvent e) {
       String oldNumRowsSrc = UserPreferences.readPref(Options.prefNumRowsSrc);

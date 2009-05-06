@@ -39,6 +39,7 @@
          <fileset dir="${Resources}/graphics/application"/>
          </copy>
       <copy file="${Resources}/SnapBackupUserGuide.html" todir="${HtmlFolder}"/>
+      <copy file="${Resources}/SnapBackupSettings.xsd" todir="${JavaClasses}/com/snapbackup/business"/>
 
       <!--  Create Executable JAR File -->
       <jar destfile="${JavaClasses}/../snapbackup.jar" basedir="${JavaClasses}">

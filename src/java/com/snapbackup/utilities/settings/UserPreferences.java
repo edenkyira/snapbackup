@@ -150,10 +150,6 @@ public class UserPreferences {
       return allKeys;
       }
 
-   public static String readPrefByKey(String key) {
-      return prefs.get(key, prefValueNotFound);
-      }
-
    public static Vector<String> getProfileNames() {
       Vector<String> names = new Vector<String>();
       String[] allKeys = getAllKeys();
@@ -164,11 +160,11 @@ public class UserPreferences {
       }
 
    public static void deleteProfile() {
-       String[] keys = getAllKeys();
-       for (int count = 0; count < keys.length; count++)
-          if (keys[count].startsWith(profilePrefix()))
-             prefs.remove(keys[count]);
-       }
+      String[] keys = getAllKeys();
+      for (int count = 0; count < keys.length; count++)
+         if (keys[count].startsWith(profilePrefix()))
+            prefs.remove(keys[count]);
+      }
 
    public static void upgradeOldPrefs() {
       if (prefs.get("SnapBackup~AppVersion", "").startsWith("2.5")) {
@@ -186,6 +182,20 @@ public class UserPreferences {
          savePref("~main~.ProfileName", prefs.get("snapbackup.~main~.profilecurrent", ""));
          prefs.remove("snapbackup.~main~.profilecurrent");
          }
+      }
+
+   //Export/Import
+   public static String readPrefByKey(String key) {
+      return prefs.get(key, prefValueNotFound);
+      }
+
+   public static void deleteAllPrefs() {
+      for (String key : getAllKeys())
+         prefs.remove(key);
+       }
+
+   public static void savePrefByKey(String key, String prefValue) {
+      prefs.put(key, prefValue);
       }
 
    }
