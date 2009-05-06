@@ -53,3 +53,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
    || `$ svn commit --message "<COMMENT HERE>."` ||
    || `$ svn status` ||
 In the above instructions, replace "`<COMMENT HERE>`" with a short description of the changes you made.
+
+
+----
+[http://www.snapbackup.com/about/ Snap Backup Contributors]
