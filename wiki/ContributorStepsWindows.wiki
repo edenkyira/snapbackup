@@ -15,7 +15,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
    Unzip the file into `C:\Apps\Ant\` so you have folder at: `C:\Apps\Ant\apache-ant-X.Y.Z`
 
 *3) Download and Install SVN Client*
-   Click the download icon for Windows version of Silk SVN at:
+   Click _*Silk SVN*_ download icon (there's a 32-bit and a 64-bit edition) at:
       http://www.sliksvn.com/en/download
    Install with the default options.
 
