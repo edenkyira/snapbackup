@@ -5,7 +5,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
 
 == One-Time Environment Setup ==
 *1) Download and Install JDK*
-   Click the _*>> Download*_ button for _*JDK 6 Update X*_ (where _*X*_ is the current update version) at:
+   Click the _*Download*_ button for _*JDK 6 Update X*_ (where _*X*_ is the current update version) at:
       http://java.sun.com/javase/downloads/
    Install the JDK with all the default options.
 
