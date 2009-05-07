@@ -16,4 +16,4 @@ if you like.
 
 ====================
 http://www.snapbackup.com
-Copyright (c) 2008 Center Key Software
+Copyright (c) 2009 Center Key Software
