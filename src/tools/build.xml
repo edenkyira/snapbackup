@@ -66,7 +66,7 @@
          <fileset dir="${Home}/src/installer/windows"/>
          </copy>
       <exec dir="${BuildFolder}" executable="\Program Files\NSIS\makensis.exe" osfamily="windows">
-         <!-- arg value="/V2" / -->
+         <arg value="/V2" />
          <arg value="snap-backup.nsi" />
          </exec>
       <delete file="${BuildFolder}/snap-backup.nsi"/>
