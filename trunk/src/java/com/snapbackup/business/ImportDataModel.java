@@ -72,7 +72,7 @@ public class ImportDataModel {
                getClass().getResourceAsStream("SnapBackupSettings.xsd");
          Schema schema = SchemaFactory.newInstance(
             XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new StreamSource(schemaInput));
-         schema.newValidator().validate(new StreamSource(fileName));
+         schema.newValidator().validate(new StreamSource(new File(fileName)));
          System.out.println("Validation Done");
 
          //Process XML
