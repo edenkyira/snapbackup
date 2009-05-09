@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -38,7 +38,7 @@ public class Icons {
    private static final File[] rootDir =  File.listRoots();
    public  static final Icon driveIcon =  sysAccess.getIcon(rootDir[0]);
    public  static final Icon zipIcon = driveIcon;
-      //sysAccess.getIcon(new File(iconClass.getResource('images/Logo.gif').getPath()));
+      //sysAccess.getIcon(new File(iconClass.getResource('images/logo.png').getPath()));
       //FileSys.makeEmptyFile(UIProperties.zipIconFileName + '.html'));
    public  static final Icon folderIcon =
       //sysAccess.getIcon(new File(ProgramAttributes.appWorkingDir));  //bad on macs

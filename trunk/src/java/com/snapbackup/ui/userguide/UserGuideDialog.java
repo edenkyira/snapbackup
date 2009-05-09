@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -105,7 +105,7 @@ public class UserGuideDialog extends JDialog {
       getRootPane().setDefaultButton(closeButton);
       getRootPane().registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	closeButtonAction(); } },
+               closeButtonAction(); } },
             KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
             JComponent.WHEN_IN_FOCUSED_WINDOW);
       }

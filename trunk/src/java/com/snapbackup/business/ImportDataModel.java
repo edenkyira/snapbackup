@@ -25,7 +25,6 @@
 
 package com.snapbackup.business;
 
-
 import javax.xml.XMLConstants;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;

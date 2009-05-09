@@ -50,10 +50,10 @@ public class UIProperties {
    public static final Color  standardBGColor = new JPanel().getBackground();  // .getBackground();  //grab grey color
    public static final Color  emphasisColor = Color.blue;
    public static final String iconURL = "images/";
-   public static final String snapBackupIconURL = iconURL + "SnapBackupIcon.gif";
-   public static final String langIconURLpre = iconURL + "LanguageIcon_";
-   public static final String langIconURLpost = ".gif";
-   public static final String logoIconURL = iconURL + "Logo.gif";
+   public static final String snapBackupIconURL = iconURL + "snap-backup-icon.png";
+   public static final String langIconURLpre = iconURL + "language-";
+   public static final String langIconURLpost = ".png";
+   public static final String logoIconURL = iconURL + "logo.png";
    //public static final String zipIconFileName = "ZipIcon.zip";
    public static final String space = SystemAttributes.space;
    public static final String newLine = SystemAttributes.newLine;

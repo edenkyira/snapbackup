@@ -28,7 +28,6 @@ package com.snapbackup.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -207,7 +206,7 @@ public class SnapBackupFrame extends JFrame {
       }
 
    void popupMsg(String msg) {
-      JOptionPane.showMessageDialog(null, msg);	
+      JOptionPane.showMessageDialog(null, msg);
       }
 
    private boolean switchLocaleCodes(String codeA, String codeB, Locale currentLocale) {
@@ -257,12 +256,16 @@ public class SnapBackupFrame extends JFrame {
       iconPanel.setLayout(new BoxLayout(iconPanel, BoxLayout.PAGE_AXIS));
       tipLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
       titleLabel.setHorizontalAlignment(JLabel.CENTER);
-      for (int count = 0; count < numFlagRows; count++) {
-         langFlagsPanels[count] = new JPanel();
-         langFlagsPanels[count].setLayout(new FlowLayout(FlowLayout.TRAILING));
-         langFlagsPanels[count].setAlignmentX(1.0f);
-         //langFlagsPanels[count].setBackground(Color.cyan);
+      for (JPanel panel : langFlagsPanels) {
+         panel = new JPanel();
+         panel.setLayout(new FlowLayout(FlowLayout.TRAILING));
+         panel.setAlignmentX(1.0f);
          }
+      //for (int count = 0; count < numFlagRows; count++) {
+      //   langFlagsPanels[count] = new JPanel();
+      //   langFlagsPanels[count].setLayout(new FlowLayout(FlowLayout.TRAILING));
+      //   langFlagsPanels[count].setAlignmentX(1.0f);
+      //   }
       iconLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));   //????
       iconLabel.setAlignmentX(1.0f);
       titleLabel.setAlignmentX(0.5f);
@@ -369,10 +372,12 @@ public class SnapBackupFrame extends JFrame {
          }
       ////////////////////////
 
-      for (int count = 0; count < numFlagRows; count++)
-         iconPanel.add(langFlagsPanels[count]);
+      for (JPanel flagPanel : langFlagsPanels)
+         iconPanel.add(flagPanel);
+      //for (int count = 0; count < numFlagRows; count++)
+      //   iconPanel.add(langFlagsPanels[count]);
       iconPanel.add(iconLabel);
-      
+
       //Add Profiles
       profilesInnerPanel.add(profilesPromptLabel);
       profilesInnerPanel.add(profilesDropDown);
@@ -437,22 +442,6 @@ public class SnapBackupFrame extends JFrame {
 
       }
 
-   /*
-   void setFastKeys(JMenu menuGroup) {
-      Component[] menuItems = menuGroup.getMenuComponents();
-      for (int count = 0; count < menuItems.length; count++) {
-           JMenuItem menuItem = (JMenuItem)menuItems[count];
-         String menuText = menuItem.getText();
-         int hitLoc = menuText.indexOf('&');  //default is -1
-         if (hitLoc > 0)       //strip out hit character ('&')
-            menuItem.setText(menuText.substring(0, hitLoc) + menuText.substring(hitLoc + 1));
-         menuItem.setMnemonic(menuText.charAt(hitLoc + 1));  //typically 1st character
-         if (menuItem.getClass().equals(JMenu.class))
-            setFastKeys((JMenu)menuItems[count]);
-        }
-      }
-   */
-
    //
    // GridBagConstraints Utilities
    //
@@ -486,8 +475,10 @@ public class SnapBackupFrame extends JFrame {
    public void initLanguagesUI(boolean showLanguages) {
       languagesMenuItemButtonShow.setSelected(showLanguages);
       languagesMenuItemButtonHide.setSelected(!showLanguages);
-      for (int count = 0; count < numFlagRows; count++)
-         langFlagsPanels[count].setVisible(showLanguages);
+      for (JPanel flagPanel: langFlagsPanels)
+         flagPanel.setVisible(showLanguages);
+      //for (int count = 0; count < numFlagRows; count++)
+      //   langFlagsPanels[count].setVisible(showLanguages);
       }
    public boolean getShowLanguages() {
       return languagesMenuItemButtonShow.isSelected();
@@ -515,13 +506,16 @@ public class SnapBackupFrame extends JFrame {
       }
    public void setProfilesDropDown(String[] profileNames) {
       profilesDropDown.removeAllItems();
-      for (int count = 0; count < profileNames.length; count++)
-         profilesDropDown.addItem(profileNames[count]);
+      for (String profileName : profileNames)
+         profilesDropDown.addItem(profileName);
+      //for (int count = 0; count < profileNames.length; count++)
+      //   profilesDropDown.addItem(profileNames[count]);
       }
    public String readProfilesDropDown() {
       String profileList = (String)profilesDropDown.getItemAt(0);
       for (int count = 1; count < profilesDropDown.getItemCount(); count++)
-         profileList = profileList + SystemAttributes.newLine + (String)profilesDropDown.getItemAt(count);
+         profileList = profileList + SystemAttributes.newLine +
+            (String)profilesDropDown.getItemAt(count);
       return profileList;
       }
    public void setCurrentProfile(String profileName) {
@@ -618,6 +612,16 @@ public class SnapBackupFrame extends JFrame {
       currentSkinName = UIManager.getLookAndFeel().getClass().getName();
       JRadioButtonMenuItem skinRbmi;
       ButtonGroup skinGroup = new ButtonGroup();
+      for (UIManager.LookAndFeelInfo laf : UIProperties.lafs) {
+         skinRbmi = new JRadioButtonMenuItem(laf.getName(),
+            laf.getClassName().equals(currentSkinName));
+         skinRbmi.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) { skinMenuItemAction(e); }
+            } );
+         skinGroup.add(skinRbmi);
+         skinMenuItem.add(skinRbmi); //menu: File | Look & Feel | ZZZZ
+         }
+      /*
       for (int count = 0; count < UIProperties.lafs.length; count++) {
          skinRbmi = new JRadioButtonMenuItem(UIProperties.lafs[count].getName(),
             UIProperties.lafs[count].getClassName().equals(currentSkinName));
@@ -627,6 +631,7 @@ public class SnapBackupFrame extends JFrame {
          skinGroup.add(skinRbmi);
          skinMenuItem.add(skinRbmi); //menu: File | Look & Feel | ZZZZ
          }
+      */
       exitMenuItem.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) { exitMenuItemAction(e); }
          } );
@@ -673,9 +678,11 @@ public class SnapBackupFrame extends JFrame {
 
       //Setup Callbacks for Destination (Backup & Archive) Controls
       destBackupDirTextField.addKeyListener(new KeyAdapter() {
+         @Override
          public void keyReleased(KeyEvent e) { destBackupDirTextFieldEdited(e); }
          });
       destBackupNameTextField.addKeyListener(new KeyAdapter(){
+         @Override
          public void keyReleased(KeyEvent e){ destBackupNameTextFieldEdited(e); }
          });
       destBackupChooserButton.addActionListener(new ActionListener() {
@@ -685,6 +692,7 @@ public class SnapBackupFrame extends JFrame {
          public void itemStateChanged(ItemEvent e){destArchivePromptCheckBoxToggled(e);}
          });
       destArchiveDirTextField.addKeyListener(new KeyAdapter(){
+         @Override
          public void keyReleased(KeyEvent e){ destArchiveDirTextFieldEdited(e);}
          });
       destArchiveChooserButton.addActionListener(new ActionListener() {
@@ -713,8 +721,10 @@ public class SnapBackupFrame extends JFrame {
 
    //Menu Items Callbacks
    public void languagesMenuItemAction(ActionEvent e) {
-      for (int count = 0; count < numFlagRows; count++)
-         langFlagsPanels[count].setVisible(languagesMenuItemButtonShow.isSelected());
+      for (JPanel flagPanel : langFlagsPanels)
+         flagPanel.setVisible(languagesMenuItemButtonShow.isSelected());
+      //for (int count = 0; count < numFlagRows; count++)
+      //   langFlagsPanels[count].setVisible(languagesMenuItemButtonShow.isSelected());
       DataModel.saveShowLanguagesSetting(this);
       }
    public void filtersMenuItemAction(ActionEvent e) {

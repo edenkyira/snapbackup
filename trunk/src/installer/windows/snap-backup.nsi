@@ -10,7 +10,7 @@
 Name "Snap Backup"
 
 ; The file to write
-OutFile "SnapBackup.exe"
+OutFile "SnapBackupInstaller.exe"
 
 
 Page license
