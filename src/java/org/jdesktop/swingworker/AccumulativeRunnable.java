@@ -1,7 +1,7 @@
 /* 
  * $Id: AccumulativeRunnable.java,v 1.3 2008/07/25 19:32:29 idk Exp $
  * 
- * Copyright � 2005 Sun Microsystems, Inc. All rights
+ * Copyright (c) 2005 Sun Microsystems, Inc. All rights
  * reserved. Use is subject to license terms.
  */
 

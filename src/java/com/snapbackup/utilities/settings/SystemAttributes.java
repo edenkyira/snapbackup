@@ -35,7 +35,7 @@ public class SystemAttributes {
    public static final String   appName = "SnapBackup";  //".properties" name
    public static final String   appCopyright = "&copy; 2009 Center Key Software";
    public static final String   appVersion = "5.0";
-   // 5.0 - 5/3/2009 -  Switch to Java 5.0 and new SwingManager
+   // 5.0 - 5/6/2009 -   Added import/export and switched to Java 5.0
    // 4.5 - 9/7/2008 -   Slovene (Slovenian)
    // 4.4 - 6/9/2006 -   Korean, user guide print button, and exclude .DS_Store on Macs
    // 4.3 - 5/7/2006 -   Portuguese

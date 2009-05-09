@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -46,7 +46,7 @@ public class DateStamp {
       //return "" + today.get(Calendar.YEAR) + "-" +
       //   twoDigitString(today.get(Calendar.MONTH) + 1) + "-" +
       //   twoDigitString(today.get(Calendar.DAY_OF_MONTH));
-   	return todaysDateStamp(
+      return todaysDateStamp(
          UserPreferences.readPref(Options.prefOrder),
          UserPreferences.readPref(Options.prefYear).equals(Options.year2Digits),
          UserPreferences.readPref(Options.prefSeparator));
@@ -57,16 +57,24 @@ public class DateStamp {
       Calendar today = Calendar.getInstance();
       String year = Integer.toString(today.get(Calendar.YEAR));
       if (year2Digits)
-      	year = year.substring(2);
+         year = year.substring(2);
       String month = twoDigitString(today.get(Calendar.MONTH) + 1);
       String day = twoDigitString(today.get(Calendar.DAY_OF_MONTH));
-   	String dateStamp = SystemAttributes.nullStr;
+      String dateStamp = SystemAttributes.nullStr;
+      for (char ymd : order.toCharArray())
+         switch (ymd) {
+            case '0': dateStamp = dateStamp + separator + year;   break;
+            case '1': dateStamp = dateStamp + separator + month;  break;
+            case '2': dateStamp = dateStamp + separator + day;    break;
+            }
+      /*
       for (int slot = 0; slot < order.length(); slot++)
          switch (order.charAt(slot)) {
             case '0': dateStamp = dateStamp + separator + year;   break;
             case '1': dateStamp = dateStamp + separator + month;  break;
             case '2': dateStamp = dateStamp + separator + day;    break;
             }
+      */
       return dateStamp.substring(1);
       }
 

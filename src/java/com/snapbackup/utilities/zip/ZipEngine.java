@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -99,18 +99,20 @@ public class ZipEngine {
       }
 
    String escapeChars(String s, char c) {
-   	for (int loc = 0; loc < s.length(); loc++)
-   	   if (s.charAt(loc) == c) {
+      for (int loc = 0; loc < s.length(); loc++)
+         if (s.charAt(loc) == c) {
             s = s.substring(0, loc) + regExEscape + s.substring(loc);
-   	   	loc = loc + 1;
-   	      }
-   	return s;
+            loc = loc + 1;
+            }
+      return s;
       }
 
    private Pattern compileRegEx(String regEx) {
       Pattern P = null;
-      for (int loc = 0; loc < regExReservedChars.length(); loc++)
-         regEx = escapeChars(regEx, regExReservedChars.charAt(loc));
+      for (char regExReservedChar : regExReservedChars.toCharArray())
+         regEx = escapeChars(regEx, regExReservedChar);
+      //for (int loc = 0; loc < regExReservedChars.length(); loc++)
+      //   regEx = escapeChars(regEx, regExReservedChars.charAt(loc));
       try {
          P = Pattern.compile(regEx.replaceAll(", ", "|").replaceAll("\\*", ".*"));
          }
@@ -122,16 +124,16 @@ public class ZipEngine {
       return P;
       }
    
-   private void updateFilterInfo(List[] filterInfo, int loc) {
-      filterIncludeOn = !filterInfo[0].get(loc).equals(nullStr);
-      filterIncludeP =  compileRegEx((String)filterInfo[0].get(loc));
-      filterExcludeOn = !filterInfo[1].get(loc).equals(nullStr);
-      filterExcludeP =  compileRegEx((String)filterInfo[1].get(loc));
-      filterFolderOn =  !filterInfo[2].get(loc).equals(nullStr);
-      filterFolderP =   compileRegEx((String)filterInfo[2].get(loc));
-      filterSizeOn =    !filterInfo[3].get(loc).equals(nullStr);
+   private void updateFilterInfo(List<List<String>> filterInfo, int loc) {
+      filterIncludeOn = !filterInfo.get(0).get(loc).equals(nullStr);
+      filterIncludeP =  compileRegEx(filterInfo.get(0).get(loc));
+      filterExcludeOn = !filterInfo.get(1).get(loc).equals(nullStr);
+      filterExcludeP =  compileRegEx(filterInfo.get(1).get(loc));
+      filterFolderOn =  !filterInfo.get(2).get(loc).equals(nullStr);
+      filterFolderP =   compileRegEx(filterInfo.get(2).get(loc));
+      filterSizeOn =    !filterInfo.get(3).get(loc).equals(nullStr);
       if (filterSizeOn)
-         filterSize = Integer.parseInt((String)filterInfo[3].get(loc)) * kb;
+         filterSize = Integer.parseInt(filterInfo.get(3).get(loc)) * kb;
       }
 
    public void zipFile(String filePath) {
@@ -148,7 +150,7 @@ public class ZipEngine {
              Logger.logMsg(skippingLogMsg + displayPath + exclusionNote + sizePre +
                 nf.format(1.0 * file.length() / kb) + sizePost);
          else if (!SystemAttributes.isMac || !file.getName().equals(".DS_Store")) {
-         	if (backupProgress != null)
+            if (backupProgress != null)
                BackupProgressDialog.current.updateProgress(zipCount);
             Logger.logMsg(Str.macroExpand(zippingLogMsg, zipCount++) + displayPath);
             BufferedInputStream input =  //Create buffered input stream from file input stream
@@ -175,17 +177,20 @@ public class ZipEngine {
       else {
          Logger.logMsg(folderLogMsg + displayPath);
          File[] itemList = dir.listFiles();  //List folder's sub-items
-         for (int count = 0; count < itemList.length; count ++)
+         for (File item : itemList)
             if (!abortBackup)
-               zipItem(itemList[count].getPath());
-         }   	
+               zipItem(item.getPath());
+         //for (int count = 0; count < itemList.length; count ++)
+         //   if (!abortBackup)
+         //      zipItem(itemList[count].getPath());
+         }
       }
 
    public void zipItem(String item) {
       File itemObj = new File(item);
       if (itemObj.exists()) {
          if (itemObj.isDirectory())
-         	zipDirectory(item, itemObj);
+            zipDirectory(item, itemObj);
          else
             zipFile(itemObj.getPath());
          }
@@ -193,8 +198,18 @@ public class ZipEngine {
          abortBackupAsk(UIProperties.current.err02ItemNotFound, item);
       }
 
-   public void calcRootPath(List zipItemList) {
+   public void calcRootPath(List<String> zipItemList) {
       String root = nullStr;
+      /*  CODE BELOW IS BETTER, BUT MUST BE VERIFIED FIRST
+      for (String zipItem : zipItemList) {
+         root = zipItem;
+         if (zipItem.length() < root.length())
+            root = root.substring(0, zipItem.length());
+         for (int loc = 0; loc < root.length(); loc++)
+            if (zipItem.charAt(loc) != root.charAt(loc))
+               root = root.substring(0, loc);
+         }
+      */
       ListIterator iter = zipItemList.listIterator();
       if (iter.hasNext())
          root = (String)iter.next();
@@ -210,8 +225,8 @@ public class ZipEngine {
       rootPathLen = rootPath.length();
       }
 
-   public void zipItems(List zipItemList, String zipFileName,
-         boolean filtersOn, List[] filterInfo) {
+   public void zipItems(List<String> zipItemList, String zipFileName,
+         boolean filtersOn, List<List<String>> filterInfo) {
       abortBackup = false;
       initFilterInfo();
       nf.setMaximumFractionDigits(1);
@@ -221,11 +236,11 @@ public class ZipEngine {
          Logger.logMsg(UIProperties.current.logMsgRootPath + space + rootPath);
          }
       zipCount = 1;
-   	boolean invalidFolder =
-   		!FileSys.ensureParentFolderExists(zipFileName, backupProgress,
+      boolean invalidFolder =
+         !FileSys.ensureParentFolderExists(zipFileName, backupProgress,
             UIProperties.current.fileUtilTitleBackupFolder);
-   	boolean writeDenided =
-   		UserPreferences.readPref(Options.prefAskBackup).equals(Options.askYes) &&
+      boolean writeDenided =
+         UserPreferences.readPref(Options.prefAskBackup).equals(Options.askYes) &&
          new File(zipFileName).exists() &&
          !FileSys.askOverwrite(zipFileName, backupProgress,
             UIProperties.current.fileUtilTitleBackupFile);
@@ -237,6 +252,14 @@ public class ZipEngine {
          try {
             fileOut = new FileOutputStream(zipFileName);
             zipOut = new ZipOutputStream(fileOut);
+            /*
+            for (String zipItem : zipItemList)
+               if (!abortBackup) {
+                  if (filtersOn)
+                     updateFilterInfo(filterInfo, iter.nextIndex());  // nextIndex?
+                  zipItem(zipItem);
+                  }
+            */
             ListIterator iter = zipItemList.listIterator();
             while (iter.hasNext() && !abortBackup) {
                if (filtersOn)
@@ -244,15 +267,15 @@ public class ZipEngine {
                zipItem((String)iter.next());
                }
             Locale locale = new Locale(UserPreferences.readLocalePref());
-            NumberFormat nf = NumberFormat.getNumberInstance(locale);
-            nf.setMaximumFractionDigits(0);  //whole numbers only
-            Logger.logMsg(UIProperties.current.logMsgFilesZipped + space + nf.format(zipCount - 1));
+            NumberFormat zipNF = NumberFormat.getNumberInstance(locale);
+            zipNF.setMaximumFractionDigits(0);  //whole numbers only
+            Logger.logMsg(UIProperties.current.logMsgFilesZipped + space + zipNF.format(zipCount - 1));
             zipOut.flush();
             zipOut.close();
             fileOut.close();
             Logger.logMsg(UIProperties.current.logMsgBackupCreated + space +
                zipFileName + sizePre +
-               nf.format(1.0 * new File(zipFileName).length() / kb) + sizePost);
+               zipNF.format(1.0 * new File(zipFileName).length() / kb) + sizePost);
             }
          catch (IOException e) {
             abortBackup(UIProperties.current.err01CreatingBackupFile,

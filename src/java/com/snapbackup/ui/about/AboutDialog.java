@@ -202,8 +202,10 @@ public class AboutDialog extends JDialog {
       aboutPanel.add(webButton);
       aboutPanel.add(Box.createRigidArea(new Dimension(0,10)));
       aboutPanel.add(closeButton);
-      for (int count = 0; count < aboutPanel.getComponentCount(); count++)
-         ((JComponent)aboutPanel.getComponent(count)).setAlignmentX(Component.LEFT_ALIGNMENT);
+      for (Component component : aboutPanel.getComponents())
+         ((JComponent)component).setAlignmentX(Component.LEFT_ALIGNMENT);
+      //for (int count = 0; count < aboutPanel.getComponentCount(); count++)
+      //   ((JComponent)aboutPanel.getComponent(count)).setAlignmentX(Component.LEFT_ALIGNMENT);
       }
 
    //

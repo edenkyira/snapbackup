@@ -35,13 +35,17 @@ public class BareBonesBrowserLaunch {
             String[] browsers = {
                "firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape" };
             String browser = null;
-            for (int count = 0; count < browsers.length && browser == null; count++)
-               if (Runtime.getRuntime().exec(
-                     new String[] {"which", browsers[count]}).waitFor() == 0)
-                  browser = browsers[count];
+            for (String b : browsers)
+               if (browser == null && (Runtime.getRuntime().exec(
+                     new String[] {"which", b}).waitFor() == 0))
+                  browser = b;
+            //for (int count = 0; count < browsers.length && browser == null; count++)
+            //   if (Runtime.getRuntime().exec(
+            //         new String[] {"which", browsers[count]}).waitFor() == 0)
+            //      browser = browsers[count];
             if (browser == null)
-               throw new Exception("Could not find web browser.");
-               //throw new Exception(Arrays.toString(browsers));
+               //throw new Exception("Could not find web browser.");
+               throw new Exception(java.util.Arrays.toString(browsers));
             else
                Runtime.getRuntime().exec(new String[] {browser, url});
             }

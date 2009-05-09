@@ -152,24 +152,38 @@ public class UserPreferences {
 
    public static Vector<String> getProfileNames() {
       Vector<String> names = new Vector<String>();
-      String[] allKeys = getAllKeys();
-      for (int count = 0; count < allKeys.length; count++)
-         if (allKeys[count].endsWith(SystemAttributes.prefChar + prefProfileName))
-            names.add(prefs.get(allKeys[count], prefValueNotFound));
+      for (String key : getAllKeys())
+         if (key.endsWith(SystemAttributes.prefChar + prefProfileName))
+            names.add(prefs.get(key, prefValueNotFound));
+      //String[] allKeys = getAllKeys();
+      //for (int count = 0; count < allKeys.length; count++)
+      //   if (allKeys[count].endsWith(SystemAttributes.prefChar + prefProfileName))
+      //      names.add(prefs.get(allKeys[count], prefValueNotFound));
       return names;
       }
 
    public static void deleteProfile() {
-      String[] keys = getAllKeys();
-      for (int count = 0; count < keys.length; count++)
-         if (keys[count].startsWith(profilePrefix()))
-            prefs.remove(keys[count]);
+      for (String key : getAllKeys())
+         if (key.startsWith(profilePrefix()))
+            prefs.remove(key);
+      //String[] keys = getAllKeys();
+      //for (int count = 0; count < keys.length; count++)
+      //   if (keys[count].startsWith(profilePrefix()))
+      //      prefs.remove(keys[count]);
       }
 
    public static void upgradeOldPrefs() {
       if (prefs.get("SnapBackup~AppVersion", "").startsWith("2.5")) {
          prefs.remove("SnapBackup~AppVersion");                //old
          savePref("AppVersion", SystemAttributes.appVersion);  //new
+         for (String key : getAllKeys())
+            if (key.startsWith("SnapBackup~")) {
+               // "SnapBackup~%Main~SrcDataList" --> "snapbackup.~main~.srcdatalist"
+               prefs.put(key.replaceFirst("~%Main~", ".~main~.").toLowerCase(),
+                     prefs.get(key, ""));
+               prefs.remove(key);
+               }
+         /*
          String[] keys = getAllKeys();
          for (int count = 0; count < keys.length; count++)
             if (keys[count].startsWith("SnapBackup~")) {
@@ -178,6 +192,7 @@ public class UserPreferences {
                      prefs.get(keys[count], ""));
                prefs.remove(keys[count]);
                }
+         */
          savePref("CurrentProfile",     prefs.get("snapbackup.~main~.profilecurrent", ""));
          savePref("~main~.ProfileName", prefs.get("snapbackup.~main~.profilecurrent", ""));
          prefs.remove("snapbackup.~main~.profilecurrent");

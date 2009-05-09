@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -137,9 +137,9 @@ public class FileSys {
          }
       finally {
          if (source != null)
-            try { source.close(); } catch (IOException e) { ; }
+            try { source.close(); } catch (IOException e) { Logger.logMsg(e.getLocalizedMessage()); }
                if (dest != null)
-                  try { dest.close(); } catch (IOException e) { ; }
+                  try { dest.close(); } catch (IOException e) { Logger.logMsg(e.getLocalizedMessage()); }
            }
       }
    

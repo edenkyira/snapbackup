@@ -104,13 +104,13 @@ public class DataModel {
       zipItemList, zipIncludeList, zipExcludeList, zipExcludeFolderList, zipExcludeSizeList;
 
    //Command-line data
-   static String  backupDir;
-   static String  backupName;
-   static String  backupPath;
-   static boolean doArchive;
-   static String  archiveDir;
-   static String  archivePath;
-   static boolean filtersOn;
+   static String  cmdBackupDir;
+   static String  cmdBackupName;
+   static String  cmdBackupPath;
+   static boolean cmdDoArchive;
+   static String  cmdArchiveDir;
+   static String  cmdArchivePath;
+   static boolean cmdFiltersOn;
 
    public static Vector<String> getProfilesNames() {
       Vector<String> names = UserPreferences.getProfileNames();
@@ -196,9 +196,10 @@ public class DataModel {
       updateArchiveDir(f);
       }
 
-   private static String list2StrList(List list) {
-   	  //Converts multi-line data (List) into a single long string using the "splitStr" delimiter
+   private static String list2StrList(List<String> list) {
+      //Converts multi-line data (List) into a single long string using the "splitStr" delimiter
       StringBuffer strList = new StringBuffer();
+      //for (String line : list)  --> need to figure out way to skip final splitStr
       ListIterator iter = list.listIterator();
       if (iter.hasNext())
          strList.append((String)iter.next());
@@ -209,7 +210,7 @@ public class DataModel {
       }
 
    private static List<String> strList2List(String strList, int minSize) {
-   	  //Creates a List of lines from a string of multi-line data delimited with "splitStr"
+      //Creates a List of lines from a string of multi-line data delimited with "splitStr"
       List<String> list = 
             new ArrayList<String>(Arrays.asList(strList.split(SystemAttributes.splitStr)));
       if (strList.equals(nullStr))
@@ -255,8 +256,8 @@ public class DataModel {
    */
 
    public static String buildZipListLine(String zipItem, String includeFilter,
-   		String excludeFilter, String excludeFoldersFilter, String sizeFilter,
-   		SnapBackupFrame f) {
+         String excludeFilter, String excludeFoldersFilter, String sizeFilter,
+         SnapBackupFrame f) {
       String line = zipItem;
       if (f.getFiltersEnabled()) {
          line = line + tab;
@@ -316,7 +317,7 @@ public class DataModel {
       }
 
    public static void setCurrentZipFilter(String includeFilter,
-   		String excludeFilter, String excludeFolderFilter, String sizeFilter, SnapBackupFrame f) {
+      String excludeFilter, String excludeFolderFilter, String sizeFilter, SnapBackupFrame f) {
       int loc = f.getSrcZipList().getSelectedIndex();
       zipIncludeList.set(loc, includeFilter);
       zipExcludeList.set(loc, excludeFilter);
@@ -359,7 +360,7 @@ public class DataModel {
       }
 
    public static void initSettings() {
-   	//Command-line
+      //Command-line
       initSupplimentalSettings();
       loadZipList(null);
       }
@@ -465,23 +466,40 @@ public class DataModel {
       zip.setBackupProgressDialog(backupProgress);
       final SwingWorker worker = new SwingWorker() {
          public Object construct() {
-         	logTimeStart();
-         	Logger.spacer();
+            logTimeStart();
+            Logger.spacer();
             Logger.logMsg(UIProperties.current.logMsgStart);
-            List[] filterInfo = {
-               zipIncludeList, zipExcludeList, zipExcludeFolderList, zipExcludeSizeList };
+
+
+            //List<List<String>> filterInfoList = new ArrayList<List<String>>();
+            //filterInfoList.add(zipIncludeList);
+            //Collections.addAll(filterInfoList,
+            //   zipIncludeList, zipExcludeList, zipExcludeFolderList, zipExcludeSizeList);
+
+            //List<String> f = null;
+            //Collections.addAll(f,
+            //   "zipIncludeList", "zipExcludeList", "zipExcludeFolderList", "zipExcludeSizeList");
+
+            //List<String>[] filterInfo = {
+            //ArrayList filterInfo  = {
+            List<List<String>> filterInfo = new ArrayList<List<String>>();
+            filterInfo.add(zipIncludeList);
+            filterInfo.add(zipExcludeList);
+            filterInfo.add(zipExcludeFolderList);
+            filterInfo.add(zipExcludeSizeList);
             zip.zipItems(zipItemList, calcDestBackupPath(),
                SnapBackupFrame.current.getFiltersEnabled(), filterInfo);
             if (SnapBackupFrame.current.getDestArchivePromptCheckBox().isSelected() && !zip.isAbortSet())
                FileSys.copyFile(calcDestBackupPath(), calcDestArchivePath(), backupProgress,
                   zip, UserPreferences.readPref(Options.prefAskArchive).equals(Options.askNo));
             if (zip.isAbortSet())
-            	Logger.logMsg(UIProperties.current.logMsgAborted);
-         	logTimeEnd();
+               Logger.logMsg(UIProperties.current.logMsgAborted);
+            logTimeEnd();
             Logger.logMsg(UIProperties.current.logMsgEnd);
             SnapBackupFrame.current.getLogScrollPane().getHorizontalScrollBar().setValue(0);
             return UIProperties.current;  //return object not used
             }
+         @Override
          public void finished() {
             if (!zip.isAbortSet()) {
                backupProgress.done();
@@ -498,39 +516,44 @@ public class DataModel {
       }
 
    static void loadCmdLineData() {
-      backupDir =   UserPreferences.readProfilePref(prefBackupDir);
-      backupName =  UserPreferences.readProfilePref(prefBackupName);
-      backupPath =  calcDestPath(backupDir, backupName);
-      doArchive =   UserPreferences.readProfilePref(prefArchiveChecked).compareTo(trueStr) == 0;
-      archiveDir =  UserPreferences.readProfilePref(prefArchiveDir);
-      archivePath = calcDestPath(archiveDir, backupName);
-      filtersOn =   UserPreferences.readBooleanPref(prefFiltersEnabled);
+      cmdBackupDir =   UserPreferences.readProfilePref(prefBackupDir);
+      cmdBackupName =  UserPreferences.readProfilePref(prefBackupName);
+      cmdBackupPath =  calcDestPath(cmdBackupDir, cmdBackupName);
+      cmdDoArchive =   UserPreferences.readProfilePref(prefArchiveChecked).compareTo(trueStr) == 0;
+      cmdArchiveDir =  UserPreferences.readProfilePref(prefArchiveDir);
+      cmdArchivePath = calcDestPath(cmdArchiveDir, cmdBackupName);
+      cmdFiltersOn =   UserPreferences.readBooleanPref(prefFiltersEnabled);
       }
 
    public static void doCmdLineBackup(String profileName, String logFile) {
       new UIProperties();
-   	final ZipEngine zip = new ZipEngine();
-   	if (profileName.equals(SystemAttributes.cmdLineDefaultProfile))
-   		profileName = UserPreferences.readPref(prefCurrentProfile);
+      final ZipEngine zip = new ZipEngine();
+      if (profileName.equals(SystemAttributes.cmdLineDefaultProfile))
+         profileName = UserPreferences.readPref(prefCurrentProfile);
       UserPreferences.setCmdLineProfileName(profileName);
       initSettings();
       Logger.initOutput();
       Logger.logMsg(UIProperties.current.headerCmdLine);
-   	logTimeStart();
+      logTimeStart();
       Logger.logMsg(UIProperties.current.logMsgStart);
       Logger.logMsg(UIProperties.current.logMsgProfile + profileName);
       loadCmdLineData();
-      List[] filterInfo = {
-         zipIncludeList, zipExcludeList, zipExcludeFolderList, zipExcludeSizeList };
+      //List[] filterInfo = {
+      //   zipIncludeList, zipExcludeList, zipExcludeFolderList, zipExcludeSizeList };
+      List<List<String>> filterInfo = new ArrayList<List<String>>();
+         filterInfo.add(zipIncludeList);
+         filterInfo.add(zipExcludeList);
+         filterInfo.add(zipExcludeFolderList);
+         filterInfo.add(zipExcludeSizeList);
       if (UserPreferences.profileInDB())
-         zip.zipItems(zipItemList, backupPath, filtersOn, filterInfo);
+         zip.zipItems(zipItemList, cmdBackupPath, cmdFiltersOn, filterInfo);
       else
-      	zip.abortBackup(UIProperties.current.err30ProfileNotFound + dataPrompt + profileName);
-      if (doArchive && !zip.isAbortSet())
-         FileSys.copyFile(backupPath, archivePath, zip);
+         zip.abortBackup(UIProperties.current.err30ProfileNotFound + dataPrompt + profileName);
+      if (cmdDoArchive && !zip.isAbortSet())
+         FileSys.copyFile(cmdBackupPath, cmdArchivePath, zip);
       if (zip.isAbortSet())
-      	Logger.logMsg(UIProperties.current.logMsgAborted);
-   	logTimeEnd();
+         Logger.logMsg(UIProperties.current.logMsgAborted);
+      logTimeEnd();
       Logger.logMsg(UIProperties.current.logMsgEnd);
       }
 

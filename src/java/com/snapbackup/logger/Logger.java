@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -37,22 +37,22 @@ public class Logger {
    private static boolean firstSession = true;
 
    public static void initLogArea(JTextArea area) {
-   	log2Screen = true;
+      log2Screen = true;
       logArea = area;
       }
 
    public static void initOutput() {
-   	log2Screen = false;
+      log2Screen = false;
       }
 
    public static void logMsg(String msg) {
-   	if (log2Screen) {
+      if (log2Screen) {
          logArea.append(SystemAttributes.newLine);
          logArea.append(msg);
          logArea.setCaretPosition(logArea.getText().length());
          }
-   	else
-   		System.out.println(msg);
+      else
+         System.out.println(msg);
       }
 
    /* //The better way to do this?????

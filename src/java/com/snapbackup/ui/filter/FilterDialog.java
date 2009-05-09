@@ -15,7 +15,7 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2007 Center Key Software                                     //
+// Copyright (c) 2009 Center Key Software                                     //
 // Snap Backup is a trademark of Dem Pilafian                                 //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
@@ -138,7 +138,7 @@ public class FilterDialog extends JDialog {
       getRootPane().setDefaultButton(okButton);
       getRootPane().registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	actionCancel(); } },
+               actionCancel(); } },
             KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
             JComponent.WHEN_IN_FOCUSED_WINDOW);
       }
@@ -203,10 +203,10 @@ public class FilterDialog extends JDialog {
       }
 
    String stripChar(String s, char c) {
-   	int loc = s.indexOf(c);
-   	if (loc == -1)
+      int loc = s.indexOf(c);
+      if (loc == -1)
          return s;
-   	else
+      else
          return stripChar(s.substring(0, loc) + s.substring(loc + 1), c);
       }
    

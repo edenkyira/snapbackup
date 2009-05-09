@@ -88,7 +88,7 @@ public class ImportDialog extends JDialog {
       basePanel.setLayout(new BoxLayout(basePanel, BoxLayout.PAGE_AXIS));
       basePanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
       locationPanel.setLayout(new BoxLayout(locationPanel, BoxLayout.PAGE_AXIS));
-   	locationPanel.setBorder(BorderFactory.createCompoundBorder(
+      locationPanel.setBorder(BorderFactory.createCompoundBorder(
          BorderFactory.createTitledBorder(ui.locationTitle),
          BorderFactory.createEmptyBorder(0, 5, 5, 5)));
       locationInnerPanel.setLayout(new BoxLayout(locationInnerPanel, BoxLayout.LINE_AXIS));
@@ -111,21 +111,21 @@ public class ImportDialog extends JDialog {
       }
 
    void addContols() {
-   	basePanel.add(locationPanel);
-   	locationPanel.add(locationInnerPanel);
+      basePanel.add(locationPanel);
+      locationPanel.add(locationInnerPanel);
       locationInnerPanel.add(locationPromptLabel);
       locationInnerPanel.add(locationTextField);
       locationInnerPanel.add(locationChooserButton);
       locationPanel.add(Box.createRigidArea(new Dimension(0,10)));
-   	locationPanel.add(locationDetailsLabel);
+      locationPanel.add(locationDetailsLabel);
       locationPanel.add(Box.createRigidArea(new Dimension(0,10)));
-   	locationPanel.add(locationWarningLabel);
+      locationPanel.add(locationWarningLabel);
       basePanel.add(Box.createRigidArea(new Dimension(0,10)));
-   	basePanel.add(buttonPanel);
+      basePanel.add(buttonPanel);
       buttonPanel.add(Box.createHorizontalGlue());
-   	buttonPanel.add(cancelButton);
+      buttonPanel.add(cancelButton);
       buttonPanel.add(Box.createRigidArea(new Dimension(5,0)));
-   	buttonPanel.add(actionButton);
+      buttonPanel.add(actionButton);
       }
 
    //
