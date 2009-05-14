@@ -28,10 +28,17 @@ package com.snapbackup.ui;
 
 import java.awt.Color;
 import javax.swing.*;
+import com.snapbackup.utilities.settings.SystemAttributes;
+import com.snapbackup.utilities.settings.AppProperties;
 
 public class SplashScreen extends JDialog {
 
-   SplashScreen() {
+   final String appTitle = AppProperties.getProperty("ApplicationTitle");
+   final String splashHeader = SystemAttributes.headerPre + appTitle +
+      SystemAttributes.headerMid + SystemAttributes.headerSplashTag +
+      SystemAttributes.headerPost;
+
+   public SplashScreen() {
       JPanel splashPanel = new JPanel();
       splashPanel.setLayout(new BoxLayout(splashPanel, BoxLayout.Y_AXIS));
       splashPanel.setBackground(Color.white);
@@ -39,15 +46,16 @@ public class SplashScreen extends JDialog {
          BorderFactory.createLineBorder(Color.black),
          BorderFactory.createEmptyBorder(0, 20, 5, 20)
          ));
-      splashPanel.add(new JLabel(UIProperties.current.splashHeader));
+      splashPanel.add(new JLabel(splashHeader));
       getContentPane().add(splashPanel);
       setResizable(false);
       setUndecorated(true);
       pack();
       UIUtilities.centerDialog(this);
       }
-   
+
    public void delete() {
+      this.setVisible(false);
       this.dispose();
       }
 

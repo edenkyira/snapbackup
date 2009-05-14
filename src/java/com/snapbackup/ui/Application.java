@@ -34,7 +34,7 @@ public final class Application {
 
    public Application() {
       new UIProperties();
-      SplashScreen splash = new SplashScreen();
+      //SplashScreen splash = new SplashScreen();
       //UIUtilities.centerDialog(splash);
       SnapBackupFrame frame = new SnapBackupFrame();
       Logger.initLogArea(frame.getLogTextArea());
@@ -43,8 +43,7 @@ public final class Application {
       UIUtilities.lockInMinSize(frame);
       UIUtilities.setInitialNumRows(frame);
       UIUtilities.centerFrame(frame);
-      splash.delete();
+      //splash.delete();
       }
 
    }
-
