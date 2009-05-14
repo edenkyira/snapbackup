@@ -71,7 +71,7 @@ public class UIProperties {
    public final String appTitle =             AppProperties.getProperty("ApplicationTitle");
    public final String appTitleLocalized =    AppProperties.getProperty("OptionalLocalizedApplicationTitle");
    public final String header =               SystemAttributes.headerPre + appTitle + SystemAttributes.headerMid + (appTitleLocalized.equals("") ? "" : "<br>" + appTitleLocalized) + SystemAttributes.headerPost;
-   public final String splashHeader =         SystemAttributes.headerPre + appTitle + SystemAttributes.headerMid + SystemAttributes.headerSplashTag + SystemAttributes.headerPost;
+   //public final String splashHeader =         SystemAttributes.headerPre + appTitle + SystemAttributes.headerMid + SystemAttributes.headerSplashTag + SystemAttributes.headerPost;
    public final String headerCmdLine =        appTitle + " " + SystemAttributes.appVersion + (appTitleLocalized.equals("") ? "" : " (" + appTitleLocalized + ")");
 
    //Menus (File Menu)
