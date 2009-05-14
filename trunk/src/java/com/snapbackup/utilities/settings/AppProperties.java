@@ -34,10 +34,10 @@ import java.util.ResourceBundle;
 // values.  Additional properties with values may added at run-time.
 public class AppProperties {
 
-   private static final Hashtable<String, String> supplimentalProperty =
+   static final Hashtable<String, String> supplimentalProperty =
       new Hashtable<String, String>();
 
-   private static ResourceBundle applicationResources =
+   static ResourceBundle applicationResources =
       ResourceBundle.getBundle(SystemAttributes.appName,
       new Locale(UserPreferences.readLocalePref()));
 

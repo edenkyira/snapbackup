@@ -41,9 +41,9 @@ import com.snapbackup.utilities.zip.ZipEngine;
 
 public class FileSys {
 
-   private static String errMsg;
-   private static String nullStr = SystemAttributes.nullStr;
-   private static String space =   SystemAttributes.space;
+   static String errMsg;
+   static String nullStr = SystemAttributes.nullStr;
+   static String space =   SystemAttributes.space;
 
    public static String getErrMsg() {
       return errMsg;
@@ -79,7 +79,7 @@ public class FileSys {
          UIProperties.current.fileUtilButtonAbort);
       }
 
-   private static boolean askOverwrite(String fileName, Component frame,
+   static boolean askOverwrite(String fileName, Component frame,
          String winTitle, String msg, String overwriteButton,
          String abortButton) {
       String[] options = { overwriteButton, abortButton };

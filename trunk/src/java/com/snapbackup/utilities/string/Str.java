@@ -27,7 +27,7 @@ package com.snapbackup.utilities.string;
 
 public class Str {
 
-   private static final String macroChar = "%";  //TextReplacementCharacter
+   static final String macroChar = "%";  //TextReplacementCharacter
 
    public static String macroExpand(String baseStr, String replaceStr) {
       return baseStr.substring(0, baseStr.indexOf(macroChar)) + replaceStr +

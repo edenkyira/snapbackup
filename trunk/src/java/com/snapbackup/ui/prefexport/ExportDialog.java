@@ -31,17 +31,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import com.snapbackup.business.ExportDataModel;
 import com.snapbackup.ui.Icons;
@@ -114,7 +104,9 @@ public class ExportDialog extends JDialog {
       locationPanel.add(locationInnerPanel);
       locationInnerPanel.add(locationPromptLabel);
       locationInnerPanel.add(locationTextField);
+      locationInnerPanel.add(Box.createRigidArea(new Dimension(5,0)));
       locationInnerPanel.add(locationChooserButton);
+      locationInnerPanel.add(Box.createRigidArea(new Dimension(5,0)));
       locationInnerPanel.add(resetButton);
       locationPanel.add(Box.createRigidArea(new Dimension(0,10)));
       locationPanel.add(locationDetails1Label);

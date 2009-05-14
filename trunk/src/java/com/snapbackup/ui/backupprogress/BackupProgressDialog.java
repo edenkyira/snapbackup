@@ -39,13 +39,13 @@ import com.snapbackup.utilities.zip.ZipEngine;
 public class BackupProgressDialog extends JDialog {
 
    public static BackupProgressDialog current;
-   private ZipEngine zip;
-   private final int progressMax = BackupProgressUIProperties.progressMax;
-   private NumberFormat nfp = NumberFormat.getPercentInstance(new Locale(UserPreferences.readLocalePref()));
-   private JLabel progressLabel;
-   private JProgressBar backupPB;
-   private JLabel memFreeLabel;
-   private JButton cancelButton;
+   ZipEngine zip;
+   final int progressMax = BackupProgressUIProperties.progressMax;
+   NumberFormat nfp = NumberFormat.getPercentInstance(new Locale(UserPreferences.readLocalePref()));
+   JLabel progressLabel;
+   JProgressBar backupPB;
+   JLabel memFreeLabel;
+   JButton cancelButton;
 
    public BackupProgressDialog(ZipEngine zipInst) {
       current = this;

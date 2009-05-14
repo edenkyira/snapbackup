@@ -25,35 +25,15 @@
 
 package com.snapbackup.ui.about;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.KeyStroke;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import com.snapbackup.ui.Icons;
 import com.snapbackup.ui.UIProperties;
@@ -63,36 +43,36 @@ import com.snapbackup.utilities.settings.SystemAttributes;
 
 public class AboutDialog extends JDialog {
 
-   private static final String space =         SystemAttributes.space;
-   private static final String nullStr =       SystemAttributes.nullStr;
-   private static final String tab =           SystemAttributes.tab;
-   private static final String comma =         SystemAttributes.comma;
-   private static final String newLine =       SystemAttributes.newLine;
-   private static final String homeURL =       "http://www.snapbackup.com";
-   private static final String launchURL =     homeURL + "/app?v=" + SystemAttributes.appVersion;
-   private static final String downloadURL =   homeURL + "/download";
-   private static final String urlKey =        "url";  //used as key to save URL for each translator
-   private static final String hey =           "Hey, don't press the '[' key!";
-   private static final String[] translators = SystemAttributes.appTranslators;
+   static final String space =         SystemAttributes.space;
+   static final String nullStr =       SystemAttributes.nullStr;
+   static final String tab =           SystemAttributes.tab;
+   static final String comma =         SystemAttributes.comma;
+   static final String newLine =       SystemAttributes.newLine;
+   static final String homeURL =       "http://www.snapbackup.com";
+   static final String launchURL =     homeURL + "/app?v=" + SystemAttributes.appVersion;
+   static final String downloadURL =   homeURL + "/download";
+   static final String urlKey =        "url";  //used as key to save URL for each translator
+   static final String hey =           "Hey, don't press the '[' key!";
+   static final String[] translators = SystemAttributes.appTranslators;
 
-   private AboutUIProperties ui = new AboutUIProperties();   //make singleton for performance????
-   private final String contactInfoStr = ui.aboutContact + newLine + SystemAttributes.postalAddress + newLine + homeURL + newLine + SystemAttributes.feedbackEMail;
+   AboutUIProperties ui = new AboutUIProperties();   //make singleton for performance????
+   final String contactInfoStr = ui.aboutContact + newLine + SystemAttributes.postalAddress + newLine + homeURL + newLine + SystemAttributes.feedbackEMail;
 
    //Define About Controls
-   private JPanel    aboutPanel =   new JPanel();
-   private JLabel    logo =         new JLabel(Icons.logoIcon);
-   private JLabel    productName =  new JLabel(UIProperties.current.header);
-   private JLabel    version =      new JLabel(ui.aboutVersion);
-   private JLabel    author =       new JLabel(ui.aboutCreatedBy);
-   private JPanel    translatorsPanel =  new JPanel();
-   private JLabel    translatedBy = new JLabel(ui.aboutTranslatedBy + space);
-   private JLabel    copyright =    new JLabel("<html>" + ui.aboutCopyright + space + SystemAttributes.appCopyright + "</html>");
-   private JTextArea license =      new JTextArea(ui.aboutLicense + newLine + newLine + ui.aboutDownload + newLine + tab + downloadURL);
-   private JTextArea configInfo =   new JTextArea();
-   private JTextArea contactInfo =  new JTextArea(contactInfoStr.replaceAll(newLine, newLine + tab));
-   private JButton   webButton =    new JButton(ui.aboutButtonWeb);
-   private JButton   closeButton =  new JButton(ui.aboutButtonClose);
-   private JButton[] buttonList =   { webButton, closeButton };
+   JPanel    aboutPanel =   new JPanel();
+   JLabel    logo =         new JLabel(Icons.logoIcon);
+   JLabel    productName =  new JLabel(UIProperties.current.header);
+   JLabel    version =      new JLabel(ui.aboutVersion);
+   JLabel    author =       new JLabel(ui.aboutCreatedBy);
+   JPanel    translatorsPanel =  new JPanel();
+   JLabel    translatedBy = new JLabel(ui.aboutTranslatedBy + space);
+   JLabel    copyright =    new JLabel("<html>" + ui.aboutCopyright + space + SystemAttributes.appCopyright + "</html>");
+   JTextArea license =      new JTextArea(ui.aboutLicense + newLine + newLine + ui.aboutDownload + newLine + tab + downloadURL);
+   JTextArea configInfo =   new JTextArea();
+   JTextArea contactInfo =  new JTextArea(contactInfoStr.replaceAll(newLine, newLine + tab));
+   JButton   webButton =    new JButton(ui.aboutButtonWeb);
+   JButton   closeButton =  new JButton(ui.aboutButtonClose);
+   JButton[] buttonList =   { webButton, closeButton };
 
    public AboutDialog() {
       initGUI();
@@ -101,7 +81,7 @@ public class AboutDialog extends JDialog {
       pack();
       }
 
-   private void initGUI() {
+   void initGUI() {
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
       setTitle(ui.aboutTitle + UIProperties.current.appTitle);
       configureContols();
@@ -111,7 +91,7 @@ public class AboutDialog extends JDialog {
       getContentPane().add(aboutPanel, BorderLayout.CENTER);
       }
 
-   private void setupTranslatorsPanel() {
+   void setupTranslatorsPanel() {
       translatorsPanel.setLayout(new BoxLayout(translatorsPanel, BoxLayout.PAGE_AXIS));
       JPanel row = null;
       for (int count = 0; count*2 < translators.length; count++) {
@@ -140,7 +120,7 @@ public class AboutDialog extends JDialog {
          }       
       }
 
-   private void configureContols() {
+   void configureContols() {
       logo.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 30));
       aboutPanel.setLayout(new BoxLayout(aboutPanel, BoxLayout.PAGE_AXIS));
       aboutPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 30));
@@ -217,18 +197,20 @@ public class AboutDialog extends JDialog {
    ActionListener actionListener = new ActionListener() {
        public void actionPerformed(ActionEvent actionEvent) {
            String msg = hey;
-           JOptionPane.showMessageDialog(null, msg);
+           JOptionPane.showMessageDialog(null, msg, ui.aboutVersion, JOptionPane.PLAIN_MESSAGE);
            try {
               URLConnection connection = new URL("http://www.snapbackup.com/version/").openConnection();
               //connection.setReadTimeout(10000);
               BufferedReader reader = new BufferedReader(new InputStreamReader((
                  InputStream) connection.getContent()));
               String line = reader.readLine();
-              JOptionPane.showMessageDialog(null, line);
+              JOptionPane.showMessageDialog(null, line, ui.aboutVersion, JOptionPane.PLAIN_MESSAGE);
               }
            catch (Exception e) {
               //java.net.NoRouteToHostException or java.net.ConnectException
-              JOptionPane.showMessageDialog(null, "Update check error: " + e.getLocalizedMessage() + " > " + e.getClass().getName());
+              JOptionPane.showMessageDialog(null, "Update check error: " +
+                    e.getLocalizedMessage() + " > " + e.getClass().getName(),
+                    ui.aboutVersion, JOptionPane.ERROR_MESSAGE);
               }
            }
        };

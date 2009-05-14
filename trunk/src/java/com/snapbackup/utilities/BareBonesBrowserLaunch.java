@@ -18,7 +18,7 @@ import com.snapbackup.ui.UIProperties;
 
 public class BareBonesBrowserLaunch {
 
-   private static final String errMsg = UIProperties.current.err20BrowserFailure;
+   static final String errMsg = UIProperties.current.err20BrowserFailure;
 
    public static void openURL(String url) {
       String osName = System.getProperty("os.name");

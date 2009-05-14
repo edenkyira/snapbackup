@@ -33,7 +33,7 @@ import com.snapbackup.utilities.settings.UserPreferences;
 
 public class DateStamp {
 
-   private static String twoDigitString(int number) {
+   static String twoDigitString(int number) {
       String tds = "" + number;
       if (number < 10) tds = "0" + tds;
       return tds;

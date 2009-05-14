@@ -32,7 +32,7 @@ import com.snapbackup.utilities.settings.AppProperties;
 public class Export {
    //Constants
    public static final String prefSettingsFileName = "ExportFileName";
-   public static final int    fileNameCols =         30;
+   public static final int    fileNameCols =         40;
 
    //Setup
    public final String Settings =        AppProperties.getProperty("ExportSettings");

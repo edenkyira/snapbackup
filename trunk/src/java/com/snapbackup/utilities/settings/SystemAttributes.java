@@ -101,7 +101,7 @@ public class SystemAttributes {
    public static final String   cmdLineDefaultProfile = "~";
 
    //System information retrieved from JVM
-   private static final Properties sysInfo = System.getProperties();
+   static final Properties sysInfo = System.getProperties();
    public static final String userName = sysInfo.getProperty("user.name");
    public static final String userHomeDir = sysInfo.getProperty("user.home");
    public static final String appWorkingDir = sysInfo.getProperty("user.dir");

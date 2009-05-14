@@ -33,19 +33,19 @@ import com.snapbackup.ui.SnapBackupFrame;
 
 public class UserPreferences {
 
-   private static Preferences prefs =
+   static Preferences prefs =
       Preferences.userNodeForPackage(new UserPreferences().getClass());
-   private static final String prefix = SystemAttributes.prefPrefix;
-   private static final String locale = SystemAttributes.prefLocale;
-   private static final String prefProfileName = "profilename";
-   private static final String prefValueNotFound = "NOT FOUND";
-   private static String cmdLineProfileName = null;
+   static final String prefix = SystemAttributes.prefPrefix;
+   static final String locale = SystemAttributes.prefLocale;
+   static final String prefProfileName = "profilename";
+   static final String prefValueNotFound = "NOT FOUND";
+   static String cmdLineProfileName = null;
 
-   private static String boolean2String (boolean tf) {
+   static String boolean2String (boolean tf) {
       return (tf ? SystemAttributes.trueStr : SystemAttributes.falseStr);
       }
 
-   private static boolean string2Boolean (String tf) {
+   static boolean string2Boolean (String tf) {
       return (tf.compareTo(SystemAttributes.trueStr) == 0);
       }
 
@@ -92,12 +92,12 @@ public class UserPreferences {
       cmdLineProfileName = profileName.toLowerCase();
       }
 
-   private static String profilePrefix(String profileName) {
+   static String profilePrefix(String profileName) {
       return SystemAttributes.prefProfilePrefix + profileName.toLowerCase() +
          SystemAttributes.prefProfilePostfix;
       }
 
-   private static String profilePrefix() {
+   static String profilePrefix() {
       String profileName = cmdLineProfileName;
       if (profileName == null)
          profileName = SnapBackupFrame.current.getCurrentProfileName();

@@ -26,49 +26,12 @@
 
 package com.snapbackup.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.File;
 import java.util.Locale;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -87,103 +50,103 @@ import com.snapbackup.utilities.string.Str;
 
 public class SnapBackupFrame extends JFrame {
 
-   private UIProperties ui = UIProperties.current;
+   UIProperties ui = UIProperties.current;
 
    //Define Menu Controls
-   private JMenuBar    menuBar =           new JMenuBar();
-   private JMenu       fileMenuGroup =     new JMenu(ui.menuGroupFile);
-   private JMenu       languagesMenuItem = new JMenu(ui.menuItemLangs);
-   private JRadioButtonMenuItem languagesMenuItemButtonShow =
-                                           new JRadioButtonMenuItem(ui.menuItemLangsShow);
-   private JRadioButtonMenuItem languagesMenuItemButtonHide =
-                                           new JRadioButtonMenuItem(ui.menuItemLangsHide);
-   private ButtonGroup languagesGroup =    new ButtonGroup();
-   private JMenu       filtersMenuItem =   new JMenu(ui.menuItemFilters);
-   private JRadioButtonMenuItem filtersMenuItemButtonOn =
-                                           new JRadioButtonMenuItem(ui.menuItemFiltersOn);
-   private JRadioButtonMenuItem filtersMenuItemButtonOff =
-                                           new JRadioButtonMenuItem(ui.menuItemFiltersOff);
-   private ButtonGroup filtersGroup =      new ButtonGroup();
-   private JMenu       profilesMenuItem =  new JMenu(ui.menuItemProfiles);
-   private JRadioButtonMenuItem profilesMenuItemButtonOn =
-                                           new JRadioButtonMenuItem(ui.menuItemProfilesOn);
-   private JRadioButtonMenuItem profilesMenuItemButtonOff =
-                                           new JRadioButtonMenuItem(ui.menuItemProfilesOff);
-   private ButtonGroup profilesGroup =     new ButtonGroup();
-   private JMenu       skinMenuItem =      new JMenu(ui.menuItemSkin);
-   private JMenuItem   exportMenuItem =    new JMenuItem(ui.menuItemExport);
-   private JMenuItem   importMenuItem =    new JMenuItem(ui.menuItemImport);
-   private JMenuItem   optionsMenuItem =   new JMenuItem(ui.menuItemOptions);
-   private JMenuItem   exitMenuItem =      new JMenuItem(ui.menuItemExit);
-   private JMenu       helpMenuGroup =     new JMenu(ui.menuGroupHelp);
-   private JMenuItem   guideMenuItem =     new JMenuItem(ui.menuItemGuide);
-   private JMenuItem   aboutMenuItem =     new JMenuItem(ui.menuItemAbout);
+   JMenuBar    menuBar =           new JMenuBar();
+   JMenu       fileMenuGroup =     new JMenu(ui.menuGroupFile);
+   JMenu       languagesMenuItem = new JMenu(ui.menuItemLangs);
+   JRadioButtonMenuItem languagesMenuItemButtonShow =
+                                   new JRadioButtonMenuItem(ui.menuItemLangsShow);
+   JRadioButtonMenuItem languagesMenuItemButtonHide =
+                                   new JRadioButtonMenuItem(ui.menuItemLangsHide);
+   ButtonGroup languagesGroup =    new ButtonGroup();
+   JMenu       filtersMenuItem =   new JMenu(ui.menuItemFilters);
+   JRadioButtonMenuItem filtersMenuItemButtonOn =
+                                   new JRadioButtonMenuItem(ui.menuItemFiltersOn);
+   JRadioButtonMenuItem filtersMenuItemButtonOff =
+                                   new JRadioButtonMenuItem(ui.menuItemFiltersOff);
+   ButtonGroup filtersGroup =      new ButtonGroup();
+   JMenu       profilesMenuItem =  new JMenu(ui.menuItemProfiles);
+   JRadioButtonMenuItem profilesMenuItemButtonOn =
+                                   new JRadioButtonMenuItem(ui.menuItemProfilesOn);
+   JRadioButtonMenuItem profilesMenuItemButtonOff =
+                                   new JRadioButtonMenuItem(ui.menuItemProfilesOff);
+   ButtonGroup profilesGroup =     new ButtonGroup();
+   JMenu       skinMenuItem =      new JMenu(ui.menuItemSkin);
+   JMenuItem   exportMenuItem =    new JMenuItem(ui.menuItemExport);
+   JMenuItem   importMenuItem =    new JMenuItem(ui.menuItemImport);
+   JMenuItem   optionsMenuItem =   new JMenuItem(ui.menuItemOptions);
+   JMenuItem   exitMenuItem =      new JMenuItem(ui.menuItemExit);
+   JMenu       helpMenuGroup =     new JMenu(ui.menuGroupHelp);
+   JMenuItem   guideMenuItem =     new JMenuItem(ui.menuItemGuide);
+   JMenuItem   aboutMenuItem =     new JMenuItem(ui.menuItemAbout);
 
    //Define Base
-   private JPanel  basePanel =          new JPanel();
+   JPanel  basePanel =          new JPanel();
 
    //Define Header Panels
-   private JPanel   headerPanel =     new JPanel();
-   private JPanel   titlePanel =      new JPanel();  //holds title & source
-   private JLabel   titleLabel =      new JLabel(ui.header);
-   private int      maxFlagsPerRows = 6;
-   private int      numFlagRows =     (SystemAttributes.localeCodes.length - 1) / maxFlagsPerRows + 1;
-   private int      flagsPerRow =     (SystemAttributes.localeCodes.length - 1) / numFlagRows + 1;
-   private JPanel[] langFlagsPanels = new JPanel[numFlagRows];
-   private JPanel   iconPanel =       new JPanel();  //holds icon & profiles
-   private JLabel   iconLabel =       new JLabel(Icons.snapBackupIcon);
+   JPanel   headerPanel =     new JPanel();
+   JPanel   titlePanel =      new JPanel();  //holds title & source
+   JLabel   titleLabel =      new JLabel(ui.header);
+   int      maxFlagsPerRows = 6;
+   int      numFlagRows =     (SystemAttributes.localeCodes.length - 1) / maxFlagsPerRows + 1;
+   int      flagsPerRow =     (SystemAttributes.localeCodes.length - 1) / numFlagRows + 1;
+   JPanel[] langFlagsPanels = new JPanel[numFlagRows];
+   JPanel   iconPanel =       new JPanel();  //holds icon & profiles
+   JLabel   iconLabel =       new JLabel(Icons.snapBackupIcon);
 
    //Define Profiles Controls
-   private JPanel     profilesPanel =        new JPanel();
-   private JPanel     profilesInnerPanel =   new JPanel();
-   private JPanel     profilesButtonPanel =  new JPanel();
-   private JLabel     profilesPromptLabel =  new JLabel(ui.profilesPrompt);
-   private JTextField profilesCurrentTextField = new JTextField();  //hidden field
-   private JComboBox  profilesDropDown =     new JComboBox(DataModel.getProfilesNames());  //note: holds user data
-   private JButton    profilesAddButton =    new JButton(ui.profilesNew);
-   private JButton    profilesDeleteButton = new JButton(ui.profilesDelete);
+   JPanel     profilesPanel =        new JPanel();
+   JPanel     profilesInnerPanel =   new JPanel();
+   JPanel     profilesButtonPanel =  new JPanel();
+   JLabel     profilesPromptLabel =  new JLabel(ui.profilesPrompt);
+   JTextField profilesCurrentTextField = new JTextField();  //hidden field
+   JComboBox  profilesDropDown =     new JComboBox(DataModel.getProfilesNames());  //note: holds user data
+   JButton    profilesAddButton =    new JButton(ui.profilesNew);
+   JButton    profilesDeleteButton = new JButton(ui.profilesDelete);
 
    //Define Source (Zip List) Controls
-   private JPanel       srcPanel =             new JPanel();
-   private JPanel       srcPanelButtons =      new JPanel();
-   private JLabel       srcPromptLabel =       new JLabel(ui.srcPrompt);
-   private final DefaultListModel srcZipListModel = new DefaultListModel();
-   private JList        srcZipList =           new JList(srcZipListModel);
-   private JScrollPane  srcZipListScrollPane = new JScrollPane();
-   private JButton      srcAddFileButton =     new JButton(ui.srcAddFile);
-   private JButton      srcAddFolderButton =   new JButton(ui.srcAddFolder);
-   private JButton      srcRemoveButton =      new JButton(ui.srcRemove);
-   private JButton      srcFilterButton =      new JButton(ui.srcFilter);
+   JPanel       srcPanel =             new JPanel();
+   JPanel       srcPanelButtons =      new JPanel();
+   JLabel       srcPromptLabel =       new JLabel(ui.srcPrompt);
+   final DefaultListModel srcZipListModel = new DefaultListModel();
+   JList        srcZipList =           new JList(srcZipListModel);
+   JScrollPane  srcZipListScrollPane = new JScrollPane();
+   JButton      srcAddFileButton =     new JButton(ui.srcAddFile);
+   JButton      srcAddFolderButton =   new JButton(ui.srcAddFolder);
+   JButton      srcRemoveButton =      new JButton(ui.srcRemove);
+   JButton      srcFilterButton =      new JButton(ui.srcFilter);
 
    //Define Tip
-   private JLabel tipLabel = new JLabel(ui.tip);
+   JLabel tipLabel = new JLabel(ui.tip);
 
    //Define Destination (Backup & Archive) Controls
-   private JPanel       destPanel =                 new JPanel(new GridBagLayout());
-   private JLabel       destBackupPromptLabel =     new JLabel(ui.destBackupPrompt);
-   private JTextField   destBackupDirTextField =    new JTextField(UIProperties.srcDirCols);
-   private JButton      destBackupChooserButton =   new JButton(Icons.folderIcon);
-   private JLabel       destBackupNamePromptLabel = new JLabel(ui.destBackupNamePrompt);
-   private JTextField   destBackupNameTextField =   new JTextField(UIProperties.srcNameCols);
-   private JLabel       destBackupTagLabel =        new JLabel(ui.destBackupTag);
-   private JLabel       destBackupPathLabel =       new JLabel();
-   private JCheckBox    destArchivePromptCheckBox = new JCheckBox(ui.destArchivePrompt);
-   private JTextField   destArchiveDirTextField =   new JTextField(UIProperties.archiveDirCols);
-   private JButton      destArchiveChooserButton =  new JButton(Icons.folderIcon);
-   private JLabel       destArchiveTagLabel =       new JLabel(ui.destArchiveTag);
-   private JLabel       destArchivePathLabel =      new JLabel();
+   JPanel       destPanel =                 new JPanel(new GridBagLayout());
+   JLabel       destBackupPromptLabel =     new JLabel(ui.destBackupPrompt);
+   JTextField   destBackupDirTextField =    new JTextField(UIProperties.srcDirCols);
+   JButton      destBackupChooserButton =   new JButton(Icons.folderIcon);
+   JLabel       destBackupNamePromptLabel = new JLabel(ui.destBackupNamePrompt);
+   JTextField   destBackupNameTextField =   new JTextField(UIProperties.srcNameCols);
+   JLabel       destBackupTagLabel =        new JLabel(ui.destBackupTag);
+   JLabel       destBackupPathLabel =       new JLabel();
+   JCheckBox    destArchivePromptCheckBox = new JCheckBox(ui.destArchivePrompt);
+   JTextField   destArchiveDirTextField =   new JTextField(UIProperties.archiveDirCols);
+   JButton      destArchiveChooserButton =  new JButton(Icons.folderIcon);
+   JLabel       destArchiveTagLabel =       new JLabel(ui.destArchiveTag);
+   JLabel       destArchivePathLabel =      new JLabel();
 
    //Define Log Controls
-   private JPanel      logPanel =      new JPanel();
-   private JScrollPane logScrollPane = new JScrollPane();
-   private JTextArea   logTextArea =   new JTextArea(UIProperties.logMinRows, UIProperties.logCols);
+   JPanel      logPanel =      new JPanel();
+   JScrollPane logScrollPane = new JScrollPane();
+   JTextArea   logTextArea =   new JTextArea(UIProperties.logMinRows, UIProperties.logCols);
 
    //Define Button Controls
-   private JPanel  buttonPanel =    new JPanel();
-   private JButton saveButton =     new JButton(ui.buttonSave);
-   private JButton resetButton =    new JButton(ui.buttonReset);
-   private JButton doBackupButton = new JButton(ui.buttonDoBackup);
-   private JButton exitButton =     new JButton(ui.buttonExit);
+   JPanel  buttonPanel =    new JPanel();
+   JButton saveButton =     new JButton(ui.buttonSave);
+   JButton resetButton =    new JButton(ui.buttonReset);
+   JButton doBackupButton = new JButton(ui.buttonDoBackup);
+   JButton exitButton =     new JButton(ui.buttonExit);
 
    JButton[] buttonList = { srcAddFileButton, srcAddFolderButton, srcRemoveButton, srcFilterButton,
          profilesAddButton, profilesDeleteButton, saveButton, resetButton, doBackupButton, exitButton };
@@ -205,18 +168,22 @@ public class SnapBackupFrame extends JFrame {
       doBackupButton.grabFocus();
       }
 
-   void popupMsg(String msg) {
-      JOptionPane.showMessageDialog(null, msg);
+   void popupMsg(String msg, String title) {
+      JOptionPane.showMessageDialog(this, msg, title, JOptionPane.PLAIN_MESSAGE);
       }
 
-   private boolean switchLocaleCodes(String codeA, String codeB, Locale currentLocale) {
+   void popupMsg(String msg) {
+      popupMsg(msg, ui.appTitle);
+      }
+
+   boolean switchLocaleCodes(String codeA, String codeB, Locale currentLocale) {
       Locale a = new Locale(codeA);
       Locale b = new Locale(codeB);
       return b.equals(currentLocale) || (!a.equals(currentLocale) &&
          a.getDisplayLanguage(currentLocale).compareTo(b.getDisplayLanguage(currentLocale)) > 0);
       }
 
-   private void sortLocaleCodes(String[] localeCodes, Locale currentLocale) {
+   void sortLocaleCodes(String[] localeCodes, Locale currentLocale) {
       String holder;
       boolean done = true;
       for (int count = 1; count < localeCodes.length; count++)
@@ -256,16 +223,18 @@ public class SnapBackupFrame extends JFrame {
       iconPanel.setLayout(new BoxLayout(iconPanel, BoxLayout.PAGE_AXIS));
       tipLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
       titleLabel.setHorizontalAlignment(JLabel.CENTER);
+      /* no work... panel seems to be a different object then langFlagsPanel[count]
       for (JPanel panel : langFlagsPanels) {
          panel = new JPanel();
          panel.setLayout(new FlowLayout(FlowLayout.TRAILING));
          panel.setAlignmentX(1.0f);
          }
-      //for (int count = 0; count < numFlagRows; count++) {
-      //   langFlagsPanels[count] = new JPanel();
-      //   langFlagsPanels[count].setLayout(new FlowLayout(FlowLayout.TRAILING));
-      //   langFlagsPanels[count].setAlignmentX(1.0f);
-      //   }
+      */
+      for (int count = 0; count < numFlagRows; count++) {
+         langFlagsPanels[count] = new JPanel();
+         langFlagsPanels[count].setLayout(new FlowLayout(FlowLayout.TRAILING));
+         langFlagsPanels[count].setAlignmentX(1.0f);
+         }
       iconLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));   //????
       iconLabel.setAlignmentX(1.0f);
       titleLabel.setAlignmentX(0.5f);
@@ -737,7 +706,8 @@ public class SnapBackupFrame extends JFrame {
    public void profilesMenuItemAction(ActionEvent e) {
       boolean showProfiles = profilesMenuItemButtonOn.isSelected();
       if (!showProfiles)
-         popupMsg(Str.macroExpand(ui.profilesOffMsg, getCurrentProfileName()));
+         popupMsg(Str.macroExpand(ui.profilesOffMsg, getCurrentProfileName()),
+            ui.menuItemProfiles);
       profilesInnerPanel.setVisible(showProfiles);
       DataModel.saveShowProfilesSetting(this);
       }
@@ -753,16 +723,18 @@ public class SnapBackupFrame extends JFrame {
 
          //FIX NULL ICON PROBLEM ???
          //destBackupChooserButton.setIcon(Icons.folderIcon);
-         //private static JButton      destBackupChooserButton =   new JButton(Icons.folderIcon);
+         //static JButton      destBackupChooserButton =   new JButton(Icons.folderIcon);
          //Icons.folderIcon == null ? 'Choose...' : Icons.folderIcon);
 
          pack();
          UIUtilities.lockInMinSize(this);
-         popupMsg(Str.macroExpand(UIProperties.skinSetMsg, laf.getName()));
+         popupMsg(Str.macroExpand(UIProperties.skinSetMsg, laf.getName()),
+            ui.menuItemSkin);
          DataModel.saveSkinSetting(laf.getClassName());
          }
       catch (Exception e2) {
-         popupMsg(UIProperties.skinErrMsg);
+         popupMsg(UIProperties.skinErrMsg + SystemAttributes.newLine +
+            e2.getLocalizedMessage(), ui.menuItemSkin);
          }
       }
    public void exitMenuItemAction(ActionEvent e) {
@@ -826,16 +798,16 @@ public class SnapBackupFrame extends JFrame {
       if (profileName != null) {
          profileName = profileName.trim();
          if (profileName.length() == 0) {
-            popupMsg(ui.profilesAddMsgBlank);
+            popupMsg(ui.profilesAddMsgBlank, ui.profilesTitle);
             profilesNewButtonAction(e);  //prompt again
             }
          else if (profileName.equalsIgnoreCase(getCurrentProfileName())) {
             //handles edge case for very first new profile added
-            popupMsg(ui.profilesAddMsgExists);
+            popupMsg(ui.profilesAddMsgExists, ui.profilesTitle);
             profilesNewButtonAction(e);  //prompt again
             }
          else if (UserPreferences.profileInDB(profileName)) {
-            popupMsg(ui.profilesAddMsgExists);
+            popupMsg(ui.profilesAddMsgExists, ui.profilesTitle);
             profilesNewButtonAction(e);  //prompt again
             }
          else {
@@ -849,10 +821,11 @@ public class SnapBackupFrame extends JFrame {
             }
           }
        }
-   private boolean promptDeleteProfile(String name) {
+   boolean promptDeleteProfile(String name) {
       return JOptionPane.showConfirmDialog(null,
          Str.macroExpand(ui.profilesDeletePrompt, name),
-         ui.profilesDeleteTitle, JOptionPane.YES_NO_OPTION) == 0;
+         ui.profilesDeleteTitle, JOptionPane.YES_NO_OPTION,
+         JOptionPane.PLAIN_MESSAGE) == 0;
       }
    public void profilesDeleteButtonAction(ActionEvent e) {
       if (promptDeleteProfile(getCurrentProfileName())) {
@@ -898,11 +871,10 @@ public class SnapBackupFrame extends JFrame {
    public void destChooserButtonAction(JTextField destDirTextField, String msg) {
       JFileChooser destFileChooser = new JFileChooser();
       destFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-      destFileChooser.setCurrentDirectory(
-         new File(destDirTextField.getText()));
+      destFileChooser.setCurrentDirectory(new File(destDirTextField.getText()));
       int returnStatus =
          //destFileChooser.showDialog(this, msg);
-         destFileChooser.showOpenDialog(this);
+         destFileChooser.showSaveDialog(this);
       if (returnStatus == JFileChooser.APPROVE_OPTION)
          destDirTextField.setText(
             destFileChooser.getSelectedFile().getAbsolutePath());
@@ -935,10 +907,10 @@ public class SnapBackupFrame extends JFrame {
       DataModel.updateDestPaths(this);
       }
    public void saveButtonAction(ActionEvent e) {
-      popupMsg(DataModel.saveSettings(this));
+      popupMsg(DataModel.saveSettings(this), ui.buttonSave);
       }
    public void resetButtonAction(ActionEvent e) {
-      popupMsg(DataModel.restoreDefaultSettings(this));
+      popupMsg(DataModel.restoreDefaultSettings(this), ui.buttonReset);
       }
    public void doBackupButtonAction(ActionEvent e) {
       DataModel.doBackupNow();
