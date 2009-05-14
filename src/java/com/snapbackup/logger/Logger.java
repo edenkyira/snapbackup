@@ -32,9 +32,9 @@ import com.snapbackup.utilities.settings.SystemAttributes;
 
 public class Logger {
 
-   private static JTextArea logArea;
-   private static boolean log2Screen = true;
-   private static boolean firstSession = true;
+   static JTextArea logArea;
+   static boolean log2Screen = true;
+   static boolean firstSession = true;
 
    public static void initLogArea(JTextArea area) {
       log2Screen = true;

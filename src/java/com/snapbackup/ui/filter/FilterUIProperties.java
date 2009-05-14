@@ -29,7 +29,7 @@ import com.snapbackup.utilities.settings.AppProperties;
 import com.snapbackup.utilities.settings.SystemAttributes;
 
 public class FilterUIProperties {
-   private final String space = SystemAttributes.space;
+   final String space = SystemAttributes.space;
    public final String filterRuleTitle =              AppProperties.getProperty("FilterRuleTitle");
    public final String filterRuleTag =                AppProperties.getProperty("FilterRuleTag");
    public final String filterRuleIncludeTitle =       AppProperties.getPropertyPadded("FilterRuleIncludeTitle");

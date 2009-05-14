@@ -31,11 +31,11 @@ import com.snapbackup.utilities.settings.SystemAttributes;
 
 public class Icons {
 
-   private static final Class iconClass = new Icons().getClass();
+   static final Class iconClass = new Icons().getClass();
    public  static final ImageIcon snapBackupIcon = new ImageIcon(iconClass.getResource(UIProperties.snapBackupIconURL));
    public  static final ImageIcon logoIcon = new ImageIcon(iconClass.getResource(UIProperties.logoIconURL));
-   private static final JFileChooser sysAccess =  new JFileChooser();
-   private static final File[] rootDir =  File.listRoots();
+   static final JFileChooser sysAccess =  new JFileChooser();
+   static final File[] rootDir =  File.listRoots();
    public  static final Icon driveIcon =  sysAccess.getIcon(rootDir[0]);
    public  static final Icon zipIcon = driveIcon;
       //sysAccess.getIcon(new File(iconClass.getResource('images/logo.png').getPath()));

@@ -48,7 +48,8 @@ public class Main {
             UIManager.setLookAndFeel(UserPreferences.readPref(DataModel.prefSkinName));
             }
          catch (Exception e) {
-            JOptionPane.showMessageDialog(null, UIProperties.skinErrMsg);
+            JOptionPane.showMessageDialog(null, e.getLocalizedMessage(),
+               UIProperties.skinErrMsg, JOptionPane.ERROR_MESSAGE);
             UserPreferences.deletePref(DataModel.prefSkinName);
             }
          new Application();
@@ -56,4 +57,3 @@ public class Main {
       }
 
    }
-

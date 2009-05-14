@@ -27,6 +27,7 @@
             destdir="${JavaClasses}"
             source="1.5"
             target="1.5"
+            debug="on"
             includeAntRuntime="false">
          <compilerarg value="-Xlint:all,-serial"/>
          </javac>
@@ -49,8 +50,9 @@
             </manifest>
          </jar>
 
-      <!--  Generate Files for Web Site  -->
+      <!--  Generate/Copy Files for Web Site  -->
       <copy file="${Resources}/SnapBackupUserGuide.html" todir="${WebFolder}"/>
+      <copy file="${Resources}/ReadMe.txt" todir="${WebFolder}"/>
       <copy todir="${WebFolder}">
          <fileset dir="${Resources}/properties"/>
          <globmapper from="*" to="*.txt"/>

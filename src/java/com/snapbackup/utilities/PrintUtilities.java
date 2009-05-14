@@ -17,7 +17,7 @@ import com.snapbackup.ui.UIProperties;
 import com.snapbackup.utilities.settings.SystemAttributes;
 
 public class PrintUtilities implements Printable {
-  private Component componentToBePrinted;
+  Component componentToBePrinted;
   public static void printComponent(Component c) {
     new PrintUtilities(c).print();
   }
@@ -35,8 +35,8 @@ public class PrintUtilities implements Printable {
       }
       catch (PrinterException pe) {
         //System.out.println("Error printing: " + pe);
-         JOptionPane.showMessageDialog(null, UIProperties.current.err25PrintFailure +
-               SystemAttributes.dataPrompt + pe.getLocalizedMessage());
+         JOptionPane.showMessageDialog(null, pe.getLocalizedMessage(),
+            UIProperties.current.err25PrintFailure, JOptionPane.ERROR_MESSAGE);
       }
   }
   public int print(Graphics g, PageFormat pf, int pageIndex) {

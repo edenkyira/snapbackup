@@ -29,7 +29,7 @@ import com.snapbackup.utilities.settings.AppProperties;
 import com.snapbackup.utilities.settings.SystemAttributes;
 
 public class AboutUIProperties {
-   private static final String space =  SystemAttributes.space;
+   static final String space =  SystemAttributes.space;
    //
    //From .properties File
    //

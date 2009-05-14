@@ -26,15 +26,7 @@
 package com.snapbackup.business;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.Vector;
+import java.util.*;
 
 import javax.swing.DefaultListModel;
 
@@ -196,20 +188,26 @@ public class DataModel {
       updateArchiveDir(f);
       }
 
-   private static String list2StrList(List<String> list) {
+   static String list2StrList(List<String> list) {
       //Converts multi-line data (List) into a single long string using the "splitStr" delimiter
       StringBuffer strList = new StringBuffer();
-      //for (String line : list)  --> need to figure out way to skip final splitStr
+      boolean firstLine = true;
+      for (String line : list) {
+         strList.append(firstLine ? line : SystemAttributes.splitStr + line);
+         firstLine = false;
+         }
+      /*
       ListIterator iter = list.listIterator();
       if (iter.hasNext())
          strList.append((String)iter.next());
       while (iter.hasNext()) {
          strList.append(SystemAttributes.splitStr + iter.next());
          }
+      */
       return strList.toString();
       }
 
-   private static List<String> strList2List(String strList, int minSize) {
+   static List<String> strList2List(String strList, int minSize) {
       //Creates a List of lines from a string of multi-line data delimited with "splitStr"
       List<String> list = 
             new ArrayList<String>(Arrays.asList(strList.split(SystemAttributes.splitStr)));
@@ -220,7 +218,7 @@ public class DataModel {
       return list;
       }
 
-   private static List<String> strList2List(String strList) {
+   static List<String> strList2List(String strList) {
        return strList2List(strList, 0);
        }
 
@@ -250,7 +248,7 @@ public class DataModel {
       }
 
    /*
-   private static boolean elemExists(List list, int loc) {
+   static boolean elemExists(List list, int loc) {
       return !((String)list.get(loc)).equals(nullStr);
       }
    */
@@ -285,8 +283,15 @@ public class DataModel {
       }
 
    public static void buildZipListModel(DefaultListModel zipListModel, SnapBackupFrame f) {
-      int loc;
       zipListModel.clear();
+      int loc = 0;
+      for (String zipItem : zipItemList) {
+         zipListModel.addElement(buildZipListLine(zipItem,
+            zipIncludeList.get(loc), zipExcludeList.get(loc),
+            zipExcludeFolderList.get(loc), zipExcludeSizeList.get(loc), f));
+         loc = loc + 1;
+         }
+      /*
       ListIterator iter = zipItemList.listIterator();
       while (iter.hasNext()) {
          loc = iter.nextIndex();
@@ -294,6 +299,7 @@ public class DataModel {
             zipIncludeList.get(loc), zipExcludeList.get(loc),
             zipExcludeFolderList.get(loc), zipExcludeSizeList.get(loc), f));
          }
+      */
       }
 
    public static String getCurrentZipItem(SnapBackupFrame f) {
@@ -327,7 +333,7 @@ public class DataModel {
          includeFilter, excludeFilter, excludeFolderFilter, sizeFilter, f));
       }
     
-   private static void loadZipList(SnapBackupFrame f) {
+   static void loadZipList(SnapBackupFrame f) {
       //Zip list data store
       zipItemList = strList2List(UserPreferences.readProfilePref(prefSrcDataList));
       zipIncludeList = strList2List(UserPreferences.readProfilePref(prefSrcDataIncludeList), zipItemList.size());
@@ -392,30 +398,30 @@ public class DataModel {
       AppProperties.addSupplimentalProperty(Options.prefNumRowsLog, Options.numRowsLogDefault);
       }
 
-   private static String calcDestPath(String backupDir, String backupName) {
+   static String calcDestPath(String backupDir, String backupName) {
       if (!backupDir.endsWith(fs))
          backupDir = backupDir + fs;
       return backupDir + backupName + UserPreferences.readPref(Options.prefSpacer) +
          DateStamp.todaysDateStamp() + zipExtension;
       }
 
-   private static String calcDestPath(SnapBackupFrame f, String dir) {
+   static String calcDestPath(SnapBackupFrame f, String dir) {
       return calcDestPath(dir, f.getDestBackupNameTextField().getText());
       }
 
-   private static String calcDestBackupPath(SnapBackupFrame f) {
+   static String calcDestBackupPath(SnapBackupFrame f) {
       return calcDestPath(f, f.getDestBackupDirTextField().getText());
       }
 
-   private static String calcDestBackupPath() {
+   static String calcDestBackupPath() {
       return calcDestBackupPath(SnapBackupFrame.current);
       }
 
-   private static String calcDestArchivePath(SnapBackupFrame f) {
+   static String calcDestArchivePath(SnapBackupFrame f) {
       return calcDestPath(f, f.getDestArchiveDirTextField().getText());
       }
 
-   private static String calcDestArchivePath() {
+   static String calcDestArchivePath() {
       return calcDestArchivePath(SnapBackupFrame.current);
       }
 

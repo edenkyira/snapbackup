@@ -25,11 +25,7 @@
 
 package com.snapbackup.utilities.zip;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.ListIterator;
@@ -53,45 +49,45 @@ import com.snapbackup.utilities.string.Str;
 
 public class ZipEngine {
 
-   private final int    kb =                 1024;
-   private final int    buffSize =           kb * 256;  //optimal size not known
-   private final String nullStr =            SystemAttributes.nullStr;
-   private final String space =              SystemAttributes.space;
-   private final String tab =                SystemAttributes.tab;
-   private final String newLine =            SystemAttributes.newLine;
-   private final String fileSeparator =      SystemAttributes.fileSeparator;
-   private final String dividerStr =         SystemAttributes.dividerStr;
-   private final String dataPrompt =         SystemAttributes.dataPrompt;
-   private final String zippingLogMsg =      tab + tab + UIProperties.current.logMsgZipping;
-   private final String skippingLogMsg =     tab + tab + UIProperties.current.logMsgSkipping;
-   private final String folderLogMsg =       tab + UIProperties.current.logMsgFolder;
-   private final String regExReservedChars = "-+?()[]{}|$^<=.";
-   private final String regExEscape =        "\\";
-   private final String exclusionNote =      " -- " + AppProperties.getProperty("FilterRuleExcludeTitle");
-   private final String sizePre =            space + space + "[";
-   private final String sizePost =           space + AppProperties.getProperty("FilterMarkerUnits") + "]";
-   private NumberFormat nf = NumberFormat.getNumberInstance(new Locale(UserPreferences.readLocalePref()));
-   private boolean useRelativePaths = true;
-   private String rootPath;
-   private int rootPathLen;
-   private File file;
-   private FileOutputStream fileOut = null;
-   private ZipOutputStream zipOut = null;
-   private ZipEntry zipEntry;
-   private boolean abortBackup;
-   private int zipCount;
-   private int byteCount;
-   private byte[] data = new byte[buffSize];  //Data for read/write operations
+   final int    kb =                 1024;
+   final int    buffSize =           kb * 256;  //optimal size not known
+   final String nullStr =            SystemAttributes.nullStr;
+   final String space =              SystemAttributes.space;
+   final String tab =                SystemAttributes.tab;
+   final String newLine =            SystemAttributes.newLine;
+   final String fileSeparator =      SystemAttributes.fileSeparator;
+   final String dividerStr =         SystemAttributes.dividerStr;
+   final String dataPrompt =         SystemAttributes.dataPrompt;
+   final String zippingLogMsg =      tab + tab + UIProperties.current.logMsgZipping;
+   final String skippingLogMsg =     tab + tab + UIProperties.current.logMsgSkipping;
+   final String folderLogMsg =       tab + UIProperties.current.logMsgFolder;
+   final String regExReservedChars = "-+?()[]{}|$^<=.";
+   final String regExEscape =        "\\";
+   final String exclusionNote =      " -- " + AppProperties.getProperty("FilterRuleExcludeTitle");
+   final String sizePre =            space + space + "[";
+   final String sizePost =           space + AppProperties.getProperty("FilterMarkerUnits") + "]";
+   NumberFormat nf = NumberFormat.getNumberInstance(new Locale(UserPreferences.readLocalePref()));
+   boolean useRelativePaths = true;
+   String rootPath;
+   int rootPathLen;
+   File file;
+   FileOutputStream fileOut = null;
+   ZipOutputStream zipOut = null;
+   ZipEntry zipEntry;
+   boolean abortBackup;
+   int zipCount;
+   int byteCount;
+   byte[] data = new byte[buffSize];  //Data for read/write operations
 
-   private java.lang.Runtime rt = Runtime.getRuntime();  //memory leak!!!
-   //private long freeMem = Long.MAX_VALUE;
-   //private long totalMem = 0;
+   java.lang.Runtime rt = Runtime.getRuntime();  //memory leak!!!
+   //long freeMem = Long.MAX_VALUE;
+   //long totalMem = 0;
 
-   private boolean filterIncludeOn, filterExcludeOn, filterFolderOn, filterSizeOn;
-   private Pattern filterIncludeP, filterExcludeP, filterFolderP;
-   private int filterSize;
+   boolean filterIncludeOn, filterExcludeOn, filterFolderOn, filterSizeOn;
+   Pattern filterIncludeP, filterExcludeP, filterFolderP;
+   int filterSize;
    
-   private void initFilterInfo() {
+   void initFilterInfo() {
       filterIncludeOn = false;
       filterExcludeOn = false;
       filterFolderOn =  false;
@@ -107,7 +103,7 @@ public class ZipEngine {
       return s;
       }
 
-   private Pattern compileRegEx(String regEx) {
+   Pattern compileRegEx(String regEx) {
       Pattern P = null;
       for (char regExReservedChar : regExReservedChars.toCharArray())
          regEx = escapeChars(regEx, regExReservedChar);
@@ -118,13 +114,14 @@ public class ZipEngine {
          }
       catch (PatternSyntaxException e) {
          JOptionPane.showMessageDialog(null, UIProperties.current.err10CannotParseFilter +
-               dataPrompt + regEx + dividerStr + e.getDescription());
+               dataPrompt + regEx + dividerStr + e.getLocalizedMessage(), regEx,
+               JOptionPane.ERROR_MESSAGE);
          initFilterInfo();
          }
       return P;
       }
    
-   private void updateFilterInfo(List<List<String>> filterInfo, int loc) {
+   void updateFilterInfo(List<List<String>> filterInfo, int loc) {
       filterIncludeOn = !filterInfo.get(0).get(loc).equals(nullStr);
       filterIncludeP =  compileRegEx(filterInfo.get(0).get(loc));
       filterExcludeOn = !filterInfo.get(1).get(loc).equals(nullStr);
@@ -200,16 +197,17 @@ public class ZipEngine {
 
    public void calcRootPath(List<String> zipItemList) {
       String root = nullStr;
-      /*  CODE BELOW IS BETTER, BUT MUST BE VERIFIED FIRST
+      boolean firstItem = true;
       for (String zipItem : zipItemList) {
-         root = zipItem;
+         if (firstItem) root = zipItem;
+         firstItem = false;
          if (zipItem.length() < root.length())
             root = root.substring(0, zipItem.length());
          for (int loc = 0; loc < root.length(); loc++)
             if (zipItem.charAt(loc) != root.charAt(loc))
                root = root.substring(0, loc);
          }
-      */
+      /*
       ListIterator iter = zipItemList.listIterator();
       if (iter.hasNext())
          root = (String)iter.next();
@@ -221,6 +219,7 @@ public class ZipEngine {
             if (zipItem.charAt(loc) != root.charAt(loc))
                root = root.substring(0, loc);
          }
+      */
       rootPath = root.substring(0, root.lastIndexOf(fileSeparator) + 1);
       rootPathLen = rootPath.length();
       }
@@ -302,7 +301,7 @@ public class ZipEngine {
          Logger.logMsg(tab + supplimentalInfo);
       }
 
-   private BackupProgressDialog backupProgress = null;
+   BackupProgressDialog backupProgress = null;
    public void setBackupProgressDialog (BackupProgressDialog x) {
       backupProgress = x;
       }

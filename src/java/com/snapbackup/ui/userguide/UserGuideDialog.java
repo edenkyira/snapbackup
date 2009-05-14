@@ -34,34 +34,25 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JEditorPane;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.KeyStroke;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import com.snapbackup.ui.UIUtilities;
 import com.snapbackup.utilities.PrintUtilities;
 
 public class UserGuideDialog extends JDialog {
 
-   private UserGuideUIProperties ui = new UserGuideUIProperties();
+   UserGuideUIProperties ui = new UserGuideUIProperties();
 
    //Define About Controls
-   private JPanel      headerPanel =  new JPanel();
-   private JPanel      buttonPanel =  new JPanel();
-   private JLabel      titleLabel =   new JLabel(ui.userGuideHeader);
-   private JLabel      versionLabel = new JLabel(ui.userGuideVersion);
-   private JScrollPane scrollPane =   new JScrollPane();
-   private JEditorPane html;
-   private JButton     printButton =  new JButton(ui.userGuideButtonPrint);
-   private JButton     closeButton =  new JButton(ui.userGuideButtonClose);
-   private JButton[]   buttonList =   { printButton, closeButton };
+   JPanel      headerPanel =  new JPanel();
+   JPanel      buttonPanel =  new JPanel();
+   JLabel      titleLabel =   new JLabel(ui.userGuideHeader);
+   JLabel      versionLabel = new JLabel(ui.userGuideVersion);
+   JScrollPane scrollPane =   new JScrollPane();
+   JEditorPane html;
+   JButton     printButton =  new JButton(ui.userGuideButtonPrint);
+   JButton     closeButton =  new JButton(ui.userGuideButtonClose);
+   JButton[]   buttonList =   { printButton, closeButton };
 
    public UserGuideDialog(Dimension parentSize) {
       initGUI(parentSize);
