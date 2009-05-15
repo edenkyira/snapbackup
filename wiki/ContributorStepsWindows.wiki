@@ -33,7 +33,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
    || `> mkdir \Projects` ||
    || `> cd \Projects` ||
    || `> svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
-   In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.
+   In the above instructions, replace `<USERNAME HERE>` with your Google Code username.
 
 
 == 2. Contributor Steps ==
@@ -54,7 +54,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
    || `$ svn status` ||
    || `$ svn commit --message "<COMMENT HERE>."` ||
    || `$ svn status` ||
-In the above instructions, replace "`<COMMENT HERE>`" with a short description of the changes you made.
+In the above instructions, replace `<COMMENT HERE>` with a short description of the changes you made.
 
 
 ----
