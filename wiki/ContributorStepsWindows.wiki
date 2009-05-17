@@ -50,10 +50,10 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
 
 *D) Check Changes into SVN Repository (Server)*
    || `> cd \Projects\snapbackup` ||
-   || `$ svn update` ||
-   || `$ svn status` ||
-   || `$ svn commit --message "<COMMENT HERE>."` ||
-   || `$ svn status` ||
+   || `> svn update` ||
+   || `> svn status` ||
+   || `> svn commit --message "<COMMENT HERE>."` ||
+   || `> svn status` ||
 In the above instructions, replace `<COMMENT HERE>` with a short description of the changes you made.
 
 
