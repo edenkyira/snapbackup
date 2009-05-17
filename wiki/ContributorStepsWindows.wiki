@@ -46,7 +46,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
    The project files are all under the `\Projects\snapbackup` folder.  Use your editor to makes changes to the appropriate files.  (Note to translators: the language files are at `\Projects\snapbackup\src\resources\properties`).
 
 *C) Build the Project and Verify*
-   Repeat step #1 above.
+   Repeat step A above.
 
 *D) Check Changes into SVN Repository (Server)*
    || `> cd \Projects\snapbackup` ||
