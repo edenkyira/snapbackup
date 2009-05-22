@@ -14,7 +14,6 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.print.*;
 import com.snapbackup.ui.UIProperties;
-import com.snapbackup.utilities.settings.SystemAttributes;
 
 public class PrintUtilities implements Printable {
   Component componentToBePrinted;

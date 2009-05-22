@@ -34,7 +34,8 @@ import com.snapbackup.ui.SnapBackupFrame;
 public class UserPreferences {
 
    static Preferences prefs =
-      Preferences.userNodeForPackage(new UserPreferences().getClass());
+      Preferences.userNodeForPackage(UserPreferences.class);
+   //   Preferences.userNodeForPackage(new UserPreferences().getClass());
    static final String prefix = SystemAttributes.prefPrefix;
    static final String locale = SystemAttributes.prefLocale;
    static final String prefProfileName = "profilename";

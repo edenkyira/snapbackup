@@ -78,21 +78,17 @@ public class FilterDialog extends JDialog {
    JButton    okButton =                  new JButton(ui.filterRuleButtonOk);
    JButton[]  buttonList =                { deleteButton, cancelButton, okButton };
 
-   public FilterDialog() {
-      initGUI();
-      setModal(true);
-      setResizable(false);
-      pack();
-      excludeSizeField.setSize(50, excludeSizeField.getSize().height);
-      excludeSizeField.setMaximumSize(excludeSizeField.getSize());
-      }
-
-   void initGUI() {
+   public void initGUI() {
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
       setTitle(ui.filterRuleTitle);
       configureContols();
       addContols();
       getContentPane().add(filterPanel);
+      setModal(true);
+      setResizable(false);
+      pack();
+      excludeSizeField.setSize(50, excludeSizeField.getSize().height);
+      excludeSizeField.setMaximumSize(excludeSizeField.getSize());
       }
 
    void configureContols() {

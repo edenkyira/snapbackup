@@ -58,12 +58,12 @@ public class FileSys {
       try {
          File f = new File(fileName).getParentFile();
          folderExists = f.isDirectory();
-         if (!folderExists)
-            if (frame == null || JOptionPane.showOptionDialog(frame,
+         if (!folderExists && (frame == null ||
+            JOptionPane.showOptionDialog(frame,
                Str.macroExpand(msg, f.toString()), winTitle,
                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null,
-               options, options[0]) == 0)
-                  folderExists = f.mkdirs();
+               options, options[0]) == 0))
+            folderExists = f.mkdirs();
          }
       catch (Exception e) {
          errMsg = e.getLocalizedMessage();

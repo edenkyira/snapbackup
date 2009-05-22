@@ -49,8 +49,8 @@ import com.snapbackup.utilities.string.Str;
 
 public class ZipEngine {
 
-   final int    kb =                 1024;
-   final int    buffSize =           kb * 256;  //optimal size not known
+   final static int kb =             1024;
+   final static int buffSize =       kb * 256;  //optimal size not known
    final String nullStr =            SystemAttributes.nullStr;
    final String space =              SystemAttributes.space;
    final String tab =                SystemAttributes.tab;
@@ -61,8 +61,8 @@ public class ZipEngine {
    final String zippingLogMsg =      tab + tab + UIProperties.current.logMsgZipping;
    final String skippingLogMsg =     tab + tab + UIProperties.current.logMsgSkipping;
    final String folderLogMsg =       tab + UIProperties.current.logMsgFolder;
-   final String regExReservedChars = "-+?()[]{}|$^<=.";
-   final String regExEscape =        "\\";
+   final static String regExResChars = "-+?()[]{}|$^<=.";
+   final static String regExEscCode =  "\\";
    final String exclusionNote =      " -- " + AppProperties.getProperty("FilterRuleExcludeTitle");
    final String sizePre =            space + space + "[";
    final String sizePost =           space + AppProperties.getProperty("FilterMarkerUnits") + "]";
@@ -94,31 +94,37 @@ public class ZipEngine {
       filterSizeOn =    false;
       }
 
+   /*
    String escapeChars(String s, char c) {
-      for (int loc = 0; loc < s.length(); loc++)
-         if (s.charAt(loc) == c) {
-            s = s.substring(0, loc) + regExEscape + s.substring(loc);
+      String str = s;
+      for (int loc = 0; loc < str.length(); loc++)
+         if (str.charAt(loc) == c) {
+            str = str.substring(0, loc) + regExEscape + str.substring(loc);
             loc = loc + 1;
             }
-      return s;
+      return str;
       }
+   */
 
    Pattern compileRegEx(String regEx) {
-      Pattern P = null;
-      for (char regExReservedChar : regExReservedChars.toCharArray())
-         regEx = escapeChars(regEx, regExReservedChar);
+      String regExEsc = regEx;
+      Pattern pattern = null;
+      for (char regExReservedChar : regExResChars.toCharArray())
+         regExEsc = regExEsc.replace(
+            String.valueOf(regExReservedChar), regExEscCode + regExReservedChar);
+      //   expression = escapeChars(expression, regExReservedChar);
       //for (int loc = 0; loc < regExReservedChars.length(); loc++)
       //   regEx = escapeChars(regEx, regExReservedChars.charAt(loc));
       try {
-         P = Pattern.compile(regEx.replaceAll(", ", "|").replaceAll("\\*", ".*"));
+         pattern = Pattern.compile(regExEsc.replaceAll(", ", "|").replaceAll("\\*", ".*"));
          }
       catch (PatternSyntaxException e) {
          JOptionPane.showMessageDialog(null, UIProperties.current.err10CannotParseFilter +
-               dataPrompt + regEx + dividerStr + e.getLocalizedMessage(), regEx,
+               dataPrompt + regExEsc + dividerStr + e.getLocalizedMessage(), regExEsc,
                JOptionPane.ERROR_MESSAGE);
          initFilterInfo();
          }
-      return P;
+      return pattern;
       }
    
    void updateFilterInfo(List<List<String>> filterInfo, int loc) {

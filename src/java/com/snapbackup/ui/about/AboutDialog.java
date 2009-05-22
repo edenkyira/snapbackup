@@ -75,14 +75,7 @@ public class AboutDialog extends JDialog {
    JButton   closeButton =  new JButton(ui.aboutButtonClose);
    JButton[] buttonList =   { webButton, closeButton };
 
-   public AboutDialog() {
-      initGUI();
-      setModal(true);
-      setResizable(false);
-      pack();
-      }
-
-   void initGUI() {
+   public void initGUI() {
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
       setTitle(ui.aboutTitle + UIProperties.current.appTitle);
       configureContols();
@@ -90,6 +83,9 @@ public class AboutDialog extends JDialog {
       getContentPane().setBackground(Color.white);
       getContentPane().add(logo, BorderLayout.LINE_START);
       getContentPane().add(aboutPanel, BorderLayout.CENTER);
+      setModal(true);
+      setResizable(false);
+      pack();
       }
 
    void setupTranslatorsPanel() {
@@ -110,8 +106,8 @@ public class AboutDialog extends JDialog {
                public void mouseClicked(MouseEvent e) { BareBonesBrowserLaunch.openURL((String)((JLabel)e.getSource()).getClientProperty(urlKey)); }
                public void mouseEntered(MouseEvent e) { setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); }
                public void mouseExited(MouseEvent e)  { setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR)); }
-               public void mousePressed(MouseEvent e) { }
-               public void mouseReleased(MouseEvent e) { }
+               public void mousePressed(MouseEvent e) { /* do nothing */ }
+               public void mouseReleased(MouseEvent e) { /* do nothing */ }
                });
          row.add(translatorLabel);
          String join = comma + space;

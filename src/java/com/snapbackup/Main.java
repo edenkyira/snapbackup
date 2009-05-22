@@ -55,7 +55,7 @@ public class Main {
             }
          SplashScreen splash = new SplashScreen();
          new Application();
-         splash.delete();;
+         splash.delete();
          }
       }
 
