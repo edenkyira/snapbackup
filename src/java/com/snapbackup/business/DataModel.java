@@ -32,7 +32,7 @@ import javax.swing.DefaultListModel;
 
 import com.snapbackup.logger.Logger;
 import com.snapbackup.ui.SnapBackupFrame;
-import com.snapbackup.ui.SwingWorker;
+import com.snapbackup.ui.SwingWorkerOLD;
 import com.snapbackup.ui.UIProperties;
 import com.snapbackup.ui.UIUtilities;
 import com.snapbackup.ui.backupprogress.BackupProgressDialog;
@@ -44,7 +44,7 @@ import com.snapbackup.utilities.settings.SystemAttributes;
 import com.snapbackup.utilities.settings.UserPreferences;
 import com.snapbackup.utilities.zip.ZipEngine;
 
-//import org.jdesktop.swingworker.SwingWorker;
+import org.jdesktop.swingworker.SwingWorker;
 
 public class DataModel {
 
@@ -405,7 +405,7 @@ public class DataModel {
       return backupDir + backupName + UserPreferences.readPref(Options.prefSpacer) +
          DateStamp.todaysDateStamp() + zipExtension;
       */
-      return backupDir + (backupDir.endsWith(fs) ? null : fs) + backupName +
+      return backupDir + (backupDir.endsWith(fs) ? nullStr : fs) + backupName +
          UserPreferences.readPref(Options.prefSpacer) +
          DateStamp.todaysDateStamp() + zipExtension;
       }
@@ -471,26 +471,70 @@ public class DataModel {
          );
       }
 
+   public static void doBackup() {
+      final ZipEngine zip = new ZipEngine();
+      final BackupProgressDialog backupProgress = new BackupProgressDialog(zip);
+      zip.setBackupProgressDialog(backupProgress);
+      class BackupSwingWorker extends SwingWorker<String, Object> {
+         @Override
+         public String doInBackground() {
+            logTimeStart();
+            Logger.spacer();
+            Logger.logMsg(UIProperties.current.logMsgStart);
+            List<List<String>> filterInfo = new ArrayList<List<String>>();
+            filterInfo.add(zipIncludeList);
+            filterInfo.add(zipExcludeList);
+            filterInfo.add(zipExcludeFolderList);
+            filterInfo.add(zipExcludeSizeList);
+            zip.zipItems(zipItemList, calcDestBackupPath(),
+               SnapBackupFrame.current.getFiltersEnabled(), filterInfo);
+            if (SnapBackupFrame.current.getDestArchivePromptCheckBox().isSelected() && !zip.isAbortSet())
+               FileSys.copyFile(calcDestBackupPath(), calcDestArchivePath(), backupProgress,
+                  zip, UserPreferences.readPref(Options.prefAskArchive).equals(Options.askNo));
+            if (zip.isAbortSet())
+               Logger.logMsg(UIProperties.current.logMsgAborted);
+            logTimeEnd();
+            Logger.logMsg(UIProperties.current.logMsgEnd);
+            SnapBackupFrame.current.getLogScrollPane().getHorizontalScrollBar().setValue(0);
+            return "ok";
+            }
+         @Override
+         protected void done() {
+            //try {
+               if (!zip.isAbortSet()) {
+                  backupProgress.done();
+                  SnapBackupFrame.current.getExitButton().grabFocus();
+                  }
+               TimerTask task = new TimerTask() {
+                  public void run() { backupProgress.dispose(); };
+                  };
+               new Timer().schedule(task, 800);  //0.8 second delay
+            //      }
+            //catch (Exception e) {
+            //   Logger.logMsg(e.getLocalizedMessage());
+            //   }
+            }
+         }
+      new BackupSwingWorker().execute();
+      UIUtilities.centerDialog(backupProgress);
+      }
+
    public static void doBackupNow() {
       final ZipEngine zip = new ZipEngine();
       final BackupProgressDialog backupProgress = new BackupProgressDialog(zip);
       zip.setBackupProgressDialog(backupProgress);
-      final SwingWorker worker = new SwingWorker() {
+      final SwingWorkerOLD worker = new SwingWorkerOLD() {
          public Object construct() {
             logTimeStart();
             Logger.spacer();
             Logger.logMsg(UIProperties.current.logMsgStart);
-
-
             //List<List<String>> filterInfoList = new ArrayList<List<String>>();
             //filterInfoList.add(zipIncludeList);
             //Collections.addAll(filterInfoList,
             //   zipIncludeList, zipExcludeList, zipExcludeFolderList, zipExcludeSizeList);
-
             //List<String> f = null;
             //Collections.addAll(f,
             //   "zipIncludeList", "zipExcludeList", "zipExcludeFolderList", "zipExcludeSizeList");
-
             //List<String>[] filterInfo = {
             //ArrayList filterInfo  = {
             List<List<String>> filterInfo = new ArrayList<List<String>>();

@@ -757,6 +757,7 @@ public class SnapBackupFrame extends JFrame {
       String oldNumRowsSrc = UserPreferences.readPref(Options.prefNumRowsSrc);
       String oldNumRowsLog = UserPreferences.readPref(Options.prefNumRowsLog);
       OptionsDialog optionsDialog = new OptionsDialog(destBackupNameTextField.getText());
+      optionsDialog.initGUI();
       UIUtilities.centerDialog(optionsDialog, this);
       DataModel.updateDestPaths(this);
       if (!oldNumRowsSrc.equals(UserPreferences.readPref(Options.prefNumRowsSrc)) ||
@@ -921,7 +922,8 @@ public class SnapBackupFrame extends JFrame {
       popupMsg(DataModel.restoreDefaultSettings(this), ui.buttonReset);
       }
    public void doBackupButtonAction(ActionEvent e) {
-      DataModel.doBackupNow();
+      //DataModel.doBackupNow();
+      DataModel.doBackup();
       }
    public void exitButtonAction(ActionEvent e) {
       DataModel.exit();

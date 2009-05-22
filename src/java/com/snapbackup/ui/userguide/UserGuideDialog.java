@@ -37,7 +37,7 @@ import java.net.URL;
 import javax.swing.*;
 
 import com.snapbackup.ui.UIUtilities;
-import com.snapbackup.utilities.PrintUtilities;
+import edu.jhu.apl.PrintUtilities;
 
 public class UserGuideDialog extends JDialog {
 
