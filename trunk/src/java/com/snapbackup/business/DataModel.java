@@ -106,7 +106,7 @@ public class DataModel {
 
    public static Vector<String> getProfilesNames() {
       Vector<String> names = UserPreferences.getProfileNames();
-      if (names.size() == 0)
+      if (names.isEmpty())
          names.add(AppProperties.getProperty(prefCurrentProfile));
       return names;
       }
@@ -240,7 +240,7 @@ public class DataModel {
       zipExcludeFolderList.remove(loc);
       zipExcludeSizeList.remove(loc);
       f.getSrcZipListModel().remove(loc);  //remove from UI control
-      if (zipItemList.size() == 0)
+      if (zipItemList.isEmpty())
          f.getSrcRemoveButton().setEnabled(false);
       else
          f.getSrcZipList().setSelectedIndex(
@@ -399,9 +399,14 @@ public class DataModel {
       }
 
    static String calcDestPath(String backupDir, String backupName) {
+      /*
       if (!backupDir.endsWith(fs))
          backupDir = backupDir + fs;
       return backupDir + backupName + UserPreferences.readPref(Options.prefSpacer) +
+         DateStamp.todaysDateStamp() + zipExtension;
+      */
+      return backupDir + (backupDir.endsWith(fs) ? null : fs) + backupName +
+         UserPreferences.readPref(Options.prefSpacer) +
          DateStamp.todaysDateStamp() + zipExtension;
       }
 
@@ -534,15 +539,15 @@ public class DataModel {
    public static void doCmdLineBackup(String profileName, String logFile) {
       new UIProperties();
       final ZipEngine zip = new ZipEngine();
-      if (profileName.equals(SystemAttributes.cmdLineDefaultProfile))
-         profileName = UserPreferences.readPref(prefCurrentProfile);
-      UserPreferences.setCmdLineProfileName(profileName);
+      String name = profileName.equals(SystemAttributes.cmdLineDefaultProfile) ?
+         UserPreferences.readPref(prefCurrentProfile) : profileName;
+      UserPreferences.setCmdLineProfileName(name);
       initSettings();
       Logger.initOutput();
       Logger.logMsg(UIProperties.current.headerCmdLine);
       logTimeStart();
       Logger.logMsg(UIProperties.current.logMsgStart);
-      Logger.logMsg(UIProperties.current.logMsgProfile + profileName);
+      Logger.logMsg(UIProperties.current.logMsgProfile + name);
       loadCmdLineData();
       //List[] filterInfo = {
       //   zipIncludeList, zipExcludeList, zipExcludeFolderList, zipExcludeSizeList };
@@ -554,7 +559,7 @@ public class DataModel {
       if (UserPreferences.profileInDB())
          zip.zipItems(zipItemList, cmdBackupPath, cmdFiltersOn, filterInfo);
       else
-         zip.abortBackup(UIProperties.current.err30ProfileNotFound + dataPrompt + profileName);
+         zip.abortBackup(UIProperties.current.err30ProfileNotFound + dataPrompt + name);
       if (cmdDoArchive && !zip.isAbortSet())
          FileSys.copyFile(cmdBackupPath, cmdArchivePath, zip);
       if (zip.isAbortSet())

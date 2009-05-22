@@ -58,7 +58,7 @@ public class ExportDialog extends JDialog {
    JButton      actionButton =            new JButton(ui.buttonExport);
    JButton[]    buttonList =              { cancelButton, actionButton };
 
-   public ExportDialog() {
+   public void initGUI() {
       AppProperties.addSupplimentalProperty(Export.prefSettingsFileName,
             new Export().defaultSettingsFileName);
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

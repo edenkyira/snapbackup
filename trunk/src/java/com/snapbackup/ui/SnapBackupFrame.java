@@ -155,6 +155,9 @@ public class SnapBackupFrame extends JFrame {
 
    public SnapBackupFrame() {
       current = this;
+      }
+
+   public void setup() {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       //setTitle(UIProperties.appTitle);
       setTitle(ui.appTitle);
@@ -197,7 +200,7 @@ public class SnapBackupFrame extends JFrame {
          sortLocaleCodes(localeCodes, currentLocale);
       }
 
-   public void configureContols() {
+   void configureContols() {
       //Configure Menu Controls
       languagesGroup.add(languagesMenuItemButtonShow);
       languagesGroup.add(languagesMenuItemButtonHide);
@@ -334,8 +337,8 @@ public class SnapBackupFrame extends JFrame {
             public void mouseClicked(MouseEvent e) { selectLanguage((String)((JLabel)e.getSource()).getClientProperty(localeCodeKey)); }
             public void mouseEntered(MouseEvent e) { setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); }
             public void mouseExited(MouseEvent e) { setCursor(Cursor.getPredefinedCursor (Cursor.DEFAULT_CURSOR)); }
-            public void mousePressed(MouseEvent e) { }
-            public void mouseReleased(MouseEvent e) { }  
+            public void mousePressed(MouseEvent e) { /* do nothing*/ }
+            public void mouseReleased(MouseEvent e) { /* do nothing*/ }
             } );
          langFlagsPanels[count/flagsPerRow].add(langLabel);
          }
@@ -742,10 +745,12 @@ public class SnapBackupFrame extends JFrame {
       }
    public void exportMenuItemAction(ActionEvent e) {
       ExportDialog exportDialog = new ExportDialog();
+      exportDialog.initGUI();
       UIUtilities.centerDialog(exportDialog, this);
       }
    public void importMenuItemAction(ActionEvent e) {
       ImportDialog importDialog = new ImportDialog();
+      importDialog.initGUI();
       UIUtilities.centerDialog(importDialog, this);
       }
    public void optionsMenuItemAction(ActionEvent e) {
@@ -767,11 +772,13 @@ public class SnapBackupFrame extends JFrame {
          }
       }
    public void guideMenuItemAction(ActionEvent e) {
-      UserGuideDialog guideDialog = new UserGuideDialog(this.getSize());
+      UserGuideDialog guideDialog = new UserGuideDialog();
+      guideDialog.initGUI(this.getSize());
       UIUtilities.centerDialog(guideDialog, this);
       }
    public void aboutMenuItemAction(ActionEvent e) {
       AboutDialog aboutDialog = new AboutDialog();
+      aboutDialog.initGUI();
       UIUtilities.centerDialog(aboutDialog, this);
       }
 
@@ -863,6 +870,7 @@ public class SnapBackupFrame extends JFrame {
       }
    public void srcFilterButtonAction(ActionEvent e) {
       FilterDialog dialog = new FilterDialog();
+      dialog.initGUI();
       UIUtilities.centerDialog(dialog, this);
       }
 

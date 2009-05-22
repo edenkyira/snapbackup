@@ -35,7 +35,7 @@ public class Str {
       }
 
    public static String macroExpand(String baseStr, int replaceNum) {
-      return macroExpand(baseStr, new Integer(replaceNum).toString());
+      return macroExpand(baseStr, Integer.toString(replaceNum));
       }
 
    }

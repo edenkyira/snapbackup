@@ -54,18 +54,14 @@ public class UserGuideDialog extends JDialog {
    JButton     closeButton =  new JButton(ui.userGuideButtonClose);
    JButton[]   buttonList =   { printButton, closeButton };
 
-   public UserGuideDialog(Dimension parentSize) {
-      initGUI(parentSize);
-      setResizable(true);
-      pack();
-      }
-
    public void initGUI(Dimension parentSize) {
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
       setTitle(ui.userGuideTitle);
       configureContols(parentSize.getWidth() * UserGuideUIProperties.userGuideSizeScaleX,
          parentSize.getHeight() * UserGuideUIProperties.userGuideSizeScaleY);
       addContols();
+      setResizable(true);
+      pack();
       }
 
    public void configureContols(double width, double height) {
