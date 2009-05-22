@@ -73,6 +73,7 @@ public class UIUtilities {
       final int origY = frame.getSize().height;
       //frame.setSize(new Dimension(origX, origY));
       frame.addComponentListener(new java.awt.event.ComponentAdapter() {
+         @Override
          public void componentResized(ComponentEvent event) {
             frame.setSize(Math.max(frame.getWidth(), origX),
                Math.max(frame.getHeight(), origY));
