@@ -36,7 +36,7 @@ import javax.swing.*;
 import com.snapbackup.business.DataModel;
 import com.snapbackup.ui.SnapBackupFrame;
 import com.snapbackup.ui.UIUtilities;
-import com.snapbackup.utilities.settings.SystemAttributes;
+import com.snapbackup.settings.SystemAttributes;
 
 public class FilterDialog extends JDialog {
 

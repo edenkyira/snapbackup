@@ -23,7 +23,7 @@
 //    This object...                                                          //
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.snapbackup.utilities.zip;
+package com.snapbackup.utilities;
 
 import java.io.*;
 import java.text.NumberFormat;
@@ -41,11 +41,11 @@ import com.snapbackup.logger.Logger;
 import com.snapbackup.ui.UIProperties;
 import com.snapbackup.ui.backupprogress.BackupProgressDialog;
 import com.snapbackup.ui.options.Options;
-import com.snapbackup.utilities.filesys.FileSys;
-import com.snapbackup.utilities.settings.AppProperties;
-import com.snapbackup.utilities.settings.SystemAttributes;
-import com.snapbackup.utilities.settings.UserPreferences;
-import com.snapbackup.utilities.string.Str;
+import com.snapbackup.utilities.FileSys;
+import com.snapbackup.settings.AppProperties;
+import com.snapbackup.settings.SystemAttributes;
+import com.snapbackup.settings.UserPreferences;
+import com.snapbackup.utilities.Str;
 
 public class ZipEngine {
 

@@ -27,7 +27,7 @@ package com.snapbackup.ui;
 
 import java.io.File;
 import javax.swing.*;
-import com.snapbackup.utilities.settings.SystemAttributes;
+import com.snapbackup.settings.SystemAttributes;
 
 public class Icons {
 

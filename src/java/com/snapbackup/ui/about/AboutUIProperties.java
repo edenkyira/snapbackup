@@ -25,8 +25,8 @@
 
 package com.snapbackup.ui.about;
 
-import com.snapbackup.utilities.settings.AppProperties;
-import com.snapbackup.utilities.settings.SystemAttributes;
+import com.snapbackup.settings.AppProperties;
+import com.snapbackup.settings.SystemAttributes;
 
 public class AboutUIProperties {
    static final String space =  SystemAttributes.space;

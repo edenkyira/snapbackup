@@ -25,7 +25,7 @@
 
 package com.snapbackup.ui.prefimport;
 
-import com.snapbackup.utilities.settings.AppProperties;
+import com.snapbackup.settings.AppProperties;
 
 class ImportUIProperties {
    final String title =            AppProperties.getProperty("ImportTitle");

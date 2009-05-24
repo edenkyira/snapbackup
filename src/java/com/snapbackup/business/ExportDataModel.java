@@ -37,8 +37,8 @@ import javax.swing.filechooser.FileFilter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.snapbackup.utilities.settings.UserPreferences;
-import com.snapbackup.utilities.settings.SystemAttributes;
+import com.snapbackup.settings.UserPreferences;
+import com.snapbackup.settings.SystemAttributes;
 
 public class ExportDataModel {
 
@@ -104,8 +104,11 @@ public class ExportDataModel {
       //Add System Info to DOM
       Element infoNode = xmlDoc.createElement(xmlInfoNodeName);
       topNode.appendChild(infoNode);
-      infoNode.appendChild(xmlDoc.createTextNode(SystemAttributes.osInfo +
-         SystemAttributes.dividerStr + SystemAttributes.javaVersion));
+      infoNode.appendChild(xmlDoc.createTextNode(
+         SystemAttributes.appName + SystemAttributes.space +
+         SystemAttributes.appVersion + SystemAttributes.dividerStr +
+         SystemAttributes.osInfo + SystemAttributes.dividerStr +
+         SystemAttributes.javaVersion));
 
       //Add Settings Data to DOM
       String[] data = UserPreferences.getAllKeys();

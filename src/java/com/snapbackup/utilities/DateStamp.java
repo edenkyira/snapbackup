@@ -23,13 +23,13 @@
 //    This object...                                                          //
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.snapbackup.utilities.datestamp;
+package com.snapbackup.utilities;
 
 import java.util.Calendar;
 
 import com.snapbackup.ui.options.Options;
-import com.snapbackup.utilities.settings.SystemAttributes;
-import com.snapbackup.utilities.settings.UserPreferences;
+import com.snapbackup.settings.SystemAttributes;
+import com.snapbackup.settings.UserPreferences;
 
 public class DateStamp {
 

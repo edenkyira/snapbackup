@@ -28,7 +28,7 @@ package com.snapbackup.logger;
 
 import javax.swing.*;
 
-import com.snapbackup.utilities.settings.SystemAttributes;
+import com.snapbackup.settings.SystemAttributes;
 
 public class Logger {
 

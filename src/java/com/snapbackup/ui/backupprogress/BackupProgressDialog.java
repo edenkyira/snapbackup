@@ -33,8 +33,8 @@ import java.util.Locale;
 
 import javax.swing.*;
 
-import com.snapbackup.utilities.settings.UserPreferences;
-import com.snapbackup.utilities.zip.ZipEngine;
+import com.snapbackup.settings.UserPreferences;
+import com.snapbackup.utilities.ZipEngine;
 
 public class BackupProgressDialog extends JDialog {
 

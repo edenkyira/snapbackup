@@ -36,9 +36,9 @@ import javax.swing.*;
 import com.snapbackup.business.ExportDataModel;
 import com.snapbackup.ui.Icons;
 import com.snapbackup.ui.UIUtilities;
-import com.snapbackup.utilities.settings.AppProperties;
-import com.snapbackup.utilities.settings.SystemAttributes;
-import com.snapbackup.utilities.settings.UserPreferences;
+import com.snapbackup.settings.AppProperties;
+import com.snapbackup.settings.SystemAttributes;
+import com.snapbackup.settings.UserPreferences;
 
 public class ExportDialog extends JDialog {
 

@@ -28,8 +28,8 @@ package com.snapbackup.ui;
 
 import java.awt.Color;
 import javax.swing.*;
-import com.snapbackup.utilities.settings.SystemAttributes;
-import com.snapbackup.utilities.settings.AppProperties;
+import com.snapbackup.settings.SystemAttributes;
+import com.snapbackup.settings.AppProperties;
 
 public class SplashScreen extends JDialog {
 

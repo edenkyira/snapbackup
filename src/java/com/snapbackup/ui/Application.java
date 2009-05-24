@@ -28,7 +28,6 @@ package com.snapbackup.ui;
 
 import com.snapbackup.business.DataModel;
 import com.snapbackup.logger.Logger;
-import com.snapbackup.utilities.settings.UserPreferences;
 
 public final class Application {
 
@@ -39,7 +38,7 @@ public final class Application {
       SnapBackupFrame frame = new SnapBackupFrame();
       frame.setup();
       Logger.initLogArea(frame.getLogTextArea());
-      UserPreferences.upgradeOldPrefs();  //v2.5 --> v3.x
+      com.snapbackup.utilities.settings.UserPreferencesOLD.copyOldPrefsToNewLocation();  //pre v5.1 --> v5.1
       DataModel.initSettings(frame);
       UIUtilities.lockInMinSize(frame);
       UIUtilities.setInitialNumRows(frame);

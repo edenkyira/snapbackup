@@ -40,7 +40,7 @@ import com.centerkey.utils.BareBonesBrowserLaunch;
 import com.snapbackup.ui.Icons;
 import com.snapbackup.ui.UIProperties;
 import com.snapbackup.ui.UIUtilities;
-import com.snapbackup.utilities.settings.SystemAttributes;
+import com.snapbackup.settings.SystemAttributes;
 
 public class AboutDialog extends JDialog {
 

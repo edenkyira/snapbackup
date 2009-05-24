@@ -25,7 +25,7 @@
 
 package com.snapbackup.ui.options;
 
-import com.snapbackup.utilities.settings.AppProperties;
+import com.snapbackup.settings.AppProperties;
 
 class OptionsUIProperties {
    final String title =                     AppProperties.getProperty("OptionsTitle");

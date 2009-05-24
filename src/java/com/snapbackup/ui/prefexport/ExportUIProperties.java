@@ -25,7 +25,7 @@
 
 package com.snapbackup.ui.prefexport;
 
-import com.snapbackup.utilities.settings.AppProperties;
+import com.snapbackup.settings.AppProperties;
 
 class ExportUIProperties {
    final String title =            AppProperties.getProperty("ExportTitle");
