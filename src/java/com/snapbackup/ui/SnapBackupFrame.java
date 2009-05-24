@@ -36,6 +36,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.snapbackup.business.DataModel;
+import com.snapbackup.business.CheckForUpdates;
 import com.snapbackup.ui.about.AboutDialog;
 import com.snapbackup.ui.filter.FilterDialog;
 import com.snapbackup.ui.prefexport.ExportDialog;
@@ -80,6 +81,7 @@ public class SnapBackupFrame extends JFrame {
    JMenuItem   exitMenuItem =      new JMenuItem(ui.menuItemExit);
    JMenu       helpMenuGroup =     new JMenu(ui.menuGroupHelp);
    JMenuItem   guideMenuItem =     new JMenuItem(ui.menuItemGuide);
+   JMenuItem   updatesMenuItem =   new JMenuItem(ui.menuItemUpdates);
    JMenuItem   aboutMenuItem =     new JMenuItem(ui.menuItemAbout);
 
    //Define Base
@@ -315,6 +317,7 @@ public class SnapBackupFrame extends JFrame {
       fileMenuGroup.add(exitMenuItem);      //menu: File | Exit
       menuBar.add(helpMenuGroup);           //menu: Help
       helpMenuGroup.add(guideMenuItem);     //menu: Help | User Guide
+      helpMenuGroup.add(updatesMenuItem);   //menu: Help | Check for Updates
       helpMenuGroup.add(aboutMenuItem);     //menu: Help | About
 
       //Add Title Control
@@ -610,6 +613,9 @@ public class SnapBackupFrame extends JFrame {
       guideMenuItem.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) { guideMenuItemAction(e); }
          } );
+      updatesMenuItem.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) { updatesMenuItemAction(e); }
+         } );
       aboutMenuItem.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) { aboutMenuItemAction(e); }
          } );
@@ -737,7 +743,7 @@ public class SnapBackupFrame extends JFrame {
          }
       catch (Exception except) {
          popupMsg(UIProperties.skinErrMsg + SystemAttributes.newLine +
-            except.getLocalizedMessage(), ui.menuItemSkin);
+            except.getMessage(), ui.menuItemSkin);
          }
       }
    public void exitMenuItemAction(ActionEvent e) {
@@ -776,6 +782,9 @@ public class SnapBackupFrame extends JFrame {
       UserGuideDialog guideDialog = new UserGuideDialog();
       guideDialog.initGUI(this.getSize());
       UIUtilities.centerDialog(guideDialog, this);
+      }
+   public void updatesMenuItemAction(ActionEvent e) {
+      popupMsg(CheckForUpdates.getMessage(), ui.menuItemUpdates);
       }
    public void aboutMenuItemAction(ActionEvent e) {
       AboutDialog aboutDialog = new AboutDialog();

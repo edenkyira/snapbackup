@@ -57,7 +57,9 @@ public class AboutDialog extends JDialog {
    static final String[] translators = SystemAttributes.appTranslators;
 
    AboutUIProperties ui = new AboutUIProperties();   //make singleton for performance????
-   final String contactInfoStr = ui.aboutContact + newLine + SystemAttributes.postalAddress + newLine + homeURL + newLine + SystemAttributes.feedbackEMail;
+   final String contactInfoStr = ui.aboutContact + newLine +
+      SystemAttributes.postalAddress + newLine + homeURL + newLine +
+      SystemAttributes.feedbackEMail;
 
    //Define About Controls
    JPanel    aboutPanel =   new JPanel();
@@ -103,10 +105,17 @@ public class AboutDialog extends JDialog {
          translatorLabel.putClientProperty(urlKey, translators[count*2+1]);
          if (translators[count*2+1] != null)
             translatorLabel.addMouseListener(new MouseListener() {
-               public void mouseClicked(MouseEvent e) { BareBonesBrowserLaunch.openURL((String)((JLabel)e.getSource()).getClientProperty(urlKey)); }
-               public void mouseEntered(MouseEvent e) { setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); }
-               public void mouseExited(MouseEvent e)  { setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR)); }
-               public void mousePressed(MouseEvent e) { /* do nothing */ }
+               public void mouseClicked(MouseEvent e) {
+                  BareBonesBrowserLaunch.openURL(
+                     (String)((JLabel)e.getSource()).getClientProperty(urlKey));
+                  }
+               public void mouseEntered(MouseEvent e) {
+                  setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                  }
+               public void mouseExited(MouseEvent e) {
+                  setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                  }
+               public void mousePressed(MouseEvent e)  { /* do nothing */ }
                public void mouseReleased(MouseEvent e) { /* do nothing */ }
                });
          row.add(translatorLabel);
@@ -135,7 +144,7 @@ public class AboutDialog extends JDialog {
          SystemAttributes.javaVersion + newLine +
          SystemAttributes.javaHomeDir + newLine +
          SystemAttributes.javaVMInfo);
-      configInfo.setBorder(BorderFactory.createTitledBorder(ui.aboutConfigurationTitle));
+      configInfo.setBorder(BorderFactory.createTitledBorder(ui.aboutCfgTitle));
       contactInfo.setEditable(false);
       contactInfo.setFont(UIProperties.standardFont);
       contactInfo.setBackground(Color.white);  //needed for Motif
@@ -206,7 +215,7 @@ public class AboutDialog extends JDialog {
            catch (Exception e) {
               //java.net.NoRouteToHostException or java.net.ConnectException
               JOptionPane.showMessageDialog(null, "Update check error: " +
-                    e.getLocalizedMessage() + " > " + e.getClass().getName(),
+                    e.getMessage() + " > " + e.getClass().getName(),
                     ui.aboutVersion, JOptionPane.ERROR_MESSAGE);
               }
            }

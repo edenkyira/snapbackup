@@ -31,7 +31,7 @@ public class UserPreferencesOLD {
          }
       catch (BackingStoreException e) {
          allKeys = new String[0];
-         System.out.println(e.getLocalizedMessage());
+         System.out.println(e.getMessage());
          }
       return allKeys;
       }
@@ -56,7 +56,7 @@ public class UserPreferencesOLD {
             prefsOLD.flush();
             }
          catch (Exception e) {
-            System.out.println(e.getLocalizedMessage());
+            System.out.println(e.getMessage());
             }
       }
 
