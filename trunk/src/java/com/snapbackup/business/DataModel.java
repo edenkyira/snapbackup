@@ -37,12 +37,12 @@ import com.snapbackup.ui.UIProperties;
 import com.snapbackup.ui.UIUtilities;
 import com.snapbackup.ui.backupprogress.BackupProgressDialog;
 import com.snapbackup.ui.options.Options;
-import com.snapbackup.utilities.datestamp.DateStamp;
-import com.snapbackup.utilities.filesys.FileSys;
-import com.snapbackup.utilities.settings.AppProperties;
-import com.snapbackup.utilities.settings.SystemAttributes;
-import com.snapbackup.utilities.settings.UserPreferences;
-import com.snapbackup.utilities.zip.ZipEngine;
+import com.snapbackup.utilities.DateStamp;
+import com.snapbackup.utilities.FileSys;
+import com.snapbackup.settings.AppProperties;
+import com.snapbackup.settings.SystemAttributes;
+import com.snapbackup.settings.UserPreferences;
+import com.snapbackup.utilities.ZipEngine;
 
 import org.jdesktop.swingworker.SwingWorker;
 
@@ -500,19 +500,14 @@ public class DataModel {
             }
          @Override
          protected void done() {
-            //try {
-               if (!zip.isAbortSet()) {
-                  backupProgress.done();
-                  SnapBackupFrame.current.getExitButton().grabFocus();
-                  }
-               TimerTask task = new TimerTask() {
-                  public void run() { backupProgress.dispose(); };
-                  };
-               new Timer().schedule(task, 800);  //0.8 second delay
-            //      }
-            //catch (Exception e) {
-            //   Logger.logMsg(e.getLocalizedMessage());
-            //   }
+            if (!zip.isAbortSet()) {
+               backupProgress.done();
+               SnapBackupFrame.current.getExitButton().grabFocus();
+               }
+            TimerTask task = new TimerTask() {
+            public void run() { backupProgress.dispose(); };
+               };
+            new Timer().schedule(task, 800);  //0.8 second delay
             }
          }
       new BackupSwingWorker().execute();

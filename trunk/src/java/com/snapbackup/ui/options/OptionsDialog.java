@@ -34,10 +34,10 @@ import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 import com.snapbackup.ui.UIUtilities;
-import com.snapbackup.utilities.datestamp.DateStamp;
-import com.snapbackup.utilities.settings.AppProperties;
-import com.snapbackup.utilities.settings.SystemAttributes;
-import com.snapbackup.utilities.settings.UserPreferences;
+import com.snapbackup.utilities.DateStamp;
+import com.snapbackup.settings.AppProperties;
+import com.snapbackup.settings.SystemAttributes;
+import com.snapbackup.settings.UserPreferences;
 
 public class OptionsDialog extends JDialog {
 

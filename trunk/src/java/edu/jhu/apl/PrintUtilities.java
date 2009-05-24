@@ -28,13 +28,10 @@ public class PrintUtilities implements Printable {
     printJob.setPrintable(this);
     if (printJob.printDialog())
       try {
-        //System.out.println("Calling PrintJob.print()");
         printJob.print();
-        //System.out.println("End PrintJob.print()");
       }
-      catch (PrinterException pe) {
-        //System.out.println("Error printing: " + pe);
-         JOptionPane.showMessageDialog(null, pe.getLocalizedMessage(),
+      catch (PrinterException e) {
+         JOptionPane.showMessageDialog(null, e.getLocalizedMessage(),
             UIProperties.current.err25PrintFailure, JOptionPane.ERROR_MESSAGE);
       }
   }

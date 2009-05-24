@@ -23,7 +23,7 @@
 //    This object...                                                          //
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.snapbackup.utilities.settings;
+package com.snapbackup.settings;
 
 import java.util.Hashtable;
 import java.util.Locale;
@@ -49,12 +49,18 @@ public class AppProperties {
          }
       catch (MissingResourceException e) {
          String propertyValue = supplimentalProperty.get(propertyName);
-         if (propertyValue == null)
+         if (propertyValue == null) {
             propertyValue = SystemAttributes.errMsgHeader + propertyName +
-            SystemAttributes.errMsgMissingResource +
-            SystemAttributes.appName;
+               SystemAttributes.errMsgMissingResource +
+               SystemAttributes.appName;
+            System.out.println(propertyValue);
+            }
          return propertyValue;
          }
+      }
+
+   public static boolean getBooleanProperty(String propertyName) {
+      return getProperty(propertyName).equals(getProperty("True"));
       }
 
    public static String getPropertyPadded(String propertyName) {

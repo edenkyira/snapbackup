@@ -30,7 +30,7 @@ import java.awt.event.ComponentEvent;
 import javax.swing.*;
 
 import com.snapbackup.ui.options.Options;
-import com.snapbackup.utilities.settings.UserPreferences;
+import com.snapbackup.settings.UserPreferences;
 
 public class UIUtilities {
 

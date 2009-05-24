@@ -25,7 +25,7 @@
 
 package com.snapbackup.ui.backupprogress;
 
-import com.snapbackup.utilities.settings.AppProperties;
+import com.snapbackup.settings.AppProperties;
 
 public class BackupProgressUIProperties {
 

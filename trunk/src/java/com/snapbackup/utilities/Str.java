@@ -23,7 +23,7 @@
 //    This object...                                                          //
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.snapbackup.utilities.string;
+package com.snapbackup.utilities;
 
 public class Str {
 

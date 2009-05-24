@@ -23,7 +23,7 @@
 //    This object...                                                          //
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.snapbackup.utilities.filesys;
+package com.snapbackup.utilities;
 
 import java.awt.Component;
 import java.io.File;
@@ -35,9 +35,9 @@ import javax.swing.JOptionPane;
 
 import com.snapbackup.logger.Logger;
 import com.snapbackup.ui.UIProperties;
-import com.snapbackup.utilities.settings.SystemAttributes;
-import com.snapbackup.utilities.string.Str;
-import com.snapbackup.utilities.zip.ZipEngine;
+import com.snapbackup.settings.SystemAttributes;
+import com.snapbackup.utilities.Str;
+import com.snapbackup.utilities.ZipEngine;
 
 public class FileSys {
 
@@ -137,10 +137,12 @@ public class FileSys {
          }
       finally {
          if (source != null)
-            try { source.close(); } catch (IOException e) { Logger.logMsg(e.getLocalizedMessage()); }
-               if (dest != null)
-                  try { dest.close(); } catch (IOException e) { Logger.logMsg(e.getLocalizedMessage()); }
-           }
+            try { source.close(); }
+            catch (IOException e) { Logger.logMsg(e.getLocalizedMessage()); }
+            if (dest != null)
+               try { dest.close(); }
+               catch (IOException e) { Logger.logMsg(e.getLocalizedMessage()); }
+         }
       }
    
    public static void copyFile(String sourceFileName, String destFileName, ZipEngine zip) {

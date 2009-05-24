@@ -32,8 +32,8 @@ import com.snapbackup.business.DataModel;
 import com.snapbackup.ui.Application;
 import com.snapbackup.ui.UIProperties;
 import com.snapbackup.ui.SplashScreen;
-import com.snapbackup.utilities.settings.AppProperties;
-import com.snapbackup.utilities.settings.UserPreferences;
+import com.snapbackup.settings.AppProperties;
+import com.snapbackup.settings.UserPreferences;
 
 public class Main {
 

@@ -43,10 +43,10 @@ import com.snapbackup.ui.prefimport.ImportDialog;
 import com.snapbackup.ui.options.Options;
 import com.snapbackup.ui.options.OptionsDialog;
 import com.snapbackup.ui.userguide.UserGuideDialog;
-import com.snapbackup.utilities.settings.AppProperties;
-import com.snapbackup.utilities.settings.SystemAttributes;
-import com.snapbackup.utilities.settings.UserPreferences;
-import com.snapbackup.utilities.string.Str;
+import com.snapbackup.settings.AppProperties;
+import com.snapbackup.settings.SystemAttributes;
+import com.snapbackup.settings.UserPreferences;
+import com.snapbackup.utilities.Str;
 
 public class SnapBackupFrame extends JFrame {
 
@@ -735,9 +735,9 @@ public class SnapBackupFrame extends JFrame {
             ui.menuItemSkin);
          DataModel.saveSkinSetting(laf.getClassName());
          }
-      catch (Exception e2) {
+      catch (Exception except) {
          popupMsg(UIProperties.skinErrMsg + SystemAttributes.newLine +
-            e2.getLocalizedMessage(), ui.menuItemSkin);
+            except.getLocalizedMessage(), ui.menuItemSkin);
          }
       }
    public void exitMenuItemAction(ActionEvent e) {

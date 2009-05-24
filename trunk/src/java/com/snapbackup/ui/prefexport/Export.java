@@ -26,8 +26,8 @@
 package com.snapbackup.ui.prefexport;
 
 import com.snapbackup.business.ExportDataModel;
-import com.snapbackup.utilities.settings.SystemAttributes;
-import com.snapbackup.utilities.settings.AppProperties;
+import com.snapbackup.settings.SystemAttributes;
+import com.snapbackup.settings.AppProperties;
 
 public class Export {
    //Constants

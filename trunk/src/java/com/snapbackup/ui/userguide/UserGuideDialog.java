@@ -74,7 +74,7 @@ public class UserGuideDialog extends JDialog {
       try {
          html = new JEditorPane(url);
          }
-      catch ( IOException e ) {
+      catch (IOException e) {
          html = new JEditorPane(UserGuideUIProperties.userGuideErrMsgMIME,
             ui.userGuideErrMsg + UserGuideUIProperties.userGuideURL);
          }

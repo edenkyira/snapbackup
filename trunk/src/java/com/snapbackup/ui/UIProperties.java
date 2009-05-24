@@ -32,8 +32,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import com.snapbackup.utilities.settings.AppProperties;
-import com.snapbackup.utilities.settings.SystemAttributes;
+import com.snapbackup.settings.AppProperties;
+import com.snapbackup.settings.SystemAttributes;
 
 public class UIProperties {
 
@@ -101,11 +101,11 @@ public class UIProperties {
    public final String menuItemAbout =        AppProperties.getProperty("MenuItemAbout");
 
    //Filters
-   public final String FiltersButton =        AppProperties.getProperty("FiltersButton");
-   public final String FiltersTitle =         AppProperties.getProperty("FiltersTitle");
-   public final String FiltersSave =          AppProperties.getProperty("FiltersButtonSave");
-   public final String FiltersDelete =        AppProperties.getProperty("FiltersButtonDelete");
-   public final String FiltersCancel =        AppProperties.getProperty("FiltersButtonCancel");
+   //public final String FiltersButton =        AppProperties.getProperty("FiltersButton");
+   //public final String FiltersTitle =         AppProperties.getProperty("FiltersTitle");
+   //public final String FiltersSave =          AppProperties.getProperty("FiltersButtonSave");
+   //public final String FiltersDelete =        AppProperties.getProperty("FiltersButtonDelete");
+   //public final String FiltersCancel =        AppProperties.getProperty("FiltersButtonCancel");
 
    //Profiles
    public final String profilesOffMsg =       AppProperties.getProperty("ProfilesOffMsg");
@@ -137,12 +137,12 @@ public class UIProperties {
    //Destination (Backup & Archive)
    public final String destTitle =            AppProperties.getPropertyPadded("DestinationTitle");
    public final String destBackupPrompt =     AppProperties.getProperty("DestinationBackupPrompt");
-   public final String destBackupChooser =    AppProperties.getProperty("DestinationBackupChooser");
+   //public final String destBackupChooser =    AppProperties.getProperty("DestinationBackupChooser");
    public final String destBackupCmd =        AppProperties.getProperty("DestinationBackupCommand");
    public final String destBackupTag =        AppProperties.getProperty("DestinationBackupTag");
    public final String destBackupNamePrompt = AppProperties.getProperty("DestinationBackupNamePrompt");
    public final String destArchivePrompt =    AppProperties.getProperty("DestinationArchivePrompt");
-   public final String destArchiveChooser =   AppProperties.getProperty("DestinationArchiveChooser");
+   //public final String destArchiveChooser =   AppProperties.getProperty("DestinationArchiveChooser");
    public final String destArchiveCmd =       AppProperties.getProperty("DestinationArchiveCommand");
    public final String destArchiveTag =       AppProperties.getProperty("DestinationArchiveTag");
 

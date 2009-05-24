@@ -38,8 +38,8 @@ import javax.xml.transform.stream.StreamSource;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-import com.snapbackup.utilities.settings.SystemAttributes;
-import com.snapbackup.utilities.settings.UserPreferences;
+import com.snapbackup.settings.SystemAttributes;
+import com.snapbackup.settings.UserPreferences;
 
 public class ImportDataModel {
 

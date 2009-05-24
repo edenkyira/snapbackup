@@ -23,7 +23,7 @@
 //    This object...                                                          //
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.snapbackup.utilities.settings;
+package com.snapbackup.settings;
 
 import java.util.Locale;
 import java.util.Vector;
@@ -65,10 +65,14 @@ public class UserPreferences {
 
    public static boolean readBooleanPref(String prefName) {
       //Returns user's preference.  If none, default app property is returned.
+      return prefs.getBoolean(prefix + prefName.toLowerCase(),
+         AppProperties.getBooleanProperty(prefName));
+      /*
       //return string2Boolean(readPref(prefName));
       String fallback = boolean2String(AppProperties.getProperty(prefName).equals(
          AppProperties.getProperty("True")));
       return string2Boolean(prefs.get(prefix + prefName.toLowerCase(), fallback));
+      */
       }
 
    public static void savePref(String prefName, String prefValue) {
@@ -86,7 +90,12 @@ public class UserPreferences {
       prefs.remove(prefix + prefName.toLowerCase());
       }
 
-   
+   public static boolean exists(String prefName) {
+      //Returns true if the preferene has a value.
+      return !prefs.get(prefix + prefName.toLowerCase(),
+            prefValueNotFound).equals(prefValueNotFound);
+      }
+
    // Profiles
 
    public static void setCmdLineProfileName(String profileName) {
@@ -147,6 +156,7 @@ public class UserPreferences {
          }
       catch (BackingStoreException e) {
          allKeys = new String[0];
+         System.out.println(e.getLocalizedMessage());
          }
       return allKeys;
       }
@@ -173,33 +183,6 @@ public class UserPreferences {
       //      prefs.remove(keys[count]);
       }
 
-   public static void upgradeOldPrefs() {
-      if (prefs.get("SnapBackup~AppVersion", "").startsWith("2.5")) {
-         prefs.remove("SnapBackup~AppVersion");                //old
-         savePref("AppVersion", SystemAttributes.appVersion);  //new
-         for (String key : getAllKeys())
-            if (key.startsWith("SnapBackup~")) {
-               // "SnapBackup~%Main~SrcDataList" --> "snapbackup.~main~.srcdatalist"
-               prefs.put(key.replaceFirst("~%Main~", ".~main~.").toLowerCase(),
-                     prefs.get(key, ""));
-               prefs.remove(key);
-               }
-         /*
-         String[] keys = getAllKeys();
-         for (int count = 0; count < keys.length; count++)
-            if (keys[count].startsWith("SnapBackup~")) {
-               // "SnapBackup~%Main~SrcDataList" --> "snapbackup.~main~.srcdatalist"
-               prefs.put(keys[count].replaceFirst("~%Main~", ".~main~.").toLowerCase(),
-                     prefs.get(keys[count], ""));
-               prefs.remove(keys[count]);
-               }
-         */
-         savePref("CurrentProfile",     prefs.get("snapbackup.~main~.profilecurrent", ""));
-         savePref("~main~.ProfileName", prefs.get("snapbackup.~main~.profilecurrent", ""));
-         prefs.remove("snapbackup.~main~.profilecurrent");
-         }
-      }
-
    //Export/Import
    public static String readPrefByKey(String key) {
       return prefs.get(key, prefValueNotFound);
@@ -208,7 +191,7 @@ public class UserPreferences {
    public static void deleteAllPrefs() {
       for (String key : getAllKeys())
          prefs.remove(key);
-       }
+      }
 
    public static void savePrefByKey(String key, String prefValue) {
       prefs.put(key, prefValue);

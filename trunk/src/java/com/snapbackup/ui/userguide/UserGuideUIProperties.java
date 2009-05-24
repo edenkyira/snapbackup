@@ -25,8 +25,8 @@
 
 package com.snapbackup.ui.userguide;
 
-import com.snapbackup.utilities.settings.AppProperties;
-import com.snapbackup.utilities.settings.SystemAttributes;
+import com.snapbackup.settings.AppProperties;
+import com.snapbackup.settings.SystemAttributes;
 
 public class UserGuideUIProperties {
 
