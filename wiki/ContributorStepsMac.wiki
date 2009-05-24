@@ -4,25 +4,21 @@
 Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup source code and submit your changes.
 
 == 1. One-Time Environment and SVN Setup ==
-*A) Download and Install Xcode*
-   Get _*Xcode for Mac Development*_ at:
-      http://developer.apple.com/tools/download/
-   Open the downloaded _*.dmg*_ file and run _*!XcodeTools.mpkg*_ to complete the Xcode installation.  Use the default options.
-
-*B) Download and Install SVN Client*
-   To get the installer (binary), follow the _*openCollabNet*_ link in the _Mac OS X_ section at:
-      http://subversion.tigris.org/getting.html#binary-packages
-
-*C) Get Your Password*
+*A) Get Your Password*
    To obtain your password (needed for next step), visit:
       http://code.google.com/hosting/settings
 
-*D) Download Code*
+*B) Download Code*
    Run _Terminal_ (it's in `/Applications/Utilities`) and enter the following commands at the Unix shell prompt:
    || `$ mkdir ~/Projects` ||
    || `$ cd ~/Projects` ||
    || `$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
    In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.  If you get an "Error validating server certificate", you can enter "p" to permanently accept the certificate.
+
+*C) Download and Install Xcode (optional)*
+   If you plan to create the installer (see step 3B below), you need to get _*Xcode for Mac Development*_ at:
+      http://developer.apple.com/tools/download/
+   Open the downloaded _*.dmg*_ file and run _*!XcodeTools.mpkg*_ to complete the Xcode installation.  Use the default options.
 
 == 2. Core Contributor Steps ==
 *A) Build Current Project and Verify*
@@ -43,7 +39,7 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup
    In the above instructions, replace "`<COMMENT HERE>`" with a short description of the changes you made.
 
 == 3. Mac OS X Application with Installer ==
-*A) Create Mac Application (optional)*
+*A) Create Mac Application*
    To turn the Executable Java Archive (JAR) file into a proper [http://www.centerkey.com/mac/java/ Mac OS X application], open _Jar Bundler_  (it's in `/Developer/Applications/Utilities`) and follow these steps:
       # For "Main Class:", use the _*Choose...*_ button to navigate to the `~/Projects/snapbackup/build` folder and then _*Choose*_ the _*snapbackup.jar*_ file
       # Check the "Use Macintosh Menu Bar" option
