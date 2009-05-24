@@ -120,7 +120,7 @@ public class ZipEngine {
          }
       catch (PatternSyntaxException e) {
          JOptionPane.showMessageDialog(null, UIProperties.current.err10CannotParseFilter +
-               dataPrompt + regExEsc + dividerStr + e.getLocalizedMessage(), regExEsc,
+               dataPrompt + regExEsc + dividerStr + e.getMessage(), regExEsc,
                JOptionPane.ERROR_MESSAGE);
          initFilterInfo();
          }
@@ -169,7 +169,7 @@ public class ZipEngine {
          }
       catch (IOException e) {
          abortBackupAsk(UIProperties.current.err03ZippingFile + dataPrompt + filePath +
-            dividerStr + e.getLocalizedMessage());
+            dividerStr + e.getMessage());
          }
       }
    
@@ -284,7 +284,7 @@ public class ZipEngine {
             }
          catch (IOException e) {
             abortBackup(UIProperties.current.err01CreatingBackupFile,
-               e.getLocalizedMessage());
+               e.getMessage());
             }
       }
 

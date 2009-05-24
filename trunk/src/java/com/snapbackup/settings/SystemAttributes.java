@@ -87,7 +87,7 @@ public class SystemAttributes {
    public static final String headerPost =      "<br>&nbsp;</center></html>";
    public static final String feedbackEMail =   "feedback" + atSign + "snapbackup.com";
    public static final String postalAddress =   "Center Key Software\nBox 21\nSan Carlos, California  94070\nUSA";
-
+   public static final String updatesURL =      "http://www.snapbackup.com/version/";
    //Bootstrap data needed before reading properties file
    public static final String   errMsgHeader = "ERROR -- '";
    public static final String   errMsgMissingResource = "' property not found in: ";
@@ -96,8 +96,8 @@ public class SystemAttributes {
    public static final String   prefPrefix = appName.toLowerCase() + prefChar;
    public static final String   prefProfilePrefix = prefPrefix + "~";
    public static final String   prefProfilePostfix = "~" + prefChar;
-   public static final String   trueStr =  "true";  //Used to save pref data as text
-   public static final String   falseStr = "false";
+   //public static final String   trueStr =  "true";  //Used to save pref data as text
+   //public static final String   falseStr = "false";
    public static final String   splitStr = "~@~";  //Delimitter for multi-line data
    public static final String   cmdLineDefaultProfile = "~";
 

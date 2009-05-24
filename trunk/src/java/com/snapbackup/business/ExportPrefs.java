@@ -40,7 +40,7 @@ import org.w3c.dom.Element;
 import com.snapbackup.settings.UserPreferences;
 import com.snapbackup.settings.SystemAttributes;
 
-public class ExportDataModel {
+public class ExportPrefs {
 
    public static final String xmlExtention =            ".xml";
    public static final String xmlTopNodeName =          "snapbackup";
@@ -63,7 +63,7 @@ public class ExportDataModel {
    public class XmlFileFilter extends FileFilter {
       public boolean accept(File f) {
          return f.isDirectory() || f.getName().toLowerCase().endsWith(
-               ExportDataModel.xmlExtention);
+               ExportPrefs.xmlExtention);
          }
       public String getDescription() {
          return "XML files";
@@ -81,7 +81,7 @@ public class ExportDataModel {
          xformer.transform(source, result);
          }
       catch (Exception e) {
-         errMsg = e.getLocalizedMessage();
+         errMsg = e.getMessage();
          }
       return errMsg;
       }
@@ -95,7 +95,7 @@ public class ExportDataModel {
          xmlBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
          }
       catch (Exception e) {
-         errMsg = e.getLocalizedMessage();
+         errMsg = e.getMessage();
          }
       xmlDoc = xmlBuilder.newDocument();
       Element topNode = xmlDoc.createElement(xmlTopNodeName);

@@ -31,7 +31,7 @@ public class PrintUtilities implements Printable {
         printJob.print();
       }
       catch (PrinterException e) {
-         JOptionPane.showMessageDialog(null, e.getLocalizedMessage(),
+         JOptionPane.showMessageDialog(null, e.getMessage(),
             UIProperties.current.err25PrintFailure, JOptionPane.ERROR_MESSAGE);
       }
   }

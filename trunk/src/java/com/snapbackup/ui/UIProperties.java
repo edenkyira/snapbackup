@@ -98,6 +98,7 @@ public class UIProperties {
    //Menus (Help Menu)
    public final String menuGroupHelp =        AppProperties.getProperty("MenuGroupHelp");
    public final String menuItemGuide =        AppProperties.getProperty("MenuItemGuide");
+   public final String menuItemUpdates =      AppProperties.getProperty("MenuItemUpdates");
    public final String menuItemAbout =        AppProperties.getProperty("MenuItemAbout");
 
    //Filters

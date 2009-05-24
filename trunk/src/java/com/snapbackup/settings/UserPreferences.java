@@ -42,6 +42,7 @@ public class UserPreferences {
    static final String prefValueNotFound = "NOT FOUND";
    static String cmdLineProfileName = null;
 
+   /*
    static String boolean2String (boolean tf) {
       return (tf ? SystemAttributes.trueStr : SystemAttributes.falseStr);
       }
@@ -49,6 +50,7 @@ public class UserPreferences {
    static boolean string2Boolean (String tf) {
       return (tf.compareTo(SystemAttributes.trueStr) == 0);
       }
+   */
 
    public static String readLocalePref() {
       return prefs.get(prefix + locale, Locale.getDefault().getLanguage());
@@ -82,7 +84,7 @@ public class UserPreferences {
 
    public static void savePref(String prefName, boolean prefValue) {
       //Stores user's preference.
-      savePref(prefName, boolean2String(prefValue));
+      prefs.putBoolean(prefix + prefName.toLowerCase(), prefValue);
       }
 
    public static void deletePref(String prefName) {
@@ -140,7 +142,7 @@ public class UserPreferences {
 
    public static void saveProfilePref(String prefName, boolean prefValue) {
        //Stores user's preference.
-       prefs.put(profilePrefix() + prefName.toLowerCase(), boolean2String(prefValue));
+       prefs.putBoolean(profilePrefix() + prefName.toLowerCase(), prefValue);
        }
 
    public static void deleteProfilePref(String prefName) {
@@ -156,7 +158,7 @@ public class UserPreferences {
          }
       catch (BackingStoreException e) {
          allKeys = new String[0];
-         System.out.println(e.getLocalizedMessage());
+         System.out.println(e.getMessage());
          }
       return allKeys;
       }

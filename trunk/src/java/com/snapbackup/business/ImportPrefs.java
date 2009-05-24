@@ -41,7 +41,7 @@ import org.w3c.dom.NodeList;
 import com.snapbackup.settings.SystemAttributes;
 import com.snapbackup.settings.UserPreferences;
 
-public class ImportDataModel {
+public class ImportPrefs {
 
    public static String xmlToData (String xml) {
       //See ExportDataModel.dataToXml
@@ -49,7 +49,7 @@ public class ImportDataModel {
          "&lt;", "<").replace(
          "&gt;", ">").replace(
          "&amp;", "&").replace(
-         ExportDataModel.userHomeFolderMarker, SystemAttributes.userHomeDir);
+         ExportPrefs.userHomeFolderMarker, SystemAttributes.userHomeDir);
       }
 
    void loadSettings(NodeList settings) {
@@ -79,10 +79,10 @@ public class ImportDataModel {
          DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
          DocumentBuilder xmlBuilder = docBuilderFactory.newDocumentBuilder();
          xmlDoc = xmlBuilder.parse(new File(fileName));
-         loadSettings(xmlDoc.getElementsByTagName(ExportDataModel.xmlSettingNodeName));
+         loadSettings(xmlDoc.getElementsByTagName(ExportPrefs.xmlSettingNodeName));
          }
       catch (Exception e) {
-         errMsg = e.getLocalizedMessage();
+         errMsg = e.getMessage();
          }
       return errMsg;
       }

@@ -33,17 +33,17 @@ public class AboutUIProperties {
    //
    //From .properties File
    //
-   public final String aboutTitle =              AppProperties.getPropertyPadded("AboutTitle");
-   public final String aboutAppTitle =           AppProperties.getProperty("ApplicationTitle");
-   public final String aboutVersion =            AppProperties.getProperty("AboutVersion") + space + SystemAttributes.appVersion;
-   public final String aboutCreatedBy =          AppProperties.getProperty("AboutCreatedBy") + space + SystemAttributes.appAuthors;
-   public final String aboutTranslatedBy =       AppProperties.getProperty("AboutTranslatedBy");
-   public final String aboutAnd =                AppProperties.getProperty("AboutAnd");
-   public final String aboutLicense =            AppProperties.getProperty("AboutLicense");
-   public final String aboutDownload =           AppProperties.getProperty("AboutDownload");
-   public final String aboutConfigurationTitle = AppProperties.getPropertyPadded("AboutConfigurationTitle");
-   public final String aboutContact =            AppProperties.getProperty("AboutContactInfo");
-   public final String aboutCopyright =          AppProperties.getProperty("AboutCopyright");
-   public final String aboutButtonWeb =          AppProperties.getProperty("AboutButtonWeb");
-   public final String aboutButtonClose =        AppProperties.getProperty("AboutButtonClose");
+   public final String aboutTitle =        AppProperties.getPropertyPadded("AboutTitle");
+   public final String aboutAppTitle =     AppProperties.getProperty("ApplicationTitle");
+   public final String aboutVersion =      AppProperties.getProperty("AboutVersion") + space + SystemAttributes.appVersion;
+   public final String aboutCreatedBy =    AppProperties.getProperty("AboutCreatedBy") + space + SystemAttributes.appAuthors;
+   public final String aboutTranslatedBy = AppProperties.getProperty("AboutTranslatedBy");
+   public final String aboutAnd =          AppProperties.getProperty("AboutAnd");
+   public final String aboutLicense =      AppProperties.getProperty("AboutLicense");
+   public final String aboutDownload =     AppProperties.getProperty("AboutDownload");
+   public final String aboutCfgTitle =     AppProperties.getPropertyPadded("AboutConfigurationTitle");
+   public final String aboutContact =      AppProperties.getProperty("AboutContactInfo");
+   public final String aboutCopyright =    AppProperties.getProperty("AboutCopyright");
+   public final String aboutButtonWeb =    AppProperties.getProperty("AboutButtonWeb");
+   public final String aboutButtonClose =  AppProperties.getProperty("AboutButtonClose");
    }

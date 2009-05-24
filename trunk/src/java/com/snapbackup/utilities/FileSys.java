@@ -66,7 +66,7 @@ public class FileSys {
             folderExists = f.mkdirs();
          }
       catch (Exception e) {
-         errMsg = e.getLocalizedMessage();
+         errMsg = e.getMessage();
          }
       return folderExists;
       }
@@ -133,15 +133,15 @@ public class FileSys {
             zip.abortBackup(UIProperties.current.err08ArchiveCanceled, destFileName);
          }
       catch (IOException e) {
-         zip.abortBackup(UIProperties.current.err09ArchiveProblem, e.getLocalizedMessage());
+         zip.abortBackup(UIProperties.current.err09ArchiveProblem, e.getMessage());
          }
       finally {
          if (source != null)
             try { source.close(); }
-            catch (IOException e) { Logger.logMsg(e.getLocalizedMessage()); }
+            catch (IOException e) { Logger.logMsg(e.getMessage()); }
             if (dest != null)
                try { dest.close(); }
-               catch (IOException e) { Logger.logMsg(e.getLocalizedMessage()); }
+               catch (IOException e) { Logger.logMsg(e.getMessage()); }
          }
       }
    

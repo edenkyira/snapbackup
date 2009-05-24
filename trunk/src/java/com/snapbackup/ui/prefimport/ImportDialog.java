@@ -33,8 +33,8 @@ import java.io.File;
 
 import javax.swing.*;
 
-import com.snapbackup.business.ExportDataModel;
-import com.snapbackup.business.ImportDataModel;
+import com.snapbackup.business.ExportPrefs;
+import com.snapbackup.business.ImportPrefs;
 import com.snapbackup.ui.Application;
 import com.snapbackup.ui.Icons;
 import com.snapbackup.ui.UIUtilities;
@@ -125,7 +125,7 @@ public class ImportDialog extends JDialog {
    void locationChooserButtonAction(ActionEvent e) {
       JFileChooser locationFileChooser = new JFileChooser();
       locationFileChooser.setSelectedFile(new File(locationTextField.getText()));
-      locationFileChooser.setFileFilter(new ExportDataModel().xmlFilter);
+      locationFileChooser.setFileFilter(new ExportPrefs().xmlFilter);
       int returnStatus = locationFileChooser.showOpenDialog(this);
       if (returnStatus == JFileChooser.APPROVE_OPTION)
          locationTextField.setText(
@@ -137,7 +137,7 @@ public class ImportDialog extends JDialog {
       }
 
    void actionImport() {
-      String errMsg = new ImportDataModel().doImport(locationTextField.getText());
+      String errMsg = new ImportPrefs().doImport(locationTextField.getText());
       if (errMsg == null) {
          JOptionPane.showMessageDialog(this, ui.msgSuccess, new Export().Settings,
                JOptionPane.PLAIN_MESSAGE);

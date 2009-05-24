@@ -25,7 +25,7 @@
 
 package com.snapbackup.ui.prefexport;
 
-import com.snapbackup.business.ExportDataModel;
+import com.snapbackup.business.ExportPrefs;
 import com.snapbackup.settings.SystemAttributes;
 import com.snapbackup.settings.AppProperties;
 
@@ -38,5 +38,5 @@ public class Export {
    public final String Settings =        AppProperties.getProperty("ExportSettings");
    public final String defaultSettingsFileName =
          SystemAttributes.userHomeDir + SystemAttributes.fileSeparator +
-         SystemAttributes.appName + Settings + ExportDataModel.xmlExtention;
+         SystemAttributes.appName + Settings + ExportPrefs.xmlExtention;
    }
