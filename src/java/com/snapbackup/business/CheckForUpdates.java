@@ -35,21 +35,18 @@ import com.snapbackup.settings.SystemAttributes;
 
 public class CheckForUpdates {
 
-   public static String getMessage() {
-      String msg;
+   public static String getLatestVersion() {
       try {
          URLConnection connection =
             new URL(SystemAttributes.updatesURL).openConnection();
          //connection.setReadTimeout(10000);
          BufferedReader reader = new BufferedReader(new InputStreamReader((
             InputStream) connection.getContent()));
-         String line = reader.readLine();
-         msg = "The current version is: " + line;
+         return reader.readLine();
          }
       catch (Exception e) { //NoRouteToHostException or ConnectException
-         msg = e.toString();
+         return null;
          }
-      return msg;
       }
 
    }

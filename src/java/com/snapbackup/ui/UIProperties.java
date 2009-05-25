@@ -67,6 +67,15 @@ public class UIProperties {
    public static String skinSetMsg =          AppProperties.getProperty("LookAndFeelSetMsg");
    public static String skinErrMsg =          AppProperties.getProperty("LookAndFeelErrMsg");
 
+   //Check for Updates
+   public final String updatesVersionYours =     AppProperties.getProperty("UpdatesVersionYours");
+   public final String updatesVersionIsCurrent = AppProperties.getProperty("UpdatesVersionIsCurrent");
+   public final String updatesVersionNew =       AppProperties.getProperty("UpdatesVersionNew");
+   public final String updatesButtonDownload =   AppProperties.getProperty("UpdatesButtonDownload");
+   public final String updatesButtonCancel =     AppProperties.getProperty("UpdatesButtonCancel");
+   public final String updatesErrMsg1 =          AppProperties.getProperty("UpdatesErrMsg1");
+   public final String updatesErrMsg2 =          AppProperties.getProperty("UpdatesErrMsg2");
+
    //Header
    public final String appTitle =             AppProperties.getProperty("ApplicationTitle");
    public final String appTitleLocalized =    AppProperties.getProperty("OptionalLocalizedApplicationTitle");
