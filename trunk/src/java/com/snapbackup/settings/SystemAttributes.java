@@ -87,7 +87,11 @@ public class SystemAttributes {
    public static final String headerPost =      "<br>&nbsp;</center></html>";
    public static final String feedbackEMail =   "feedback" + atSign + "snapbackup.com";
    public static final String postalAddress =   "Center Key Software\nBox 21\nSan Carlos, California  94070\nUSA";
-   public static final String updatesURL =      "http://www.snapbackup.com/version/";
+   public static final String homeURL =         "http://www.snapbackup.com";  //on About Box
+   public static final String updatesURL =      homeURL + "/version/";  //not displayed
+   public static final String downloadURL =     homeURL + "/download";  //on About Box
+   public static final String visitURL =        homeURL + "/app?v=" + appVersion;  //not displayed
+
    //Bootstrap data needed before reading properties file
    public static final String   errMsgHeader = "ERROR -- '";
    public static final String   errMsgMissingResource = "' property not found in: ";

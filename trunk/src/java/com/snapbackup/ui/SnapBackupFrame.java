@@ -35,6 +35,8 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import com.centerkey.utils.BareBonesBrowserLaunch;
+
 import com.snapbackup.business.DataModel;
 import com.snapbackup.business.CheckForUpdates;
 import com.snapbackup.ui.about.AboutDialog;
@@ -784,7 +786,24 @@ public class SnapBackupFrame extends JFrame {
       UIUtilities.centerDialog(guideDialog, this);
       }
    public void updatesMenuItemAction(ActionEvent e) {
-      popupMsg(CheckForUpdates.getMessage(), ui.menuItemUpdates);
+      String latestVersion = CheckForUpdates.getLatestVersion();
+      String nl = SystemAttributes.newLine;
+      String sp = SystemAttributes.space;
+      if (latestVersion == null)
+         popupMsg(ui.updatesErrMsg1 + nl + nl + ui.updatesErrMsg2, ui.menuItemUpdates);
+      else if (latestVersion.equals(SystemAttributes.appVersion))
+         popupMsg(ui.updatesVersionYours + sp + SystemAttributes.appVersion +
+            nl + nl + ui.updatesVersionIsCurrent, ui.menuItemUpdates);
+      else {
+         String[] options = { ui.updatesButtonDownload, ui.updatesButtonCancel } ;
+         if (JOptionPane.showOptionDialog(this,
+               ui.updatesVersionYours + sp + SystemAttributes.appVersion +
+               nl + nl + ui.updatesVersionNew + sp + latestVersion,
+               ui.menuItemUpdates, JOptionPane.YES_NO_OPTION,
+               JOptionPane.PLAIN_MESSAGE, null, options,
+               ui.updatesButtonDownload) == 0)
+            BareBonesBrowserLaunch.openURL(SystemAttributes.downloadURL);
+         }
       }
    public void aboutMenuItemAction(ActionEvent e) {
       AboutDialog aboutDialog = new AboutDialog();
@@ -809,7 +828,7 @@ public class SnapBackupFrame extends JFrame {
           UserPreferences.savePref(DataModel.prefCurrentProfile, getCurrentProfileName());
           }
        }
-   public void profilesNewButtonAction(ActionEvent e) {   //is 'e' even needed????
+   public void profilesNewButtonAction(ActionEvent e) {
       String profileName =
          JOptionPane.showInputDialog(null, ui.profilesAddPrompt, ui.profilesAddTitle, JOptionPane.PLAIN_MESSAGE);
       if (profileName != null) {

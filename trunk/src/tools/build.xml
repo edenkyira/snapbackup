@@ -79,7 +79,7 @@
 
       <!--  Display Snap Backup Version  -->
       <loadfile srcfile="${JavaSource}/com/snapbackup/settings/SystemAttributes.java" property="version">
-         <filterchain><linecontains><contains value="appVersion"/></linecontains></filterchain>
+         <filterchain><linecontains><contains value="appVersion ="/></linecontains></filterchain>
          </loadfile>
       <echo message="${version}"/>
 

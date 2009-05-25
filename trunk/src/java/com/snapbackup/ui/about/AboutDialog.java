@@ -27,11 +27,6 @@ package com.snapbackup.ui.about;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 
 import javax.swing.*;
 
@@ -49,33 +44,34 @@ public class AboutDialog extends JDialog {
    static final String tab =           SystemAttributes.tab;
    static final String comma =         SystemAttributes.comma;
    static final String newLine =       SystemAttributes.newLine;
-   static final String homeURL =       "http://www.snapbackup.com";
-   static final String launchURL =     homeURL + "/app?v=" + SystemAttributes.appVersion;
-   static final String downloadURL =   homeURL + "/download";
+   static final String[] translators = SystemAttributes.appTranslators;
    static final String urlKey =        "url";  //used as key to save URL for each translator
    static final String hey =           "Hey, don't press the '[' key!";
-   static final String[] translators = SystemAttributes.appTranslators;
 
-   AboutUIProperties ui = new AboutUIProperties();   //make singleton for performance????
-   final String contactInfoStr = ui.aboutContact + newLine +
-      SystemAttributes.postalAddress + newLine + homeURL + newLine +
-      SystemAttributes.feedbackEMail;
+   AboutUIProperties ui = new AboutUIProperties();
+   final String copyrightStr =   "<html>" + ui.aboutCopyright + space +
+      SystemAttributes.appCopyright + "</html>";
+   final String licenseStr =     ui.aboutLicense + newLine + newLine +
+      ui.aboutDownload + newLine + tab + SystemAttributes.downloadURL;
+   final String contactInfoStr = (ui.aboutContact + newLine +
+      SystemAttributes.postalAddress + newLine + SystemAttributes.homeURL +
+      newLine + SystemAttributes.feedbackEMail).replaceAll(newLine, newLine + tab);
 
    //Define About Controls
-   JPanel    aboutPanel =   new JPanel();
-   JLabel    logo =         new JLabel(Icons.logoIcon);
-   JLabel    productName =  new JLabel(UIProperties.current.header);
-   JLabel    version =      new JLabel(ui.aboutVersion);
-   JLabel    author =       new JLabel(ui.aboutCreatedBy);
+   JPanel    aboutPanel =        new JPanel();
+   JLabel    logo =              new JLabel(Icons.logoIcon);
+   JLabel    productName =       new JLabel(UIProperties.current.header);
+   JLabel    version =           new JLabel(ui.aboutVersion);
+   JLabel    author =            new JLabel(ui.aboutCreatedBy);
    JPanel    translatorsPanel =  new JPanel();
-   JLabel    translatedBy = new JLabel(ui.aboutTranslatedBy + space);
-   JLabel    copyright =    new JLabel("<html>" + ui.aboutCopyright + space + SystemAttributes.appCopyright + "</html>");
-   JTextArea license =      new JTextArea(ui.aboutLicense + newLine + newLine + ui.aboutDownload + newLine + tab + downloadURL);
-   JTextArea configInfo =   new JTextArea();
-   JTextArea contactInfo =  new JTextArea(contactInfoStr.replaceAll(newLine, newLine + tab));
-   JButton   webButton =    new JButton(ui.aboutButtonWeb);
-   JButton   closeButton =  new JButton(ui.aboutButtonClose);
-   JButton[] buttonList =   { webButton, closeButton };
+   JLabel    translatedBy =      new JLabel(ui.aboutTranslatedBy + space);
+   JLabel    copyright =         new JLabel(copyrightStr);
+   JTextArea license =           new JTextArea(licenseStr);
+   JTextArea configInfo =        new JTextArea();
+   JTextArea contactInfo =       new JTextArea(contactInfoStr);
+   JButton   webButton =         new JButton(ui.aboutButtonWeb);
+   JButton   closeButton =       new JButton(ui.aboutButtonClose);
+   JButton[] buttonList =        { webButton, closeButton };
 
    public void initGUI() {
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -151,7 +147,7 @@ public class AboutDialog extends JDialog {
       webButton.setBackground(Color.white);
       webButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            BareBonesBrowserLaunch.openURL(launchURL); }
+            BareBonesBrowserLaunch.openURL(SystemAttributes.visitURL); }
          } );
       closeButton.setBackground(Color.white);
       closeButton.addActionListener(new ActionListener() {
@@ -161,14 +157,18 @@ public class AboutDialog extends JDialog {
       UIUtilities.addFastKeys(buttonList);
       UIUtilities.makeBold(closeButton);
       getRootPane().setDefaultButton(closeButton);
-      getRootPane().registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-               closeButtonAction(); } },
-            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-            JComponent.WHEN_IN_FOCUSED_WINDOW);
-      getRootPane().registerKeyboardAction(actionListener,  //Easter egg for '['
-            KeyStroke.getKeyStroke(KeyEvent.VK_OPEN_BRACKET, 0),
-            JComponent.WHEN_IN_FOCUSED_WINDOW);  //registerKeyboardAction is now obsolete
+      getRootPane().registerKeyboardAction(  //WARNING: Obsolete method
+         new ActionListener() {
+            public void actionPerformed(ActionEvent e) { closeButtonAction(); } },
+         KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),  //press esc key
+         JComponent.WHEN_IN_FOCUSED_WINDOW);
+      getRootPane().registerKeyboardAction(  //WARNING: Obsolete method
+         new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+               JOptionPane.showMessageDialog(null, hey, ui.aboutVersion,
+                  JOptionPane.PLAIN_MESSAGE); } },
+         KeyStroke.getKeyStroke(KeyEvent.VK_OPEN_BRACKET, 0),  //don't press '['
+         JComponent.WHEN_IN_FOCUSED_WINDOW);
       }
 
    public void addContols() {
@@ -200,25 +200,5 @@ public class AboutDialog extends JDialog {
    public void closeButtonAction() {
       this.dispose();
       }
-   ActionListener actionListener = new ActionListener() {
-       public void actionPerformed(ActionEvent actionEvent) {
-           String msg = hey;
-           JOptionPane.showMessageDialog(null, msg, ui.aboutVersion, JOptionPane.PLAIN_MESSAGE);
-           try {
-              URLConnection connection = new URL("http://www.snapbackup.com/version/").openConnection();
-              //connection.setReadTimeout(10000);
-              BufferedReader reader = new BufferedReader(new InputStreamReader((
-                 InputStream) connection.getContent()));
-              String line = reader.readLine();
-              JOptionPane.showMessageDialog(null, line, ui.aboutVersion, JOptionPane.PLAIN_MESSAGE);
-              }
-           catch (Exception e) {
-              //java.net.NoRouteToHostException or java.net.ConnectException
-              JOptionPane.showMessageDialog(null, "Update check error: " +
-                    e.getMessage() + " > " + e.getClass().getName(),
-                    ui.aboutVersion, JOptionPane.ERROR_MESSAGE);
-              }
-           }
-       };
 
    }
