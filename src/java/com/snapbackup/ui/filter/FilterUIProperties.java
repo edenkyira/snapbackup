@@ -44,6 +44,6 @@ public class FilterUIProperties {
    public final String filterRuleExcludeSizeUnits =   AppProperties.getPropertyPadded("FilterMarkerUnits");
    public final String filterRuleNote =               AppProperties.getProperty("FilterRuleNote");
    public final String filterRuleButtonDelete =       AppProperties.getProperty("FilterRuleButtonDelete");
-   public final String filterRuleButtonCancel =       AppProperties.getProperty("FilterRuleButtonCancel");
-   public final String filterRuleButtonOk =           AppProperties.getProperty("FilterRuleButtonOk");
+   public final String filterRuleButtonCancel =       AppProperties.getProperty("ButtonCancel");
+   public final String filterRuleButtonOk =           AppProperties.getProperty("ButtonOk");
    }

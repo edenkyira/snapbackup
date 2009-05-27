@@ -55,7 +55,7 @@ class OptionsUIProperties {
    final String numRowsSrcPrompt =          AppProperties.getPropertyPadded("SourcePrompt");
    final String numRowsLogPrompt =          " " + AppProperties.getProperty("LogTitle") + ": ";
       
-   final String buttonCancel =              AppProperties.getProperty("OptionsButtonCancel");
+   final String buttonCancel =              AppProperties.getProperty("ButtonCancel");
    final String buttonDefaults =            AppProperties.getProperty("OptionsButtonDefaults");
-   final String buttonOk =                  AppProperties.getProperty("OptionsButtonOk");
+   final String buttonOk =                  AppProperties.getProperty("ButtonOk");
    }

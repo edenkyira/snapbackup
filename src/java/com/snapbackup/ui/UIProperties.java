@@ -72,7 +72,7 @@ public class UIProperties {
    public final String updatesVersionIsCurrent = AppProperties.getProperty("UpdatesVersionIsCurrent");
    public final String updatesVersionNew =       AppProperties.getProperty("UpdatesVersionNew");
    public final String updatesButtonDownload =   AppProperties.getProperty("UpdatesButtonDownload");
-   public final String updatesButtonCancel =     AppProperties.getProperty("UpdatesButtonCancel");
+   public final String updatesButtonCancel =     AppProperties.getProperty("ButtonCancel");
    public final String updatesErrMsg1 =          AppProperties.getProperty("UpdatesErrMsg1");
    public final String updatesErrMsg2 =          AppProperties.getProperty("UpdatesErrMsg2");
 
@@ -115,7 +115,7 @@ public class UIProperties {
    //public final String FiltersTitle =         AppProperties.getProperty("FiltersTitle");
    //public final String FiltersSave =          AppProperties.getProperty("FiltersButtonSave");
    //public final String FiltersDelete =        AppProperties.getProperty("FiltersButtonDelete");
-   //public final String FiltersCancel =        AppProperties.getProperty("FiltersButtonCancel");
+   //public final String FiltersCancel =        AppProperties.getProperty("ButtonCancel");
 
    //Profiles
    public final String profilesOffMsg =       AppProperties.getProperty("ProfilesOffMsg");
