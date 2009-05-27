@@ -38,7 +38,7 @@ class ImportUIProperties {
          AppProperties.getProperty("ImportWarning") + "</b> " +
          AppProperties.getProperty("ImportWarningMessage") + "</html>";
 
-   final String buttonCancel =     AppProperties.getProperty("ImportButtonCancel");
+   final String buttonCancel =     AppProperties.getProperty("ButtonCancel");
    final String buttonImport =     AppProperties.getProperty("ImportButtonAction");
 
    final String msgSuccess =       AppProperties.getProperty("ImportMsgSuccess");

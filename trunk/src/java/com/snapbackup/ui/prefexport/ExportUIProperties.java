@@ -37,7 +37,7 @@ class ExportUIProperties {
    final String locationDetails2 = AppProperties.getProperty("ExportLocationDetails2");
    final String locationCmd =      AppProperties.getProperty("ExportLocationCommand");
 
-   final String buttonCancel =     AppProperties.getProperty("ExportButtonCancel");
+   final String buttonCancel =     AppProperties.getProperty("ButtonCancel");
    final String buttonExport =     AppProperties.getProperty("ExportButtonAction");
 
    final String msgSuccess =       AppProperties.getProperty("ExportMsgSuccess");
