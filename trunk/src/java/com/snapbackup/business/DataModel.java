@@ -511,9 +511,12 @@ public class DataModel {
             }
          }
       new BackupSwingWorker().execute();
-      UIUtilities.centerDialog(backupProgress);
+      //UIUtilities.centerDialog(backupProgress);
+      backupProgress.setLocationRelativeTo(SnapBackupFrame.current);
+      backupProgress.setVisible(true);
       }
 
+   /*
    public static void doBackupNow() {
       final ZipEngine zip = new ZipEngine();
       final BackupProgressDialog backupProgress = new BackupProgressDialog(zip);
@@ -564,6 +567,7 @@ public class DataModel {
       worker.start();
       UIUtilities.centerDialog(backupProgress);
       }
+   */
 
    static void loadCmdLineData() {
       cmdBackupDir =   UserPreferences.readProfilePref(prefBackupDir);
