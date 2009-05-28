@@ -51,7 +51,9 @@ public class SplashScreen extends JDialog {
       setResizable(false);
       setUndecorated(true);
       pack();
-      UIUtilities.centerDialog(this);
+      setLocationRelativeTo(null);
+      setVisible(true);
+      //UIUtilities.centerDialog(this);
       }
 
    public void delete() {

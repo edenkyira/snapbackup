@@ -61,7 +61,7 @@ public class ImportDialog extends JDialog {
    JButton      actionButton =            new JButton(ui.buttonImport);
    JButton[]    buttonList =              { cancelButton, actionButton };
 
-   public void initGUI() {
+   public void initGUI(Component parent) {
       AppProperties.addSupplimentalProperty(Export.prefSettingsFileName,
          new Export().defaultSettingsFileName);
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -72,6 +72,8 @@ public class ImportDialog extends JDialog {
       setModal(true);
       setResizable(false);
       pack();
+      setLocationRelativeTo(parent);
+      setVisible(true);
       }
 
    void configureContols() {

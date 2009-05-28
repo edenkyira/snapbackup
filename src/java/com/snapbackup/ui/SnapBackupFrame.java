@@ -753,20 +753,20 @@ public class SnapBackupFrame extends JFrame {
       }
    public void exportMenuItemAction(ActionEvent e) {
       ExportDialog exportDialog = new ExportDialog();
-      exportDialog.initGUI();
-      UIUtilities.centerDialog(exportDialog, this);
+      exportDialog.initGUI(this);
+      //UIUtilities.centerDialog(exportDialog, this);
       }
    public void importMenuItemAction(ActionEvent e) {
       ImportDialog importDialog = new ImportDialog();
-      importDialog.initGUI();
-      UIUtilities.centerDialog(importDialog, this);
+      importDialog.initGUI(this);
+      //UIUtilities.centerDialog(importDialog, this);
       }
    public void optionsMenuItemAction(ActionEvent e) {
       String oldNumRowsSrc = UserPreferences.readPref(Options.prefNumRowsSrc);
       String oldNumRowsLog = UserPreferences.readPref(Options.prefNumRowsLog);
       OptionsDialog optionsDialog = new OptionsDialog(destBackupNameTextField.getText());
-      optionsDialog.initGUI();
-      UIUtilities.centerDialog(optionsDialog, this);
+      optionsDialog.initGUI(this);
+      //UIUtilities.centerDialog(optionsDialog, this);
       DataModel.updateDestPaths(this);
       if (!oldNumRowsSrc.equals(UserPreferences.readPref(Options.prefNumRowsSrc)) ||
          !oldNumRowsLog.equals(UserPreferences.readPref(Options.prefNumRowsLog))) {
@@ -781,9 +781,9 @@ public class SnapBackupFrame extends JFrame {
          }
       }
    public void guideMenuItemAction(ActionEvent e) {
-      UserGuideDialog guideDialog = new UserGuideDialog();
-      guideDialog.initGUI(this.getSize());
-      UIUtilities.centerDialog(guideDialog, this);
+      new UserGuideDialog().initGUI(this);
+      //guideDialog.initGUI(this);
+      //UIUtilities.centerDialog(guideDialog, this);
       }
    public void updatesMenuItemAction(ActionEvent e) {
       String latestVersion = CheckForUpdates.getLatestVersion();
@@ -806,9 +806,9 @@ public class SnapBackupFrame extends JFrame {
          }
       }
    public void aboutMenuItemAction(ActionEvent e) {
-      AboutDialog aboutDialog = new AboutDialog();
-      aboutDialog.initGUI();
-      UIUtilities.centerDialog(aboutDialog, this);
+      new AboutDialog().initGUI(this);
+      //aboutDialog.initGUI(this);
+      //UIUtilities.centerDialog(aboutDialog, this);
       }
 
    //Language Icon Callbacks
@@ -898,9 +898,9 @@ public class SnapBackupFrame extends JFrame {
       DataModel.removeCurrentZipItem(this);
       }
    public void srcFilterButtonAction(ActionEvent e) {
-      FilterDialog dialog = new FilterDialog();
-      dialog.initGUI();
-      UIUtilities.centerDialog(dialog, this);
+      new FilterDialog().initGUI(this);
+      //dialog.initGUI();
+      //UIUtilities.centerDialog(dialog, this);
       }
 
 

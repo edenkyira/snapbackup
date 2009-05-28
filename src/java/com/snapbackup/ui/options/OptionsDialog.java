@@ -101,7 +101,7 @@ public class OptionsDialog extends JDialog {
       coreBackupName = SystemAttributes.space + backupName;
       }
 
-   public void initGUI() {
+   public void initGUI(Component parent) {
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
       setTitle(ui.title);
       configureContols();
@@ -112,6 +112,8 @@ public class OptionsDialog extends JDialog {
       setModal(true);
       setResizable(false);
       pack();
+      setLocationRelativeTo(parent);
+      setVisible(true);
       }
 
    void configureContols() {

@@ -111,6 +111,7 @@ public class UIUtilities {
       frame.setVisible(true);
       }
 
+   /*
    private static void centerDialog(JDialog dialog, Dimension bkgndSize,
          int offsetX, int offsetY) {
       Dimension dialogSize = dialog.getPreferredSize();
@@ -128,6 +129,7 @@ public class UIUtilities {
       centerDialog(dialog, frame.getSize(), frame.getLocation().x,
             frame.getLocation().y);
       }
+   */
 
    public static void addFastKeys(JMenuBar menuBar) {
       for (Component menuComponent : menuBar.getComponents()) {  //iterate over menus

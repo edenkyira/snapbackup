@@ -25,9 +25,9 @@
 
 package com.snapbackup.ui.userguide;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -44,27 +44,32 @@ public class UserGuideDialog extends JDialog {
    UserGuideUIProperties ui = new UserGuideUIProperties();
 
    //Define About Controls
-   JPanel      headerPanel =  new JPanel();
-   JPanel      buttonPanel =  new JPanel();
-   JLabel      titleLabel =   new JLabel(ui.userGuideHeader);
-   JLabel      versionLabel = new JLabel(ui.userGuideVersion);
-   JScrollPane scrollPane =   new JScrollPane();
-   JEditorPane html;
-   JButton     printButton =  new JButton(ui.userGuideButtonPrint);
-   JButton     closeButton =  new JButton(ui.userGuideButtonClose);
-   JButton[]   buttonList =   { printButton, closeButton };
+   JPanel      basePanel =      new JPanel();
+   JPanel      headerPanel =    new JPanel();
+   JPanel      buttonPanel =    new JPanel();
+   JLabel      titleLabel =     new JLabel(ui.userGuideHeader);
+   JLabel      versionLabel =   new JLabel(ui.userGuideVersion);
+   JScrollPane htmlScrollPane = new JScrollPane();
+   JEditorPane htmlEditorPane;
+   JButton     printButton =    new JButton(ui.userGuideButtonPrint);
+   JButton     closeButton =    new JButton(ui.userGuideButtonClose);
+   JButton[]   buttonList =     { printButton, closeButton };
 
-   public void initGUI(Dimension parentSize) {
+   public void initGUI(Component parent) {
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
       setTitle(ui.userGuideTitle);
-      configureContols(parentSize.getWidth() * UserGuideUIProperties.userGuideSizeScaleX,
-         parentSize.getHeight() * UserGuideUIProperties.userGuideSizeScaleY);
+      configureContols(parent);
       addContols();
+      getContentPane().add(basePanel);
       setResizable(true);
       pack();
+      setLocationRelativeTo(parent);
+      setVisible(true);
       }
 
-   public void configureContols(double width, double height) {
+   public void configureContols(Component parent) {
+      basePanel.setLayout(new BoxLayout(basePanel, BoxLayout.PAGE_AXIS));
+      basePanel.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
       headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.PAGE_AXIS));
       UIUtilities.makeBold(titleLabel);
       UIUtilities.bumpUpFontSize(titleLabel, 3);
@@ -72,15 +77,25 @@ public class UserGuideDialog extends JDialog {
       versionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
       URL url = getClass().getResource(UserGuideUIProperties.userGuideURL);
       try {
-         html = new JEditorPane(url);
+         htmlEditorPane = new JEditorPane(url);
          }
       catch (IOException e) {
-         html = new JEditorPane(UserGuideUIProperties.userGuideErrMsgMIME,
+         htmlEditorPane = new JEditorPane(UserGuideUIProperties.userGuideErrMsgMIME,
             ui.userGuideErrMsg + UserGuideUIProperties.userGuideURL);
          }
-      html.setEditable(false);
-      html.setPreferredSize(new Dimension((int)width, (int)height));
-      scrollPane.setViewportView(html);
+      htmlEditorPane.setEditable(false);
+      int width =  parent.getWidth() *  UserGuideUIProperties.userGuideSizeScaleX / 100;
+      int height = parent.getHeight() * UserGuideUIProperties.userGuideSizeScaleY / 100;
+      Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+      Dimension size = new Dimension(
+         Math.min(width,  screenSize.width - 200),
+         Math.min(height, screenSize.height - 200));
+      //htmlEditorPane.setSize(size);
+      //htmlEditorPane.setPreferredSize(size);
+      htmlScrollPane.setViewportView(htmlEditorPane);
+      htmlScrollPane.setPreferredSize(size);
+      //htmlScrollPane.setSize(size);
+      //htmlScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
       printButton.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) { printButtonAction(); }
           } );
@@ -100,15 +115,18 @@ public class UserGuideDialog extends JDialog {
    public void addContols() {
       headerPanel.add(titleLabel);
       headerPanel.add(versionLabel);
-      getContentPane().add(headerPanel, BorderLayout.PAGE_START);
-      getContentPane().add(scrollPane, BorderLayout.CENTER);
+      //basePanel.add(headerPanel, BorderLayout.PAGE_START);
+      basePanel.add(headerPanel);
+      //basePanel.add(htmlScrollPane, BorderLayout.CENTER);
+      basePanel.add(htmlScrollPane);
       buttonPanel.add(printButton);
       buttonPanel.add(closeButton);
-      getContentPane().add(buttonPanel, BorderLayout.PAGE_END);
+      //basePanel.add(buttonPanel, BorderLayout.PAGE_END);
+      basePanel.add(buttonPanel);
       }
 
    public void printButtonAction() {
-      new PrintUtilities(html).print();
+      new PrintUtilities(htmlEditorPane).print();
       }
 
    public void closeButtonAction() {
