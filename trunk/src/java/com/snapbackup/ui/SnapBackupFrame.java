@@ -888,11 +888,13 @@ public class SnapBackupFrame extends JFrame {
       JFileChooser srcAddFileChooser = new JFileChooser();
       srcAddFileChooser.setFileSelectionMode(fileSelectionMode);
       //jFileChooserData.setCurrentDirectory(new File(nullStr));
+      srcAddFileChooser.setFileHidingEnabled(true);
       final int returnStatus =
          //srcAddFileChooser.showDialog(this, ui.srcAddCmd);
          srcAddFileChooser.showOpenDialog(this);
       if (returnStatus == JFileChooser.APPROVE_OPTION)
-         DataModel.addZipItem(srcAddFileChooser.getSelectedFile().getAbsolutePath(), this);
+         DataModel.addZipItem(
+            srcAddFileChooser.getSelectedFile().getAbsolutePath(), this);
       }
    public void srcRemoveButtonAction(ActionEvent e) {
       DataModel.removeCurrentZipItem(this);
