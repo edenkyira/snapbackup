@@ -50,6 +50,13 @@
             </manifest>
          </jar>
 
+      <!--  Sign Executable JAR File -->
+      <property environment="env"/>
+      <condition property="doaction">
+         <isset property="env.SnapBackupJksPass"/>
+         </condition>
+      <antcall target="action"/>
+
       <!--  Generate/Copy Files for Web Site  -->
       <copy file="${Resources}/SnapBackupUserGuide.html" todir="${WebFolder}"/>
       <copy file="${Resources}/ReadMe.txt" todir="${WebFolder}"/>
@@ -83,6 +90,18 @@
          </loadfile>
       <echo message="${version}"/>
 
+      </target>
+
+   <!--  Sign Executable JAR File -->
+   <target name="action" if="doaction">
+      <!-- Create Keystore:
+         keytool -genkey -alias snapbackup.com -validity 10000 -keyalg RSA -dname "CN=Dem
+            Pilafian, OU=Product Management, O=Center Key Software, L=San Carlos, ST=California,
+            C=US" -keystore snapbackup.jks
+         hint... godmother & aunt say to lowercase -->
+      <signjar
+         jar="${JavaClasses}/../snapbackup.jar" storepass="${env.SnapBackupJksPass}"
+         alias="snapbackup.com" keystore="${Resources}/snapbackup.jks"/>
       </target>
 
    </project>
