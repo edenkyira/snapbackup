@@ -888,7 +888,9 @@ public class SnapBackupFrame extends JFrame {
       JFileChooser srcAddFileChooser = new JFileChooser();
       srcAddFileChooser.setFileSelectionMode(fileSelectionMode);
       //jFileChooserData.setCurrentDirectory(new File(nullStr));
-      srcAddFileChooser.setFileHidingEnabled(true);
+      srcAddFileChooser.setFileHidingEnabled(!SystemAttributes.evilWinSys);
+      //Above line enables Windows users to see the "Application Data" folder.
+      //A better option would probably be to add a user set option to control this.
       final int returnStatus =
          //srcAddFileChooser.showDialog(this, ui.srcAddCmd);
          srcAddFileChooser.showOpenDialog(this);
