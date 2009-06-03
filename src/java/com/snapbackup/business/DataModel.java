@@ -32,9 +32,7 @@ import javax.swing.DefaultListModel;
 
 import com.snapbackup.logger.Logger;
 import com.snapbackup.ui.SnapBackupFrame;
-import com.snapbackup.ui.SwingWorkerOLD;
 import com.snapbackup.ui.UIProperties;
-import com.snapbackup.ui.UIUtilities;
 import com.snapbackup.ui.backupprogress.BackupProgressDialog;
 import com.snapbackup.ui.options.Options;
 import com.snapbackup.utilities.DateStamp;

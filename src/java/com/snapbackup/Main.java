@@ -40,7 +40,8 @@ public class Main {
    //Run Snap Backup in either command line mode where the parameter is the profile name
    //or in GUI (Swing) mode if there are no parameters.
    public static void main(String[] argv) {
-      if (argv.length > 0)
+      if (argv.length > 0 && !"foo".contentEquals(argv[0]))  //workaround for Java Store foo parameter
+      //if (argv.length > 0)
          DataModel.doCmdLineBackup(argv[0], argv.length > 1 ? argv[1] : null);
       else {
          AppProperties.addSupplimentalProperty(DataModel.prefSkinName,
