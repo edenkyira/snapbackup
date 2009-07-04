@@ -26,6 +26,7 @@
 package com.snapbackup.ui.prefimport;
 
 import com.snapbackup.settings.AppProperties;
+import com.snapbackup.settings.SystemAttributes;
 
 class ImportUIProperties {
    final String title =            AppProperties.getProperty("ImportTitle");
@@ -34,9 +35,9 @@ class ImportUIProperties {
    final String locationPrompt =   AppProperties.getProperty("ImportLocationPrompt");
    final String locationCmd =      AppProperties.getProperty("ImportLocationCommand");
    final String locationDetails =  AppProperties.getProperty("ImportLocationDetails");
-   final String locationWarning =  "<html><b>" +
+   final String locationWarning =  SystemAttributes.startHtml + "<b>" +
          AppProperties.getProperty("ImportWarning") + "</b> " +
-         AppProperties.getProperty("ImportWarningMessage") + "</html>";
+         AppProperties.getProperty("ImportWarningMessage") + SystemAttributes.endHtml;
 
    final String buttonCancel =     AppProperties.getProperty("ButtonCancel");
    final String buttonImport =     AppProperties.getProperty("ImportButtonAction");
