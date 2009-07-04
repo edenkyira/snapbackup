@@ -52,22 +52,22 @@ public class SystemAttributes {
    // 3.2 - 6/17/2005 -  Italian
    // 3.1 - 6/1/2005 -   Filters
    // 3.0 - 5/9/2005 -   Multiple profiles
-   public static final String   appAuthors = "Dem Pilafian";  //Names of code contributor go here
-   public static final String[] appTranslators = {
+   public static final String     appAuthors = "Dem Pilafian";  //Names of code contributor go here
+   public static final String[][] appTranslators = {
       //Codes -- http://www.ics.uci.edu/pub/ietf/http/related/iso639.txt
       //Flags -- http://www.paypal.com/be/cgi-bin/webscr?cmd=_display-approved-signup-countries-outside
       //Unicode -- http://www.ling.upenn.edu/~kurisuto/germanic/aa_character_encoding.html
-      "Giorgio Ponza",          "http://www.janxes.it/jsp/societa/Giorgio.jsp",  //"it"
-      "Pasc\u00e1l Bihler",     "http://www.bi-on.de/pascal/",                   //"de"
-      "Carlos Maltzahn",        "http://homepage.mac.com/carlosmalt/",           //"de"
-      //"Angelo Brillout",      null,                                            //"fr" [with Pascal]
-      "Suzanne Bolduc",         "http://www.esperanto.net/",                     //"eo"
-      "Elena Kogan",            "http://speakrussian.report.ru/",                //"ru"
-      "Oscar Laurens Schrover", "http://www.macfan.nl/",                         //"nl"
-      "Angel Herr\u00e1ez",     "http://www2.uah.es/biomodel/",                  //"es"
-      "Antonio de Rezende Jr.", "http://en.wikipedia.org/wiki/Portuguese_language", //"pt"
-      "Steve",                  "http://www.transkoreanservices.com/",           //"ko"
-      "Sa\u0161o Topolovec",    "http://en.wikipedia.org/wiki/Slovene_language"  //"sl"
+      { "Giorgio Ponza",          "http://www.janxes.it/jsp/societa/Giorgio.jsp" },  //"it"
+      { "Pasc&aacute;l Bihler",   "http://www.bi-on.de/pascal/" },                   //"de"
+      { "Carlos Maltzahn",        "http://homepage.mac.com/carlosmalt/" },           //"de"
+      //{ "Angelo Brillout",      null },                                            //"fr" [with Pascal]
+      { "Suzanne Bolduc",         "http://www.esperanto.net/" },                     //"eo"
+      { "Elena Kogan",            "http://speakrussian.report.ru/" },                //"ru"
+      { "Oscar Laurens Schrover", "http://www.macfan.nl/" },                         //"nl"
+      { "Angel Herr&aacute;ez",   "http://www2.uah.es/biomodel/" },                  //"es"
+      { "Antonio de Rezende Jr.", "http://en.wikipedia.org/wiki/Portuguese_language" },  //"pt"
+      { "Steve",                  "http://www.transkoreanservices.com/" },           //"ko"
+      { "Sa&#353;o Topolovec",    "http://en.wikipedia.org/wiki/Slovene_language" }  //"sl" [&scaron;]
       };
    public static final String[] localeCodes = {
       "en", "eo", "es", "de", "fr", "it", "ko", "nl", "pt", "ru", "sl" };
@@ -81,10 +81,12 @@ public class SystemAttributes {
    public static final String tab =             "     ";
    public static final String dividerStr =      " / ";
    public static final String newLine =         "\n";
-   public static final String headerPre =       "<html><center><br><b><font size=+2 color=navy face='comic sans ms, sand, fantasy'>";
+   public static final String startHtml =       "<html>";
+   public static final String endHtml =         "</html>";
+   public static final String headerPre =       startHtml + "<center><br><b><font size=+2 color=navy face='comic sans ms, sand, fantasy'>";
    public static final String headerMid =       "</font></b>";
    public static final String headerSplashTag = "<br><br><b><font color=gray>Center Key Software</font></b>";
-   public static final String headerPost =      "<br>&nbsp;</center></html>";
+   public static final String headerPost =      "<br>&nbsp;</center>" + endHtml;
    public static final String feedbackEMail =   "feedback" + atSign + "snapbackup.com";
    public static final String postalAddress =   "Center Key Software\nBox 21\nSan Carlos, California  94070\nUSA";
    public static final String homeURL =         "http://www.snapbackup.com";  //on About Box

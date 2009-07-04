@@ -39,18 +39,20 @@ import com.snapbackup.settings.SystemAttributes;
 
 public class AboutDialog extends JDialog {
 
-   static final String space =         SystemAttributes.space;
-   static final String nullStr =       SystemAttributes.nullStr;
-   static final String tab =           SystemAttributes.tab;
-   static final String comma =         SystemAttributes.comma;
-   static final String newLine =       SystemAttributes.newLine;
-   static final String[] translators = SystemAttributes.appTranslators;
-   static final String urlKey =        "url";  //used as key to save URL for each translator
-   static final String hey =           "Hey, don't press the '[' key!";
+   static final String space =           SystemAttributes.space;
+   static final String nullStr =         SystemAttributes.nullStr;
+   static final String tab =             SystemAttributes.tab;
+   static final String comma =           SystemAttributes.comma;
+   static final String newLine =         SystemAttributes.newLine;
+   static final String startHtml =       SystemAttributes.startHtml;
+   static final String endHtml =         SystemAttributes.startHtml;
+   static final String[][] translators = SystemAttributes.appTranslators;
+   static final String urlKey =          "url";  //used as key to save URL for each translator
+   static final String hey =             "Hey, don't press the '[' key!";
 
    AboutUIProperties ui = new AboutUIProperties();
-   final String copyrightStr =   "<html>" + ui.aboutCopyright + space +
-      SystemAttributes.appCopyright + "</html>";
+   final String copyrightStr =   startHtml + ui.aboutCopyright + space +
+      SystemAttributes.appCopyright + endHtml;
    final String licenseStr =     ui.aboutLicense + newLine + newLine +
       ui.aboutDownload + newLine + tab + SystemAttributes.downloadURL;
    final String contactInfoStr = (ui.aboutContact + newLine +
@@ -91,7 +93,8 @@ public class AboutDialog extends JDialog {
    void setupTranslatorsPanel() {
       translatorsPanel.setLayout(new BoxLayout(translatorsPanel, BoxLayout.PAGE_AXIS));
       JPanel row = null;
-      for (int count = 0; count*2 < translators.length; count++) {
+      int count = 0;
+      for (String[] translator : translators) {
          if (count % 3 == 0) {  //three names per line
             row = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
             row.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -99,9 +102,9 @@ public class AboutDialog extends JDialog {
             row.add(count == 0 ? translatedBy : new JLabel(tab));
             translatorsPanel.add(row);
             }
-         JLabel translatorLabel = new JLabel(translators[count*2]);
-         translatorLabel.putClientProperty(urlKey, translators[count*2+1]);
-         if (translators[count*2+1] != null)
+         JLabel translatorLabel = new JLabel(startHtml + translator[0] + endHtml);
+         translatorLabel.putClientProperty(urlKey, translator[1]);
+         if (translator[1] != null)
             translatorLabel.addMouseListener(new MouseListener() {
                public void mouseClicked(MouseEvent e) {
                   BareBonesBrowserLaunch.openURL(
@@ -118,10 +121,11 @@ public class AboutDialog extends JDialog {
                });
          row.add(translatorLabel);
          String join = comma + space;
-         if (count*2+4 == translators.length) join = join + ui.aboutAnd + space;
-         if (count*2+2 == translators.length) join = nullStr;
+         if (count+2 == translators.length) join = join + ui.aboutAnd + space;
+         if (count+1 == translators.length) join = nullStr;
          row.add(new JLabel(join));
-         }       
+         count = count + 1;
+         }
       }
 
    void configureContols() {
