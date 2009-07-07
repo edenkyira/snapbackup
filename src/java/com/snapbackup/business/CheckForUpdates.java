@@ -26,27 +26,24 @@
 package com.snapbackup.business;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.net.URLConnection;
 
 import com.snapbackup.settings.SystemAttributes;
 
 public class CheckForUpdates {
 
    public static String getLatestVersion() {
+      String version = null;
       try {
-         URLConnection connection =
-            new URL(SystemAttributes.updatesURL).openConnection();
-         //connection.setReadTimeout(10000);
-         BufferedReader reader = new BufferedReader(new InputStreamReader((
-            InputStream) connection.getContent()));
-         return reader.readLine();
+         BufferedReader reader = new BufferedReader(
+            new InputStreamReader(new URL(SystemAttributes.updatesURL).openStream()));
+         version = reader.readLine();
+         reader.close();
          }
       catch (Exception e) { //NoRouteToHostException or ConnectException
-         return null;
          }
+      return version;
       }
 
    }

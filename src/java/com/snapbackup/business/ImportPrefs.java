@@ -36,6 +36,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.stream.StreamSource;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.snapbackup.settings.SystemAttributes;
@@ -55,7 +56,12 @@ public class ImportPrefs {
    void loadSettings(NodeList settings) {
       String currentLocale = UserPreferences.readLocalePref();
       UserPreferences.deleteAllPrefs();
-      System.out.println("Settings: " + settings.getLength());
+      /*  Doesn't work -- only gets first node... need to use getFirstChild()?
+      for (Node node = settings.item(0); node != null; node = node.getNextSibling())
+         UserPreferences.savePrefByKey(
+            xmlToData(node.getAttributes().item(0).getNodeValue()),
+            xmlToData(node.getFirstChild().getNodeValue()));
+      */
       for (int count = 0; count < settings.getLength(); count++)
          UserPreferences.savePrefByKey(
             xmlToData(settings.item(count).getAttributes().item(0).getNodeValue()),
@@ -68,11 +74,10 @@ public class ImportPrefs {
       try {
          //Validate XML against XSD
          InputStream schemaInput =
-               getClass().getResourceAsStream("SnapBackupSettings.xsd");
+            getClass().getResourceAsStream("SnapBackupSettings.xsd");
          Schema schema = SchemaFactory.newInstance(
             XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new StreamSource(schemaInput));
          schema.newValidator().validate(new StreamSource(new File(fileName)));
-         System.out.println("Validation Done");
 
          //Process XML
          Document xmlDoc;

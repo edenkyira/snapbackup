@@ -136,15 +136,24 @@ public class UIUtilities {
          JMenu menu = (JMenu)menuComponent;
          menu.setMnemonic(menu.getText().charAt(menu.getText().indexOf('&') + 1));
          menu.setText(menu.getText().replace("&", ""));
+         for (Component menuItemComponent : menu.getMenuComponents())
+            if (menuItemComponent instanceof JMenuItem) {   //skip separators
+               JMenuItem menuItem = (JMenuItem)menuItemComponent;
+               menuItem.setMnemonic(menuItem.getText().charAt(
+                     menuItem.getText().indexOf('&') + 1));
+               menuItem.setText(menuItem.getText().replace("&", ""));
+               }
+         /*
          for (int count = 0; count < menu.getMenuComponentCount(); count++) {  //iterate over menu items
             Component menuItemComponent = menu.getMenuComponent(count);
-            if (menuItemComponent instanceof JMenuItem) {   //skip sparators
+            if (menuItemComponent instanceof JMenuItem) {   //skip separators
                JMenuItem menuItem = (JMenuItem)menuItemComponent;
                menuItem.setMnemonic(menuItem.getText().charAt(
                      menuItem.getText().indexOf('&') + 1));
                menuItem.setText(menuItem.getText().replace("&", ""));
                }
             }
+         */
          }
       }
 

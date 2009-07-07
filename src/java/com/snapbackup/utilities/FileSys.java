@@ -36,8 +36,6 @@ import javax.swing.JOptionPane;
 import com.snapbackup.logger.Logger;
 import com.snapbackup.ui.UIProperties;
 import com.snapbackup.settings.SystemAttributes;
-import com.snapbackup.utilities.Str;
-import com.snapbackup.utilities.ZipEngine;
 
 public class FileSys {
 
@@ -96,7 +94,8 @@ public class FileSys {
          UIProperties.current.fileUtilButtonAbort);
       }
 
-   public static void copyFile(String sourceFileName, String destFileName, Component frame, ZipEngine zip, boolean autoOverwrite) {
+   public static void copyFile(String sourceFileName, String destFileName,
+         Component frame, ZipEngine zip, boolean autoOverwrite) {
       File sourceFile = new File(sourceFileName);
       File destFile = new File(destFileName);
       FileInputStream source = null;
@@ -107,7 +106,8 @@ public class FileSys {
       try {
          if (!sourceFile.exists() || !sourceFile.isFile() || !sourceFile.canRead())
             zip.abortBackup(UIProperties.current.err04BackupFileMissing, sourceFileName);
-         else if (!ensureParentFolderExists(destFileName, frame, UIProperties.current.fileUtilTitleArchiveFolder)) {
+         else if (!ensureParentFolderExists(destFileName, frame,
+               UIProperties.current.fileUtilTitleArchiveFolder)) {
             if (getErrMsg().length() == 0)
                zip.abortBackup(UIProperties.current.err05NoArchiveFolder);
             else

@@ -42,10 +42,10 @@ import com.snapbackup.settings.UserPreferences;
 public class OptionsDialog extends JDialog {
 
    String[] str2Array(String str) {
-      String[] array = new String[str.length()];
-      for (int count = 0; count < array.length; count++ )
-         array[count] = SystemAttributes.nullStr + str.charAt(count);
-      return array;
+      String[] strArray = new String[str.length()];
+      for (int count = 0; count < strArray.length; count++)
+         strArray[count] = Character.toString(str.charAt(count));
+      return strArray;
       }
 
    //Define Options Controls
