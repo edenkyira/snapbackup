@@ -29,6 +29,8 @@ package com.snapbackup.ui;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Locale;
 
 import javax.swing.*;
@@ -183,6 +185,23 @@ public class SnapBackupFrame extends JFrame {
       popupMsg(msg, ui.appTitle);
       }
 
+   class LocaleCodeComparator implements Comparator<String> {
+      Locale locale;
+      LocaleCodeComparator(Locale currentLocale) {
+         locale = currentLocale;
+         }
+      public int compare(String localeCodeA, String localeCodeB) {
+         Locale a = new Locale(localeCodeA);
+         Locale b = new Locale(localeCodeB);
+         return
+            a.equals(b) ? 0 :
+            a.equals(locale) ? -1 :
+            b.equals(locale) ? 1 :
+            a.getDisplayName(locale).compareTo(b.getDisplayName(locale));
+         }
+      }
+
+   /*
    boolean switchLocaleCodes(String codeA, String codeB, Locale currentLocale) {
       Locale a = new Locale(codeA);
       Locale b = new Locale(codeB);
@@ -203,6 +222,7 @@ public class SnapBackupFrame extends JFrame {
       if (!done)
          sortLocaleCodes(localeCodes, currentLocale);
       }
+   */
 
    void configureContols() {
       //Configure Menu Controls
@@ -230,17 +250,12 @@ public class SnapBackupFrame extends JFrame {
       iconPanel.setLayout(new BoxLayout(iconPanel, BoxLayout.PAGE_AXIS));
       tipLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
       titleLabel.setHorizontalAlignment(JLabel.CENTER);
-      /* no work... panel seems to be a different object then langFlagsPanel[count]
+      System.out.println("Flag Rows: " + numFlagRows + " / " + langFlagsPanels.length);
+      for (int count = 0; count < numFlagRows; count++)
+         langFlagsPanels[count] = new JPanel();
       for (JPanel panel : langFlagsPanels) {
-         panel = new JPanel();
          panel.setLayout(new FlowLayout(FlowLayout.TRAILING));
          panel.setAlignmentX(1.0f);
-         }
-      */
-      for (int count = 0; count < numFlagRows; count++) {
-         langFlagsPanels[count] = new JPanel();
-         langFlagsPanels[count].setLayout(new FlowLayout(FlowLayout.TRAILING));
-         langFlagsPanels[count].setAlignmentX(1.0f);
          }
       iconLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));   //????
       iconLabel.setAlignmentX(1.0f);
@@ -329,20 +344,26 @@ public class SnapBackupFrame extends JFrame {
       //Configure Language Flags
       final String localeCodeKey = SystemAttributes.userName;  //actual value not important
       Locale currentLocale = new Locale(UserPreferences.readLocalePref());
-      sortLocaleCodes(SystemAttributes.localeCodes, currentLocale);
+      //sortLocaleCodes(SystemAttributes.localeCodes, currentLocale);
+      Arrays.sort(SystemAttributes.localeCodes,
+         new LocaleCodeComparator(currentLocale));
       for (int count = 0; count < SystemAttributes.localeCodes.length; count ++) {
          String localeCode = SystemAttributes.localeCodes[count];
          Locale locale = new Locale(localeCode);
          JLabel langLabel = new JLabel(Icons.langIcon(localeCode));
          langLabel.setToolTipText(locale.getDisplayLanguage(currentLocale) +
-            (locale.equals(currentLocale) ? SystemAttributes.nullStr : SystemAttributes.dividerStr +
-            locale.getDisplayLanguage(locale)));
+            (locale.equals(currentLocale) ? SystemAttributes.nullStr :
+            SystemAttributes.dividerStr + locale.getDisplayLanguage(locale)));
          langLabel.putClientProperty(localeCodeKey, localeCode);
          langLabel.addMouseListener(new MouseListener() {
-            public void mouseClicked(MouseEvent e) { selectLanguage((String)((JLabel)e.getSource()).getClientProperty(localeCodeKey)); }
-            public void mouseEntered(MouseEvent e) { setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); }
-            public void mouseExited(MouseEvent e) { setCursor(Cursor.getPredefinedCursor (Cursor.DEFAULT_CURSOR)); }
-            public void mousePressed(MouseEvent e) { /* do nothing*/ }
+            public void mouseClicked(MouseEvent e) {
+               selectLanguage((String)((JLabel)e.getSource()).getClientProperty(
+                  localeCodeKey)); }
+            public void mouseEntered(MouseEvent e) {
+               setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); }
+            public void mouseExited(MouseEvent e) {
+               setCursor(Cursor.getPredefinedCursor (Cursor.DEFAULT_CURSOR)); }
+            public void mousePressed(MouseEvent e)  { /* do nothing*/ }
             public void mouseReleased(MouseEvent e) { /* do nothing*/ }
             } );
          langFlagsPanels[count/flagsPerRow].add(langLabel);
