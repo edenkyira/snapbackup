@@ -1,0 +1,10 @@
+#labels Featured
+= Translator Steps =
+
+Instructions:
+   * TranslatorStepsMac
+   * TranslatorStepsWindows
+
+
+----
+[http://www.snapbackup.com/about/ Snap Backup Contributors]
