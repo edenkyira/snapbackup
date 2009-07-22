@@ -19,21 +19,21 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
       http://www.sliksvn.com/en/download
    Install with the default options.
 
-*D) Download and Install NSIS*
-   Click the _*Download*_ link to get Nullsoft Scriptable Install System (NSIS) from:
-      http://nsis.sourceforge.net/Download
-   Install with the default options.
-
-*E) Get Your !GoogleCode.com Password*
+*D) Get Your !GoogleCode.com Password*
    To obtain your password, visit:
       http://code.google.com/hosting/settings
 
-*F) Download Code*
+*E) Download Code*
    Launch _*Command Prompt*_ (_*Start* -->  *Programs*  --> *Accessories*  -->  *Command Prompt*_), and enter the following commands:
    || `> mkdir \Projects` ||
    || `> cd \Projects` ||
    || `> svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
    In the above instructions, replace `<USERNAME HERE>` with your Google Code username.
+
+*F) Download and Install NSIS*
+   Click the _*Download*_ link to get Nullsoft Scriptable Install System (NSIS) from:
+      http://nsis.sourceforge.net/Download
+   Install with the default options.
 
 
 == 2. Contributor Steps ==
@@ -43,7 +43,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
    Now go to the `\Projects\snapbackup\build` folder and double-click _*snapbackup.jar*_.  Verify the Snap Backup application is working properly.
 
 *B) Edit Code*
-   The project files are all under the `\Projects\snapbackup` folder.  Use your editor to makes changes to the appropriate files.  (Note to translators: the language files are at `\Projects\snapbackup\src\resources\properties`).
+   The project files are all under the `\Projects\snapbackup` folder.  Use your editor or IDE to make changes to the appropriate files.
 
 *C) Build the Project and Verify*
    Repeat step A above.
