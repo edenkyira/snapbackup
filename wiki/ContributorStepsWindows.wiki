@@ -36,7 +36,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
    Install with the default options.
 
 
-== 2. Contributor Steps ==
+== 2. Core Contributor Steps ==
 *A) Build Current Project and Verify*
    In _Windows Explorer_, go to the `\Projects\snapbackup\src\tools` folder and double-click the _*build.cmd*_ file.
 
