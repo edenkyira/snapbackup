@@ -16,7 +16,7 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the appropriate
 
 == 2. Core Translator Steps ==
 *A) Build Current Project and Verify*
-   Open _Finder_ --> Go to the folder `~/Projects/snapbackup/src/tools/` --> Double-click the file _*build.sh.command*_ --> Go to the folder `~/Projects/snapbackup/build/` --> Double-click the file _*snapbackup.jar*_ -->  Verify that the Snap Backup application launches and works properly
+   Open _Finder_ --> Go to the folder `~/Projects/snapbackup/src/tools/` --> Double-click the file _*build.sh.command*_ --> Go to the folder `~/Projects/snapbackup/build/` --> Double-click the file _*snapbackup.jar*_ -->  Verify that the Snap Backup application launches and works properly.
 
 *B) Edit Properties File*
    Use your editor to make changes to the appropriate properties file located in the `~/Projects/snapbackup/src/resources/properties/` folder.  Be sure to save the file with UTF-8 encoding (Unicode).
