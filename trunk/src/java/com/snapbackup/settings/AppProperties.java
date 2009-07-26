@@ -25,7 +25,7 @@
 
 package com.snapbackup.settings;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -34,8 +34,8 @@ import java.util.ResourceBundle;
 // values.  Additional properties with values may added at run-time.
 public class AppProperties {
 
-   static final Hashtable<String, String> supplimentalProperty =
-      new Hashtable<String, String>();
+   static final HashMap<String, String> supplimentalProperty =
+      new HashMap<String, String>();
 
    static ResourceBundle applicationResources =
       ResourceBundle.getBundle(SystemAttributes.appName,

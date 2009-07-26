@@ -30,12 +30,15 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
+import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import javax.swing.JOptionPane;
+
+import com.centerkey.utils.TopMap;
 
 import com.snapbackup.logger.Logger;
 import com.snapbackup.ui.UIProperties;
@@ -65,6 +68,8 @@ public class ZipEngine {
    final String sizePre =            space + space + "[";
    final String sizePost =           space + AppProperties.getProperty("FilterMarkerUnits") + "]";
    NumberFormat nf = NumberFormat.getNumberInstance(new Locale(UserPreferences.readLocalePref()));
+   int numLargestFiles = 3;   //needs to be enhanced to use preferences
+   TopMap<Long, String> largestFiles = new TopMap<Long, String>(numLargestFiles);
    boolean useRelativePaths = true;
    String rootPath;
    int rootPathLen;
@@ -163,6 +168,9 @@ public class ZipEngine {
             // Create a byte array object named data and declare byte count variable.
             while ((byteCount = input.read(data, 0, buffSize)) > -1)  //Until input entirely read
                zipOut.write(data, 0, byteCount);
+            zipOut.closeEntry();
+            if (numLargestFiles > 0)
+               largestFiles.put(zipEntry.getCompressedSize(), displayPath);
             }
          }
       catch (IOException e) {
@@ -276,6 +284,11 @@ public class ZipEngine {
             zipOut.flush();
             zipOut.close();
             fileOut.close();
+            if (numLargestFiles > 0) {  //move text into properties file for localization
+               Logger.logMsg("Largest " + largestFiles.size() + " files:");
+               for (Map.Entry<Long, String> largeFile : largestFiles.entrySet())
+                  Logger.logMsg("   " + largeFile.getKey() + "KB --> " + largeFile.getValue());
+               }
             Logger.logMsg(UIProperties.current.logMsgBackupCreated + space +
                zipFileName + sizePre +
                zipNF.format(1.0 * new File(zipFileName).length() / kb) + sizePost);

@@ -250,7 +250,6 @@ public class SnapBackupFrame extends JFrame {
       iconPanel.setLayout(new BoxLayout(iconPanel, BoxLayout.PAGE_AXIS));
       tipLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
       titleLabel.setHorizontalAlignment(JLabel.CENTER);
-      System.out.println("Flag Rows: " + numFlagRows + " / " + langFlagsPanels.length);
       for (int count = 0; count < numFlagRows; count++)
          langFlagsPanels[count] = new JPanel();
       for (JPanel panel : langFlagsPanels) {

@@ -29,6 +29,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import com.snapbackup.logger.Logger;
 import com.snapbackup.settings.SystemAttributes;
 
 public class CheckForUpdates {
@@ -42,6 +43,7 @@ public class CheckForUpdates {
          reader.close();
          }
       catch (Exception e) { //NoRouteToHostException or ConnectException
+         Logger.logMsg(e.toString());
          }
       return version;
       }
