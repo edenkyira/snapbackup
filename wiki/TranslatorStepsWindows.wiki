@@ -37,7 +37,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the appropriate 
    Now go to the `\Projects\snapbackup\build` folder and double-click _*snapbackup.jar*_.  Verify the Snap Backup application is working properly.
 
 *B) Edit Code*
-   Use your editor to make changes to the appropriate properties file located in the `\Projects\snapbackup\src\resources\properties` folder.  Be sure to save the file with UTF-8 encoding (Unicode).
+   Use your editor to make changes to the appropriate properties file located in the `\Projects\snapbackup\src\resources\properties` folder.  Be sure to save the file with Unicode UTF-8 (no BOM) encoding.
 
 *C) Build the Project and Verify*
    Repeat step A above.
