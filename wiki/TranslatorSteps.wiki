@@ -3,7 +3,7 @@
 
 There are two ways to contribute your translation work to the Snap Backup project.
 
-== A) E-Mail ==
+=== A) E-Mail ===
 Steps:
    # Download the properties file from: [http://www.snapbackup.com/translate/ www.snapbackup.com/translate]
    # Edit the properties file (save with UTF-8 encoding).
@@ -11,7 +11,7 @@ Steps:
 
 This approach is simple, but there is no practical way to test your properties file before submitting it to the mailing list.
 
-== B) Direct Contribution ==
+=== B) Direct Contribution ===
 This approach involves setting up the Snap Backup project on your computer and submitting your properties file directly into the project repository hosted on Google Code.
 
 Instructions:
