@@ -27,6 +27,7 @@ package com.snapbackup.settings;
 
 import java.util.Locale;
 import java.util.Properties;
+import javax.swing.filechooser.FileSystemView;
 
 //Constant values that do not belong in the properties file.
 public class SystemAttributes {
@@ -111,29 +112,32 @@ public class SystemAttributes {
    static final Properties sysInfo = System.getProperties();
    public static final String userName = sysInfo.getProperty("user.name");
    public static final String userHomeDir = sysInfo.getProperty("user.home");
-   public static final String appWorkingDir = sysInfo.getProperty("user.dir");
    public static final String fileSeparator = sysInfo.getProperty("file.separator");
    public static final boolean isMac = sysInfo.getProperty("mrj.version") != null;
    public static final boolean evilWinSys = fileSeparator.equals("\\");
    public static final String evilWinDrive = (userHomeDir.indexOf(":\\") == 1 ?
-      userHomeDir.substring(0, 2) : "");   //example: "C:\zzz" --> "C:"
-   public static final String osInfo =   //example: "Windows Me\4.90 (x86)\en"
+      userHomeDir.substring(0, 2) : "");  //example: "C:\zzz" --> "C:"
+   public static final String osInfo =  //example: "Mac OS X (10.5.7/x86_64/en)"
       sysInfo.getProperty("os.name") + " (" +
       sysInfo.getProperty("os.version") + fileSeparator +
       sysInfo.getProperty("os.arch") + fileSeparator +
       Locale.getDefault().getLanguage() + ")";
-   public static final String javaVersion = "Java " +
-      //example: "Java 1.4.2_05, Sun Microsystems Inc."
-      sysInfo.getProperty("java.version") + ", " +
+   public static final String javaVersion =  //example: "Java 1.6.0_13, Apple Inc."
+      "Java " + sysInfo.getProperty("java.version") + ", " +
       sysInfo.getProperty("java.vendor");
    public static final String javaHomeDir = sysInfo.getProperty("java.home");
    public static final String javaVMInfo =
-      //example: "Java HotSpot(TM) Client VM, 1.4.2_05-b04 [63MB]"
+      //example: "Java HotSpot(TM) 64-Bit Server VM, 11.3-b02-83 [81 MB]"
       sysInfo.getProperty("java.vm.name") + ", " +
       sysInfo.getProperty("java.vm.version") + " [" +
       Runtime.getRuntime().maxMemory()/(1024*1024) + " MB]";
-
-   //Profile key names
-   //refactor to move profile key names from "DataModel" to here???
-   
+   static final String docsExtra =  //Mac OS X localization changes display name
+      isMac ? fileSeparator + "Documents" : "";
+   static final String desktopExtra =  //Mac OS X localization changes display name
+      isMac ? fileSeparator + "Desktop" : "";
+   static final FileSystemView fileSysView = FileSystemView.getFileSystemView();
+   public static final String userDocsDir =
+      fileSysView.getDefaultDirectory().getAbsolutePath() + docsExtra;
+   public static final String userDesktopDir =
+      fileSysView.getHomeDirectory().getAbsolutePath() + desktopExtra;
    }

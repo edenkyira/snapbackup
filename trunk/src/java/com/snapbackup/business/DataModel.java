@@ -379,18 +379,24 @@ public class DataModel {
          backupDir = SystemAttributes.evilWinDrive + backupDir;
          archiveDir = AppProperties.getProperty(prefArchiveDirWin);
          }
-      AppProperties.addSupplimentalProperty(prefSrcDataList, SystemAttributes.userHomeDir);
-      AppProperties.addSupplimentalProperty(prefSrcDataIncludeList, nullStr);
-      AppProperties.addSupplimentalProperty(prefSrcDataExcludeList, nullStr);
-      AppProperties.addSupplimentalProperty(prefSrcDataExcludeFolderList, nullStr);
-      AppProperties.addSupplimentalProperty(prefSrcDataExcludeSizeList, nullStr);
-      AppProperties.addSupplimentalProperty(prefBackupDir, backupDir);
+      String srcDataList = SystemAttributes.userDocsDir;
+      String srcDataEmpty = nullStr;
+      if (!SystemAttributes.userDocsDir.equals(SystemAttributes.userDesktopDir)) {
+         srcDataList = srcDataList + SystemAttributes.splitStr + SystemAttributes.userDesktopDir;
+         srcDataEmpty = srcDataEmpty + SystemAttributes.splitStr + nullStr;
+         }
+      AppProperties.addSupplimentalProperty(prefSrcDataList,              srcDataList);
+      AppProperties.addSupplimentalProperty(prefSrcDataIncludeList,       srcDataEmpty);
+      AppProperties.addSupplimentalProperty(prefSrcDataExcludeList,       srcDataEmpty);
+      AppProperties.addSupplimentalProperty(prefSrcDataExcludeFolderList, srcDataEmpty);
+      AppProperties.addSupplimentalProperty(prefSrcDataExcludeSizeList,   srcDataEmpty);
+      AppProperties.addSupplimentalProperty(prefBackupDir,  backupDir);
       AppProperties.addSupplimentalProperty(prefArchiveDir, archiveDir);
-      AppProperties.addSupplimentalProperty(Options.prefSpacer, Options.spacerDefault);
-      AppProperties.addSupplimentalProperty(Options.prefOrder, Options.orderDefault);
-      AppProperties.addSupplimentalProperty(Options.prefYear, Options.yearDefault);
-      AppProperties.addSupplimentalProperty(Options.prefSeparator, Options.separatorDefault);
-      AppProperties.addSupplimentalProperty(Options.prefAskBackup, Options.askBackupDefault);
+      AppProperties.addSupplimentalProperty(Options.prefSpacer,     Options.spacerDefault);
+      AppProperties.addSupplimentalProperty(Options.prefOrder,      Options.orderDefault);
+      AppProperties.addSupplimentalProperty(Options.prefYear,       Options.yearDefault);
+      AppProperties.addSupplimentalProperty(Options.prefSeparator,  Options.separatorDefault);
+      AppProperties.addSupplimentalProperty(Options.prefAskBackup,  Options.askBackupDefault);
       AppProperties.addSupplimentalProperty(Options.prefAskArchive, Options.askArchiveDefault);
       AppProperties.addSupplimentalProperty(Options.prefNumRowsSrc, Options.numRowsSrcDefault);
       AppProperties.addSupplimentalProperty(Options.prefNumRowsLog, Options.numRowsLogDefault);

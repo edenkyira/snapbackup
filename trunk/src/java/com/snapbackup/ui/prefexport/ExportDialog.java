@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Snap Backup(tm)                                                            //
-// ExportSettingsDialog.java                                                         //
+// ExportSettingsDialog.java                                                  //
 //                                                                            //
 // GNU General Public License:                                                //
 // This program is free software; you can redistribute it and/or modify it    //
