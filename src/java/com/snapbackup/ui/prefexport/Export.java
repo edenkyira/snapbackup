@@ -37,6 +37,6 @@ public class Export {
    //Setup
    public final String Settings =        AppProperties.getProperty("ExportSettings");
    public final String defaultSettingsFileName =
-         SystemAttributes.userHomeDir + SystemAttributes.fileSeparator +
+         SystemAttributes.userDocsDir + SystemAttributes.fileSeparator +
          SystemAttributes.appName + Settings + ExportPrefs.xmlExtention;
    }
