@@ -370,13 +370,15 @@ public class DataModel {
       }
 
    public static void initSupplimentalSettings() {
-      String backupDir = fs +
-         AppProperties.getProperty(prefBackupDirBase) + fs +
-         SystemAttributes.userName + fs;
+      //String backupDir = fs +
+      //   AppProperties.getProperty(prefBackupDirBase) + fs +
+      //   SystemAttributes.userName + fs;
+      String backupDir = SystemAttributes.userHomeDir + fs +
+         AppProperties.getProperty(prefBackupDirBase);
       String archiveDir = fs + AppProperties.getProperty(prefArchiveDirBase).replace(
          replacementChar.charAt(0), fs.charAt(0)) + fs;
       if (SystemAttributes.evilWinSys) {
-         backupDir = SystemAttributes.evilWinDrive + backupDir;
+         //backupDir = SystemAttributes.evilWinDrive + backupDir;
          archiveDir = AppProperties.getProperty(prefArchiveDirWin);
          }
       String srcDataList = SystemAttributes.userDocsDir;
