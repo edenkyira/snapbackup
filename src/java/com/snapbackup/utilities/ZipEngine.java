@@ -284,10 +284,11 @@ public class ZipEngine {
             zipOut.flush();
             zipOut.close();
             fileOut.close();
-            if (numLargestFiles > 0) {  //move text into properties file for localization
-               Logger.logMsg("Largest " + largestFiles.size() + " files:");
+            if (numLargestFiles > 0) {  // !!!!!!!! move text into properties file for localization
+               Logger.logMsg("Largest Compressed Files (" + largestFiles.size() + ")");
                for (Map.Entry<Long, String> largeFile : largestFiles.entrySet())
-                  Logger.logMsg("   " + largeFile.getKey() + "KB --> " + largeFile.getValue());
+                  Logger.logMsg(tab + largeFile.getValue() + sizePre +
+                     zipNF.format(1.0 * largeFile.getKey() / kb) + sizePost);
                }
             Logger.logMsg(UIProperties.current.logMsgBackupCreated + space +
                zipFileName + sizePre +
