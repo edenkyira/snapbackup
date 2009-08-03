@@ -67,7 +67,6 @@ public class SystemAttributes {
       { "Oscar Laurens Schrover", "http://www.macfan.nl/" },                         //"nl"
       { "Angel Herr&aacute;ez",   "http://www2.uah.es/biomodel/" },                  //"es"
       { "Antonio de Rezende Jr.", "http://en.wikipedia.org/wiki/Portuguese_language" },  //"pt"
-      { "Steve",                  "http://www.transkoreanservices.com/" },           //"ko"
       { "Sa&#353;o Topolovec",    "http://en.wikipedia.org/wiki/Slovene_language" }  //"sl" [&scaron;]
       };
    public static final String[] localeCodes = {
