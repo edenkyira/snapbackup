@@ -285,14 +285,16 @@ public class ZipEngine {
             zipOut.close();
             fileOut.close();
             if (numLargestFiles > 0) {  // !!!!!!!! move text into properties file for localization
-               Logger.logMsg("Largest Compressed Files (" + largestFiles.size() + ")");
+               Logger.logMsg("Largest Compressed Files (" + largestFiles.size() + "):");
                for (Map.Entry<Long, String> largeFile : largestFiles.entrySet())
                   Logger.logMsg(tab + largeFile.getValue() + sizePre +
                      zipNF.format(1.0 * largeFile.getKey() / kb) + sizePost);
                }
+            double backupSize = 1.0 * new File(zipFileName).length() / kb;
             Logger.logMsg(UIProperties.current.logMsgBackupCreated + space +
-               zipFileName + sizePre +
-               zipNF.format(1.0 * new File(zipFileName).length() / kb) + sizePost);
+               zipFileName + sizePre + zipNF.format(backupSize) + sizePost);
+            if (backupSize > 4000) //Until Zip64 in Java 7, zip files are limited to 4 MB
+               Logger.logMsg("*** WARNING: Backup file may be too large -- file corruption possible!");
             }
          catch (IOException e) {
             abortBackup(UIProperties.current.err01CreatingBackupFile,
