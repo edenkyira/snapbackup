@@ -293,7 +293,7 @@ public class ZipEngine {
             double backupSize = 1.0 * new File(zipFileName).length() / kb;
             Logger.logMsg(UIProperties.current.logMsgBackupCreated + space +
                zipFileName + sizePre + zipNF.format(backupSize) + sizePost);
-            if (backupSize > 4000) //Until Zip64 in Java 7, zip files are limited to 4 MB
+            if (backupSize > 3800) //Until Zip64 in Java 7, zip files are limited to 4 MB
                Logger.logMsg("*** WARNING: Backup file may be too large -- file corruption possible!");
             }
          catch (IOException e) {
