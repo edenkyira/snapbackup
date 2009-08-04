@@ -32,6 +32,9 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the appropriate
    || `$ svn status` ||
    In the above instructions, replace "`<COMMENT HERE>`" with a short description of the changes you made.
 
+*E) Post a Message to the Mailing List*
+   Let the other translators know about your updated properties file by sending a quick note to the [http://groups.google.com/group/snapbackup-translate Snap Backup Translators Mailing List].
+
 
 ----
 [http://www.snapbackup.com/about/ Snap Backup Contributors]
