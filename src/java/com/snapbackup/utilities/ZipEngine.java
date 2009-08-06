@@ -84,8 +84,6 @@ public class ZipEngine {
    byte[] data = new byte[buffSize];  //Data for read/write operations
 
    java.lang.Runtime rt = Runtime.getRuntime();  //memory leak!!!
-   //long freeMem = Long.MAX_VALUE;
-   //long totalMem = 0;
 
    boolean filterIncludeOn, filterExcludeOn, filterFolderOn, filterSizeOn;
    Pattern filterIncludeP, filterExcludeP, filterFolderP;
@@ -98,27 +96,12 @@ public class ZipEngine {
       filterSizeOn =    false;
       }
 
-   /*
-   String escapeChars(String s, char c) {
-      String str = s;
-      for (int loc = 0; loc < str.length(); loc++)
-         if (str.charAt(loc) == c) {
-            str = str.substring(0, loc) + regExEscape + str.substring(loc);
-            loc = loc + 1;
-            }
-      return str;
-      }
-   */
-
    Pattern compileRegEx(String regEx) {
       String regExEsc = regEx;
       Pattern pattern = null;
       for (char regExReservedChar : regExResChars.toCharArray())
          regExEsc = regExEsc.replace(
             String.valueOf(regExReservedChar), regExEscCode + regExReservedChar);
-      //   expression = escapeChars(expression, regExReservedChar);
-      //for (int loc = 0; loc < regExReservedChars.length(); loc++)
-      //   regEx = escapeChars(regEx, regExReservedChars.charAt(loc));
       try {
          pattern = Pattern.compile(regExEsc.replaceAll(", ", "|").replaceAll("\\*", ".*"));
          }
@@ -144,8 +127,8 @@ public class ZipEngine {
       }
 
    public void zipFile(String filePath) {
-      if ((zipCount/1000)*1000 == zipCount)
-          rt.gc();
+      if (zipCount % 500 == 0)  //attempt to address performance issues on large backups
+          rt.gc();  //testing not yet done to see if this improves performance
       try {
          file = new File(filePath);
          String displayPath = useRelativePaths ? filePath.substring(rootPathLen) : filePath;
@@ -155,7 +138,7 @@ public class ZipEngine {
              Logger.logMsg(skippingLogMsg + displayPath + exclusionNote);
          else if (filterSizeOn && file.length() > filterSize)
              Logger.logMsg(skippingLogMsg + displayPath + exclusionNote + sizePre +
-                nf.format(1.0 * file.length() / kb) + sizePost);
+                nf.format(file.length() / kb) + sizePost);
          else if (!SystemAttributes.isMac || !file.getName().equals(".DS_Store")) {
             if (backupProgress != null)
                BackupProgressDialog.current.updateProgress(zipCount);
@@ -186,13 +169,10 @@ public class ZipEngine {
          Logger.logMsg(skippingLogMsg + displayPath + fileSeparator + exclusionNote);
       else {
          Logger.logMsg(folderLogMsg + displayPath);
-         File[] itemList = dir.listFiles();  //List folder's sub-items
+         File[] itemList = dir.listFiles();  //list folder's sub-items
          for (File item : itemList)
             if (!abortBackup)
                zipItem(item.getPath());
-         //for (int count = 0; count < itemList.length; count ++)
-         //   if (!abortBackup)
-         //      zipItem(itemList[count].getPath());
          }
       }
 
@@ -220,19 +200,6 @@ public class ZipEngine {
             if (zipItem.charAt(loc) != root.charAt(loc))
                root = root.substring(0, loc);
          }
-      /*
-      ListIterator iter = zipItemList.listIterator();
-      if (iter.hasNext())
-         root = (String)iter.next();
-      while (iter.hasNext()) {
-         String zipItem = (String)iter.next();
-         if (zipItem.length() < root.length())
-            root = root.substring(0, zipItem.length());
-         for (int loc = 0; loc < root.length(); loc++)
-            if (zipItem.charAt(loc) != root.charAt(loc))
-               root = root.substring(0, loc);
-         }
-      */
       rootPath = root.substring(0, root.lastIndexOf(fileSeparator) + 1);
       rootPathLen = rootPath.length();
       }
@@ -281,7 +248,8 @@ public class ZipEngine {
             Locale locale = new Locale(UserPreferences.readLocalePref());
             NumberFormat zipNF = NumberFormat.getNumberInstance(locale);
             zipNF.setMaximumFractionDigits(0);  //whole numbers only
-            Logger.logMsg(UIProperties.current.logMsgFilesZipped + space + zipNF.format(zipCount - 1));
+            Logger.logMsg(UIProperties.current.logMsgFilesZipped + space +
+               zipNF.format(zipCount - 1));
             zipOut.flush();
             zipOut.close();
             fileOut.close();
@@ -290,12 +258,12 @@ public class ZipEngine {
                Logger.logMsg("Largest Files (zipped):");
                for (Map.Entry<Long, String> largeFile : largestFiles.entrySet())
                   Logger.logMsg(tab + count++ + outline + largeFile.getValue() + sizePre +
-                     zipNF.format(1.0 * largeFile.getKey() / kb) + sizePost);
+                     zipNF.format(largeFile.getKey() / kb) + sizePost);
                }
-            double backupSize = 1.0 * new File(zipFileName).length() / kb;
+            long backupKB = new File(zipFileName).length() / kb;
             Logger.logMsg(UIProperties.current.logMsgBackupCreated + space +
-               zipFileName + sizePre + zipNF.format(backupSize) + sizePost);
-            if (backupSize > 3900) //Until Zip64 in Java 7, zip files are limited to 4 MB
+               zipFileName + sizePre + zipNF.format(backupKB) + sizePost);
+            if (backupKB > 3800000) //Until Zip64 in Java 7, zip files are limited to 4 GB
                Logger.logMsg(
                   "*** ERROR: Backup file may exceed 4 GB limit -- file corruption possible!");
             }
