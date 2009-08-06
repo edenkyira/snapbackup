@@ -171,7 +171,7 @@ public class AboutDialog extends JDialog {
          new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                JOptionPane.showMessageDialog(null, hey, ui.aboutVersion,
-                  JOptionPane.PLAIN_MESSAGE); } },
+                  JOptionPane.PLAIN_MESSAGE); } },  //null should really be AboutDialog
          KeyStroke.getKeyStroke(KeyEvent.VK_OPEN_BRACKET, 0),  //don't press '['
          JComponent.WHEN_IN_FOCUSED_WINDOW);
       }
