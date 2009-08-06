@@ -34,6 +34,7 @@ import java.util.Locale;
 import javax.swing.*;
 
 import com.snapbackup.settings.UserPreferences;
+import com.snapbackup.ui.SnapBackupFrame;
 import com.snapbackup.utilities.ZipEngine;
 
 public class BackupProgressDialog extends JDialog {
@@ -48,6 +49,7 @@ public class BackupProgressDialog extends JDialog {
    JButton cancelButton;
 
    public BackupProgressDialog(ZipEngine zipInst) {
+      super(SnapBackupFrame.current);
       current = this;
       zip = zipInst;
       setTitle(BackupProgressUIProperties.backupProgressTitle);

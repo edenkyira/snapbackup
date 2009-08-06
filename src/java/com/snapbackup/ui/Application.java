@@ -36,7 +36,6 @@ public final class Application {
       //SplashScreen splash = new SplashScreen();
       //UIUtilities.centerDialog(splash);
       SnapBackupFrame frame = new SnapBackupFrame();
-      frame.setup();
       Logger.initLogArea(frame.getLogTextArea());
       com.snapbackup.utilities.settings.UserPreferencesOLD.copyOldPrefsToNewLocation();  //pre v5.1 --> v5.1
       DataModel.initSettings(frame);

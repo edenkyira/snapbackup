@@ -27,6 +27,7 @@ package com.snapbackup.ui.options;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -97,11 +98,9 @@ public class OptionsDialog extends JDialog {
    JButton      okButton =             new JButton(ui.buttonOk);
    JButton[]    buttonList =           { cancelButton, defaultsButton, okButton };
    
-   public OptionsDialog(String backupName) {
+   public OptionsDialog(Frame owner, String backupName) {
+      super(owner);
       coreBackupName = SystemAttributes.space + backupName;
-      }
-
-   public void initGUI(Component parent) {
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
       setTitle(ui.title);
       configureContols();
@@ -112,7 +111,7 @@ public class OptionsDialog extends JDialog {
       setModal(true);
       setResizable(false);
       pack();
-      setLocationRelativeTo(parent);
+      setLocationRelativeTo(owner);
       setVisible(true);
       }
 
