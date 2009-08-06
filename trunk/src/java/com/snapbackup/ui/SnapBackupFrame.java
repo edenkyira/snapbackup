@@ -548,31 +548,31 @@ public class SnapBackupFrame extends JFrame {
    //
    public void setupMenuCallbacks() {       
       languagesMenuItemButtonShow.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { languagesMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { languagesMenuItemAction(); }
          } );
       languagesMenuItemButtonHide.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { languagesMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { languagesMenuItemAction(); }
          } );
       filtersMenuItemButtonOn.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { filtersMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { filtersMenuItemAction(); }
          } );
       filtersMenuItemButtonOff.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { filtersMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { filtersMenuItemAction(); }
          } );
       profilesMenuItemButtonOn.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { profilesMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { profilesMenuItemAction(); }
          } );
       profilesMenuItemButtonOff.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { profilesMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { profilesMenuItemAction(); }
          } );
       exportMenuItem.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { new ExportDialog(current); }
+         public void actionPerformed(ActionEvent e) { exportMenuItemAction(); }
          } );
       importMenuItem.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { new ImportDialog(current); }
+         public void actionPerformed(ActionEvent e) { importMenuItemAction(); }
          } );
       optionsMenuItem.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { optionsMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { optionsMenuItemAction(); }
          } );
       //Skin (Look and Feel)
       String currentSkinName = UserPreferences.readPref(DataModel.prefSkinName);
@@ -583,23 +583,23 @@ public class SnapBackupFrame extends JFrame {
          skinRbmi = new JRadioButtonMenuItem(laf.getName(),
             laf.getClassName().equals(currentSkinName));
          skinRbmi.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) { skinMenuItemAction(e); }
+            public void actionPerformed(ActionEvent e) {
+               skinMenuItemAction(e.getActionCommand()); }
             } );
          skinGroup.add(skinRbmi);
          skinMenuItem.add(skinRbmi); //menu: File | Look & Feel | ZZZZ
          }
       exitMenuItem.addActionListener(new ActionListener() {
-         //public void actionPerformed(ActionEvent e) { exitMenuItemAction(e); }
-         public void actionPerformed(ActionEvent e) { DataModel.exit(); }
+         public void actionPerformed(ActionEvent e) { exitMenuItemAction(); }
          } );
       guideMenuItem.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { guideMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { guideMenuItemAction(); }
          } );
       updatesMenuItem.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { updatesMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { updatesMenuItemAction(); }
          } );
       aboutMenuItem.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { aboutMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { aboutMenuItemAction(); }
          } );
       }
 
@@ -610,67 +610,70 @@ public class SnapBackupFrame extends JFrame {
 
       //Setup Callbacks for Profiles Controls
       profilesDropDown.addItemListener(new ItemListener() {
-         public void itemStateChanged(ItemEvent e) { profilesSelectAction(e); }
+         public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED) profilesSelectAction(); }
          } );
       profilesAddButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { profilesNewButtonAction(e); }
+         public void actionPerformed(ActionEvent e) { profilesNewButtonAction(); }
          } );
       profilesDeleteButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { profilesDeleteButtonAction(e); }
+         public void actionPerformed(ActionEvent e) { profilesDeleteButtonAction(); }
          } );
 
       //Setup Callbacks for Source (Zip List) Controls
       srcZipList.addListSelectionListener(new ListSelectionListener() {
-         public void valueChanged(ListSelectionEvent e) { srcZipListSelection(e); }
+         public void valueChanged(ListSelectionEvent e) { srcZipListSelection(); }
          } );
       srcAddFileButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { srcAddButtonAction(e, JFileChooser.FILES_ONLY); }
+         public void actionPerformed(ActionEvent e) {
+            srcAddButtonAction(JFileChooser.FILES_ONLY); }
          } );
       srcAddFolderButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { srcAddButtonAction(e, JFileChooser.DIRECTORIES_ONLY); }
+         public void actionPerformed(ActionEvent e) {
+            srcAddButtonAction(JFileChooser.DIRECTORIES_ONLY); }
          } );
       srcRemoveButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { srcRemoveButtonAction(e); }
+         public void actionPerformed(ActionEvent e) { srcRemoveButtonAction(); }
          } );
       srcFilterButton.addActionListener(new ActionListener() {
-          public void actionPerformed(ActionEvent e) { new FilterDialog(current); }
+          public void actionPerformed(ActionEvent e) { srcFilterButtonAction(); }
           } );
 
       //Setup Callbacks for Destination (Backup & Archive) Controls
       destBackupDirTextField.addKeyListener(new KeyAdapter() {
          @Override
-         public void keyReleased(KeyEvent e) { destBackupDirTextFieldEdited(e); }
+         public void keyReleased(KeyEvent e) { destBackupDirTextFieldEdited(); }
          });
       destBackupNameTextField.addKeyListener(new KeyAdapter(){
          @Override
-         public void keyReleased(KeyEvent e){ destBackupNameTextFieldEdited(e); }
+         public void keyReleased(KeyEvent e) { destBackupNameTextFieldEdited(); }
          });
       destBackupChooserButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { destBackupChooserButtonAction(e); }
+         public void actionPerformed(ActionEvent e) { destBackupChooserButtonAction(); }
          } );
       destArchivePromptCheckBox.addItemListener(new ItemListener(){
-         public void itemStateChanged(ItemEvent e){destArchivePromptCheckBoxToggled(e);}
+         public void itemStateChanged(ItemEvent e) { destArchivePromptCheckBoxToggled(); }
          });
       destArchiveDirTextField.addKeyListener(new KeyAdapter(){
          @Override
-         public void keyReleased(KeyEvent e){ destArchiveDirTextFieldEdited(e);}
+         public void keyReleased(KeyEvent e){ destArchiveDirTextFieldEdited();}
          });
       destArchiveChooserButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { destArchiveChooserButtonAction(e); }
+         public void actionPerformed(ActionEvent e) { destArchiveChooserButtonAction(); }
          } );
 
       //Setup Callbacks for Button Controls
       saveButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { saveButtonAction (e); }
+         public void actionPerformed(ActionEvent e) { saveButtonAction(); }
          } );
       resetButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { resetButtonAction (e); }
+         public void actionPerformed(ActionEvent e) { resetButtonAction(); }
          } );
       doBackupButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { doBackupButtonAction (e); }
+         public void actionPerformed(ActionEvent e) { doBackupButtonAction(); }
          } );
       exitButton.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { exitButtonAction (e); }
+         public void actionPerformed(ActionEvent e) { exitButtonAction(); }
          } );
        }
 
@@ -680,19 +683,19 @@ public class SnapBackupFrame extends JFrame {
    //
 
    //Menu Items Callbacks
-   public void languagesMenuItemAction(ActionEvent e) {
+   public void languagesMenuItemAction() {
       for (JPanel flagPanel : langFlagsPanels)
          flagPanel.setVisible(languagesMenuItemButtonShow.isSelected());
       DataModel.saveShowLanguagesSetting(this);
       }
-   public void filtersMenuItemAction(ActionEvent e) {
+   public void filtersMenuItemAction() {
       //boolean filtersEnabled = filtersMenuItemButtonOn.isSelected();
       //srcFilterButton.setVisible(filtersEnabled);
       DataModel.buildZipListModel(getSrcZipListModel(), this);
       DataModel.updateSrcButtons(this);
       DataModel.saveFiltersEnabledSetting(this);
       }
-   public void profilesMenuItemAction(ActionEvent e) {
+   public void profilesMenuItemAction() {
       boolean showProfiles = profilesMenuItemButtonOn.isSelected();
       if (!showProfiles)
          popupMsg(Str.macroExpand(ui.profilesOffMsg, getCurrentProfileName()),
@@ -700,10 +703,10 @@ public class SnapBackupFrame extends JFrame {
       profilesInnerPanel.setVisible(showProfiles);
       DataModel.saveShowProfilesSetting(this);
       }
-   public void skinMenuItemAction(ActionEvent e) {
+   public void skinMenuItemAction(String actionCmd) {
       int count = 0;
       while (count < UIProperties.lafs.length &&
-            !e.getActionCommand().equals(UIProperties.lafs[count].getName()))
+            !actionCmd.equals(UIProperties.lafs[count].getName()))
          count++;
       try {
          UIManager.LookAndFeelInfo laf = UIProperties.lafs[count];
@@ -726,16 +729,16 @@ public class SnapBackupFrame extends JFrame {
             except.getMessage(), ui.menuItemSkin);
          }
       }
-   public void exitMenuItemAction(ActionEvent e) {
+   public void exitMenuItemAction() {
       DataModel.exit();
       }
-   public void exportMenuItemAction(ActionEvent e) {
+   public void exportMenuItemAction() {
       new ExportDialog(this);
       }
-   public void importMenuItemAction(ActionEvent e) {
+   public void importMenuItemAction() {
       new ImportDialog(this);
       }
-   public void optionsMenuItemAction(ActionEvent e) {
+   public void optionsMenuItemAction() {
       String oldNumRowsSrc = UserPreferences.readPref(Options.prefNumRowsSrc);
       String oldNumRowsLog = UserPreferences.readPref(Options.prefNumRowsLog);
       new OptionsDialog(this, destBackupNameTextField.getText());
@@ -752,10 +755,10 @@ public class SnapBackupFrame extends JFrame {
          this.pack();  //N
          }
       }
-   public void guideMenuItemAction(ActionEvent e) {
+   public void guideMenuItemAction() {
       new UserGuideDialog(this);
       }
-   public void updatesMenuItemAction(ActionEvent e) {
+   public void updatesMenuItemAction() {
       String latestVersion = CheckForUpdates.getLatestVersion();
       String nl = SystemAttributes.newLine;
       String sp = SystemAttributes.space;
@@ -775,7 +778,7 @@ public class SnapBackupFrame extends JFrame {
             BareBonesBrowserLaunch.openURL(SystemAttributes.downloadURL);
          }
       }
-   public void aboutMenuItemAction(ActionEvent e) {
+   public void aboutMenuItemAction() {
       new AboutDialog(this);
       }
 
@@ -789,30 +792,28 @@ public class SnapBackupFrame extends JFrame {
       }
 
    //Profiles Callbacks
-   public void profilesSelectAction(ItemEvent e) {
-       if (e.getStateChange() == ItemEvent.SELECTED) {
-          setCurrentProfile((String)profilesDropDown.getSelectedItem());
-          DataModel.loadProfile(this);
-          UserPreferences.savePref(DataModel.prefCurrentProfile, getCurrentProfileName());
-          }
+   public void profilesSelectAction() {
+       setCurrentProfile((String)profilesDropDown.getSelectedItem());
+       DataModel.loadProfile(this);
+       UserPreferences.savePref(DataModel.prefCurrentProfile, getCurrentProfileName());
        }
-   public void profilesNewButtonAction(ActionEvent e) {
+   public void profilesNewButtonAction() {
       String profileName = JOptionPane.showInputDialog(this, ui.profilesAddPrompt,
          ui.profilesAddTitle, JOptionPane.PLAIN_MESSAGE);
       if (profileName != null) {
          profileName = profileName.trim();
          if (profileName.length() == 0) {
             popupMsg(ui.profilesAddMsgBlank, ui.profilesTitle);
-            profilesNewButtonAction(e);  //prompt again
+            profilesNewButtonAction();  //prompt again
             }
          else if (profileName.equalsIgnoreCase(getCurrentProfileName())) {
             //handles edge case for very first new profile added
             popupMsg(ui.profilesAddMsgExists, ui.profilesTitle);
-            profilesNewButtonAction(e);  //prompt again
+            profilesNewButtonAction();  //prompt again
             }
          else if (UserPreferences.profileInDB(profileName)) {
             popupMsg(ui.profilesAddMsgExists, ui.profilesTitle);
-            profilesNewButtonAction(e);  //prompt again
+            profilesNewButtonAction();  //prompt again
             }
          else {
             if (!UserPreferences.profileInDB())
@@ -831,7 +832,7 @@ public class SnapBackupFrame extends JFrame {
          ui.profilesDeleteTitle, JOptionPane.YES_NO_OPTION,
          JOptionPane.PLAIN_MESSAGE) == 0;
       }
-   public void profilesDeleteButtonAction(ActionEvent e) {
+   public void profilesDeleteButtonAction() {
       if (promptDeleteProfile(getCurrentProfileName())) {
          UserPreferences.deleteProfile();
          int loc = profilesDropDown.getSelectedIndex();
@@ -843,7 +844,7 @@ public class SnapBackupFrame extends JFrame {
       }
    
    //Source Callbacks
-   public void srcZipListSelection(ListSelectionEvent e) {
+   public void srcZipListSelection() {
       DataModel.updateSrcButtons(this);
       }
    /*
@@ -852,7 +853,7 @@ public class SnapBackupFrame extends JFrame {
       System.out.println('Mouse Event: ' + e.toString());
       }
       */
-   public void srcAddButtonAction(ActionEvent e, int fileSelectionMode) {
+   public void srcAddButtonAction(int fileSelectionMode) {
       JFileChooser srcAddFileChooser = new JFileChooser();
       srcAddFileChooser.setFileSelectionMode(fileSelectionMode);
       //jFileChooserData.setCurrentDirectory(new File(nullStr));
@@ -866,10 +867,10 @@ public class SnapBackupFrame extends JFrame {
          DataModel.addZipItem(
             srcAddFileChooser.getSelectedFile().getAbsolutePath(), this);
       }
-   public void srcRemoveButtonAction(ActionEvent e) {
+   public void srcRemoveButtonAction() {
       DataModel.removeCurrentZipItem(this);
       }
-   public void srcFilterButtonAction(ActionEvent e) {
+   public void srcFilterButtonAction() {
       new FilterDialog(this);
       }
 
@@ -882,16 +883,16 @@ public class SnapBackupFrame extends JFrame {
       if (destFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
          destDirTextField.setText(destFileChooser.getSelectedFile().getAbsolutePath());
       }
-   public void destBackupChooserButtonAction(ActionEvent e) {
+   public void destBackupChooserButtonAction() {
       destChooserButtonAction(destBackupDirTextField, ui.destBackupCmd);
       }
-   public void destArchiveChooserButtonAction(ActionEvent e) {
+   public void destArchiveChooserButtonAction() {
       destChooserButtonAction(destArchiveDirTextField, ui.destArchiveCmd);
       }
-   public void destBackupDirTextFieldEdited(KeyEvent e) {
+   public void destBackupDirTextFieldEdited() {
       DataModel.updateDestPaths(this);
       }
-   public void destBackupNameTextFieldEdited(KeyEvent e) {
+   public void destBackupNameTextFieldEdited() {
       int badKeyLoc = destBackupNameTextField.getText().indexOf(SystemAttributes.fileSeparator);
       while (badKeyLoc != -1) {
          destBackupNameTextField.setText(
@@ -901,24 +902,24 @@ public class SnapBackupFrame extends JFrame {
          }
       DataModel.updateDestPaths(this);
       }
-   public void destArchivePromptCheckBoxToggled(ItemEvent e) {
+   public void destArchivePromptCheckBoxToggled() {
       DataModel.updateArchiveDir(this);
       }
 
    //Button Callbacks
-   public void destArchiveDirTextFieldEdited(KeyEvent e) {
+   public void destArchiveDirTextFieldEdited() {
       DataModel.updateDestPaths(this);
       }
-   public void saveButtonAction(ActionEvent e) {
+   public void saveButtonAction() {
       popupMsg(DataModel.saveSettings(this), ui.buttonSave);
       }
-   public void resetButtonAction(ActionEvent e) {
+   public void resetButtonAction() {
       popupMsg(DataModel.restoreDefaultSettings(this), ui.buttonReset);
       }
-   public void doBackupButtonAction(ActionEvent e) {
+   public void doBackupButtonAction() {
       DataModel.doBackup();
       }
-   public void exitButtonAction(ActionEvent e) {
+   public void exitButtonAction() {
       DataModel.exit();
       }
 
