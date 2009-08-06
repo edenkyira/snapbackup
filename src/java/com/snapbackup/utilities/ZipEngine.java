@@ -67,6 +67,7 @@ public class ZipEngine {
    final String exclusionNote =      " -- " + AppProperties.getProperty("FilterRuleExcludeTitle");
    final String sizePre =            space + space + "[";
    final String sizePost =           space + AppProperties.getProperty("FilterMarkerUnits") + "]";
+   final String outline =            ")" + space;
    NumberFormat nf = NumberFormat.getNumberInstance(new Locale(UserPreferences.readLocalePref()));
    int numLargestFiles = 3;   //needs to be enhanced to use preferences
    TopMap<Long, String> largestFiles = new TopMap<Long, String>(numLargestFiles);
@@ -284,17 +285,19 @@ public class ZipEngine {
             zipOut.flush();
             zipOut.close();
             fileOut.close();
+            int count = 1;
             if (numLargestFiles > 0) {  // !!!!!!!! move text into properties file for localization
-               Logger.logMsg("Largest Compressed Files (" + largestFiles.size() + "):");
+               Logger.logMsg("Largest Files (zipped):");
                for (Map.Entry<Long, String> largeFile : largestFiles.entrySet())
-                  Logger.logMsg(tab + largeFile.getValue() + sizePre +
+                  Logger.logMsg(tab + count++ + outline + largeFile.getValue() + sizePre +
                      zipNF.format(1.0 * largeFile.getKey() / kb) + sizePost);
                }
             double backupSize = 1.0 * new File(zipFileName).length() / kb;
             Logger.logMsg(UIProperties.current.logMsgBackupCreated + space +
                zipFileName + sizePre + zipNF.format(backupSize) + sizePost);
-            if (backupSize > 3800) //Until Zip64 in Java 7, zip files are limited to 4 MB
-               Logger.logMsg("*** WARNING: Backup file may be too large -- file corruption possible!");
+            if (backupSize > 3900) //Until Zip64 in Java 7, zip files are limited to 4 MB
+               Logger.logMsg(
+                  "*** ERROR: Backup file may exceed 4 GB limit -- file corruption possible!");
             }
          catch (IOException e) {
             abortBackup(UIProperties.current.err01CreatingBackupFile,
