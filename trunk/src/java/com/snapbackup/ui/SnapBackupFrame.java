@@ -161,9 +161,6 @@ public class SnapBackupFrame extends JFrame {
 
    public SnapBackupFrame() {
       current = this;
-      }
-
-   public void setup() {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       //setTitle(UIProperties.appTitle);
       setTitle(ui.appTitle);
@@ -200,29 +197,6 @@ public class SnapBackupFrame extends JFrame {
             a.getDisplayName(locale).compareTo(b.getDisplayName(locale));
          }
       }
-
-   /*
-   boolean switchLocaleCodes(String codeA, String codeB, Locale currentLocale) {
-      Locale a = new Locale(codeA);
-      Locale b = new Locale(codeB);
-      return b.equals(currentLocale) || (!a.equals(currentLocale) &&
-         a.getDisplayLanguage(currentLocale).compareTo(b.getDisplayLanguage(currentLocale)) > 0);
-      }
-
-   void sortLocaleCodes(String[] localeCodes, Locale currentLocale) {
-      String holder;
-      boolean done = true;
-      for (int count = 1; count < localeCodes.length; count++)
-         if (switchLocaleCodes(localeCodes[count-1], localeCodes[count], currentLocale)) {
-            holder = localeCodes[count-1];
-            localeCodes[count-1] = localeCodes[count];
-            localeCodes[count] = holder;
-            done = false;
-            }
-      if (!done)
-         sortLocaleCodes(localeCodes, currentLocale);
-      }
-   */
 
    void configureContols() {
       //Configure Menu Controls
@@ -474,8 +448,6 @@ public class SnapBackupFrame extends JFrame {
       languagesMenuItemButtonHide.setSelected(!showLanguages);
       for (JPanel flagPanel: langFlagsPanels)
          flagPanel.setVisible(showLanguages);
-      //for (int count = 0; count < numFlagRows; count++)
-      //   langFlagsPanels[count].setVisible(showLanguages);
       }
    public boolean getShowLanguages() {
       return languagesMenuItemButtonShow.isSelected();
@@ -505,8 +477,6 @@ public class SnapBackupFrame extends JFrame {
       profilesDropDown.removeAllItems();
       for (String profileName : profileNames)
          profilesDropDown.addItem(profileName);
-      //for (int count = 0; count < profileNames.length; count++)
-      //   profilesDropDown.addItem(profileNames[count]);
       }
    public String readProfilesDropDown() {
       String profileList = (String)profilesDropDown.getItemAt(0);
@@ -596,10 +566,10 @@ public class SnapBackupFrame extends JFrame {
          public void actionPerformed(ActionEvent e) { profilesMenuItemAction(e); }
          } );
       exportMenuItem.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { exportMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { new ExportDialog(current); }
          } );
       importMenuItem.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { importMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { new ImportDialog(current); }
          } );
       optionsMenuItem.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) { optionsMenuItemAction(e); }
@@ -618,19 +588,9 @@ public class SnapBackupFrame extends JFrame {
          skinGroup.add(skinRbmi);
          skinMenuItem.add(skinRbmi); //menu: File | Look & Feel | ZZZZ
          }
-      /*
-      for (int count = 0; count < UIProperties.lafs.length; count++) {
-         skinRbmi = new JRadioButtonMenuItem(UIProperties.lafs[count].getName(),
-            UIProperties.lafs[count].getClassName().equals(currentSkinName));
-         skinRbmi.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) { skinMenuItemAction(e); }
-            } );
-         skinGroup.add(skinRbmi);
-         skinMenuItem.add(skinRbmi); //menu: File | Look & Feel | ZZZZ
-         }
-      */
       exitMenuItem.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) { exitMenuItemAction(e); }
+         //public void actionPerformed(ActionEvent e) { exitMenuItemAction(e); }
+         public void actionPerformed(ActionEvent e) { DataModel.exit(); }
          } );
       guideMenuItem.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) { guideMenuItemAction(e); }
@@ -673,7 +633,7 @@ public class SnapBackupFrame extends JFrame {
          public void actionPerformed(ActionEvent e) { srcRemoveButtonAction(e); }
          } );
       srcFilterButton.addActionListener(new ActionListener() {
-          public void actionPerformed(ActionEvent e) { srcFilterButtonAction(e); }
+          public void actionPerformed(ActionEvent e) { new FilterDialog(current); }
           } );
 
       //Setup Callbacks for Destination (Backup & Archive) Controls
@@ -723,8 +683,6 @@ public class SnapBackupFrame extends JFrame {
    public void languagesMenuItemAction(ActionEvent e) {
       for (JPanel flagPanel : langFlagsPanels)
          flagPanel.setVisible(languagesMenuItemButtonShow.isSelected());
-      //for (int count = 0; count < numFlagRows; count++)
-      //   langFlagsPanels[count].setVisible(languagesMenuItemButtonShow.isSelected());
       DataModel.saveShowLanguagesSetting(this);
       }
    public void filtersMenuItemAction(ActionEvent e) {
@@ -772,21 +730,15 @@ public class SnapBackupFrame extends JFrame {
       DataModel.exit();
       }
    public void exportMenuItemAction(ActionEvent e) {
-      ExportDialog exportDialog = new ExportDialog();
-      exportDialog.initGUI(this);
-      //UIUtilities.centerDialog(exportDialog, this);
+      new ExportDialog(this);
       }
    public void importMenuItemAction(ActionEvent e) {
-      ImportDialog importDialog = new ImportDialog();
-      importDialog.initGUI(this);
-      //UIUtilities.centerDialog(importDialog, this);
+      new ImportDialog(this);
       }
    public void optionsMenuItemAction(ActionEvent e) {
       String oldNumRowsSrc = UserPreferences.readPref(Options.prefNumRowsSrc);
       String oldNumRowsLog = UserPreferences.readPref(Options.prefNumRowsLog);
-      OptionsDialog optionsDialog = new OptionsDialog(destBackupNameTextField.getText());
-      optionsDialog.initGUI(this);
-      //UIUtilities.centerDialog(optionsDialog, this);
+      new OptionsDialog(this, destBackupNameTextField.getText());
       DataModel.updateDestPaths(this);
       if (!oldNumRowsSrc.equals(UserPreferences.readPref(Options.prefNumRowsSrc)) ||
          !oldNumRowsLog.equals(UserPreferences.readPref(Options.prefNumRowsLog))) {
@@ -801,9 +753,7 @@ public class SnapBackupFrame extends JFrame {
          }
       }
    public void guideMenuItemAction(ActionEvent e) {
-      new UserGuideDialog().initGUI(this);
-      //guideDialog.initGUI(this);
-      //UIUtilities.centerDialog(guideDialog, this);
+      new UserGuideDialog(this);
       }
    public void updatesMenuItemAction(ActionEvent e) {
       String latestVersion = CheckForUpdates.getLatestVersion();
@@ -826,9 +776,7 @@ public class SnapBackupFrame extends JFrame {
          }
       }
    public void aboutMenuItemAction(ActionEvent e) {
-      new AboutDialog().initGUI(this);
-      //aboutDialog.initGUI(this);
-      //UIUtilities.centerDialog(aboutDialog, this);
+      new AboutDialog(this);
       }
 
    //Language Icon Callbacks
@@ -849,8 +797,8 @@ public class SnapBackupFrame extends JFrame {
           }
        }
    public void profilesNewButtonAction(ActionEvent e) {
-      String profileName =
-         JOptionPane.showInputDialog(null, ui.profilesAddPrompt, ui.profilesAddTitle, JOptionPane.PLAIN_MESSAGE);
+      String profileName = JOptionPane.showInputDialog(this, ui.profilesAddPrompt,
+         ui.profilesAddTitle, JOptionPane.PLAIN_MESSAGE);
       if (profileName != null) {
          profileName = profileName.trim();
          if (profileName.length() == 0) {
@@ -922,9 +870,7 @@ public class SnapBackupFrame extends JFrame {
       DataModel.removeCurrentZipItem(this);
       }
    public void srcFilterButtonAction(ActionEvent e) {
-      new FilterDialog().initGUI(this);
-      //dialog.initGUI();
-      //UIUtilities.centerDialog(dialog, this);
+      new FilterDialog(this);
       }
 
 
@@ -933,12 +879,8 @@ public class SnapBackupFrame extends JFrame {
       JFileChooser destFileChooser = new JFileChooser();
       destFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
       destFileChooser.setCurrentDirectory(new File(destDirTextField.getText()));
-      int returnStatus =
-         //destFileChooser.showDialog(this, msg);
-         destFileChooser.showSaveDialog(this);
-      if (returnStatus == JFileChooser.APPROVE_OPTION)
-         destDirTextField.setText(
-            destFileChooser.getSelectedFile().getAbsolutePath());
+      if (destFileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
+         destDirTextField.setText(destFileChooser.getSelectedFile().getAbsolutePath());
       }
    public void destBackupChooserButtonAction(ActionEvent e) {
       destChooserButtonAction(destBackupDirTextField, ui.destBackupCmd);
@@ -974,7 +916,6 @@ public class SnapBackupFrame extends JFrame {
       popupMsg(DataModel.restoreDefaultSettings(this), ui.buttonReset);
       }
    public void doBackupButtonAction(ActionEvent e) {
-      //DataModel.doBackupNow();
       DataModel.doBackup();
       }
    public void exitButtonAction(ActionEvent e) {

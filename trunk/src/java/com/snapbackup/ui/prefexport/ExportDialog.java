@@ -27,6 +27,7 @@ package com.snapbackup.ui.prefexport;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -58,7 +59,8 @@ public class ExportDialog extends JDialog {
    JButton      actionButton =            new JButton(ui.buttonExport);
    JButton[]    buttonList =              { cancelButton, actionButton };
 
-   public void initGUI(Component parent) {
+   public ExportDialog(Frame owner) {
+      super(owner);
       AppProperties.addSupplimentalProperty(Export.prefSettingsFileName,
             new Export().defaultSettingsFileName);
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -69,7 +71,7 @@ public class ExportDialog extends JDialog {
       setModal(true);
       setResizable(false);
       pack();
-      setLocationRelativeTo(parent);
+      setLocationRelativeTo(owner);
       setVisible(true);
       }
 

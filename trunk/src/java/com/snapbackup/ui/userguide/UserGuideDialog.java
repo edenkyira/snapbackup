@@ -27,6 +27,7 @@ package com.snapbackup.ui.userguide;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,19 +56,19 @@ public class UserGuideDialog extends JDialog {
    JButton     closeButton =    new JButton(ui.userGuideButtonClose);
    JButton[]   buttonList =     { printButton, closeButton };
 
-   public void initGUI(Component parent) {
+   public UserGuideDialog(Frame owner) {
+      super(owner);
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
       setTitle(ui.userGuideTitle);
-      configureContols(parent);
+      configureContols();
       addContols();
-      getContentPane().add(basePanel);
       setResizable(true);
       pack();
-      setLocationRelativeTo(parent);
+      setLocationRelativeTo(owner);
       setVisible(true);
       }
 
-   public void configureContols(Component parent) {
+   public void configureContols() {
       basePanel.setLayout(new BoxLayout(basePanel, BoxLayout.PAGE_AXIS));
       basePanel.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
       headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.PAGE_AXIS));
@@ -84,8 +85,8 @@ public class UserGuideDialog extends JDialog {
             ui.userGuideErrMsg + UserGuideUIProperties.userGuideURL);
          }
       htmlEditorPane.setEditable(false);
-      int width =  parent.getWidth() *  UserGuideUIProperties.userGuideSizeScaleX / 100;
-      int height = parent.getHeight() * UserGuideUIProperties.userGuideSizeScaleY / 100;
+      int width =  getOwner().getWidth() *  UserGuideUIProperties.userGuideSizeScaleX / 100;
+      int height = getOwner().getHeight() * UserGuideUIProperties.userGuideSizeScaleY / 100;
       Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
       Dimension size = new Dimension(
          Math.min(width,  screenSize.width - 200),
@@ -123,6 +124,7 @@ public class UserGuideDialog extends JDialog {
       buttonPanel.add(closeButton);
       //basePanel.add(buttonPanel, BorderLayout.PAGE_END);
       basePanel.add(buttonPanel);
+      getContentPane().add(basePanel);
       }
 
    public void printButtonAction() {

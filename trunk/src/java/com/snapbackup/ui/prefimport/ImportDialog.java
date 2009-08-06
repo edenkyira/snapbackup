@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Snap Backup(tm)                                                            //
-// ImportSettingsDialog.java                                                         //
+// ImportSettingsDialog.java                                                  //
 //                                                                            //
 // GNU General Public License:                                                //
 // This program is free software; you can redistribute it and/or modify it    //
@@ -27,6 +27,7 @@ package com.snapbackup.ui.prefimport;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -61,7 +62,8 @@ public class ImportDialog extends JDialog {
    JButton      actionButton =            new JButton(ui.buttonImport);
    JButton[]    buttonList =              { cancelButton, actionButton };
 
-   public void initGUI(Component parent) {
+   public ImportDialog(Frame owner) {
+      super(owner);
       AppProperties.addSupplimentalProperty(Export.prefSettingsFileName,
          new Export().defaultSettingsFileName);
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -72,7 +74,7 @@ public class ImportDialog extends JDialog {
       setModal(true);
       setResizable(false);
       pack();
-      setLocationRelativeTo(parent);
+      setLocationRelativeTo(owner);
       setVisible(true);
       }
 

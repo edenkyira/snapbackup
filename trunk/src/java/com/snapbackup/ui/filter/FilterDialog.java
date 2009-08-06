@@ -27,6 +27,7 @@ package com.snapbackup.ui.filter;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -78,18 +79,18 @@ public class FilterDialog extends JDialog {
    JButton    okButton =                  new JButton(ui.filterRuleButtonOk);
    JButton[]  buttonList =                { deleteButton, cancelButton, okButton };
 
-   public void initGUI(Component parent) {
+   public FilterDialog(Frame owner) {
+      super(owner);
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
       setTitle(ui.filterRuleTitle);
       configureContols();
       addContols();
-      getContentPane().add(filterPanel);
       setModal(true);
       setResizable(false);
       pack();
       excludeSizeField.setSize(50, excludeSizeField.getSize().height);
       excludeSizeField.setMaximumSize(excludeSizeField.getSize());
-      setLocationRelativeTo(parent);
+      setLocationRelativeTo(owner);
       setVisible(true);
       }
 
@@ -170,6 +171,7 @@ public class FilterDialog extends JDialog {
       buttonPanel.add(Box.createRigidArea(new Dimension(5,0)));
       buttonPanel.add(okButton);
       filterPanel.add(buttonPanel);
+      getContentPane().add(filterPanel);
       }
 
    //

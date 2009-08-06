@@ -75,18 +75,16 @@ public class AboutDialog extends JDialog {
    JButton   closeButton =       new JButton(ui.aboutButtonClose);
    JButton[] buttonList =        { webButton, closeButton };
 
-   public void initGUI(Component parent) {
+   public AboutDialog(Frame owner) {
+      super(owner);
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
       setTitle(ui.aboutTitle + UIProperties.current.appTitle);
       configureContols();
       addContols();
-      getContentPane().setBackground(Color.white);
-      getContentPane().add(logo, BorderLayout.LINE_START);
-      getContentPane().add(aboutPanel, BorderLayout.CENTER);
       setModal(true);
       setResizable(false);
       pack();
-      setLocationRelativeTo(parent);
+      setLocationRelativeTo(owner);
       setVisible(true);
       }
 
@@ -129,6 +127,7 @@ public class AboutDialog extends JDialog {
       }
 
    void configureContols() {
+      getContentPane().setBackground(Color.white);
       logo.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 30));
       aboutPanel.setLayout(new BoxLayout(aboutPanel, BoxLayout.PAGE_AXIS));
       aboutPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 30));
@@ -198,6 +197,8 @@ public class AboutDialog extends JDialog {
          ((JComponent)component).setAlignmentX(Component.LEFT_ALIGNMENT);
       //for (int count = 0; count < aboutPanel.getComponentCount(); count++)
       //   ((JComponent)aboutPanel.getComponent(count)).setAlignmentX(Component.LEFT_ALIGNMENT);
+      getContentPane().add(logo, BorderLayout.LINE_START);
+      getContentPane().add(aboutPanel, BorderLayout.CENTER);
       }
 
    //

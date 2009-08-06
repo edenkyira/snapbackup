@@ -35,7 +35,7 @@ public class SystemAttributes {
    //Release constants
    public static final String   appName = "SnapBackup";  //".properties" name
    public static final String   appCopyright = "&copy; 2009 Center Key Software";
-   public static final String   appVersion = "5.1b";
+   public static final String   appVersion = "5.1c";
    // 5.1 - 6/2/2009 -   Added Check for Updates feature (and moved prefs)
    // 5.0 - 5/6/2009 -   Added import/export and switched to Java 5.0
    // 4.5 - 9/7/2008 -   Slovene (Slovenian)
