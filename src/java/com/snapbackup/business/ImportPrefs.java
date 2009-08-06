@@ -36,6 +36,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.stream.StreamSource;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.snapbackup.settings.SystemAttributes;
@@ -52,19 +53,17 @@ public class ImportPrefs {
          ExportPrefs.userHomeFolderMarker, SystemAttributes.userHomeDir);
       }
 
+   String getNodeString(Node node) {
+      return node == null ? "" : node.getNodeValue();
+      }
+
    void loadSettings(NodeList settings) {
       String currentLocale = UserPreferences.readLocalePref();
       UserPreferences.deleteAllPrefs();
-      /*  Doesn't work -- only gets first node... need to use getFirstChild()?
-      for (Node node = settings.item(0); node != null; node = node.getNextSibling())
-         UserPreferences.savePrefByKey(
-            xmlToData(node.getAttributes().item(0).getNodeValue()),
-            xmlToData(node.getFirstChild().getNodeValue()));
-      */
       for (int count = 0; count < settings.getLength(); count++)
          UserPreferences.savePrefByKey(
             xmlToData(settings.item(count).getAttributes().item(0).getNodeValue()),
-            xmlToData(settings.item(count).getFirstChild().getNodeValue()));
+            xmlToData(getNodeString(settings.item(count).getFirstChild())));
       UserPreferences.saveLocalePref(currentLocale);
       }
 
