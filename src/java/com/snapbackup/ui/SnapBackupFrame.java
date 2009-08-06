@@ -827,7 +827,7 @@ public class SnapBackupFrame extends JFrame {
           }
        }
    boolean promptDeleteProfile(String name) {
-      return JOptionPane.showConfirmDialog(null,
+      return JOptionPane.showConfirmDialog(this,
          Str.macroExpand(ui.profilesDeletePrompt, name),
          ui.profilesDeleteTitle, JOptionPane.YES_NO_OPTION,
          JOptionPane.PLAIN_MESSAGE) == 0;
