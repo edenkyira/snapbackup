@@ -55,9 +55,8 @@ public class SystemAttributes {
    // 3.0 - 5/9/2005 -   Multiple profiles
    public static final String     appAuthors = "Dem Pilafian";  //Names of code contributor go here
    public static final String[][] appTranslators = {
-      //Codes -- http://www.ics.uci.edu/pub/ietf/http/related/iso639.txt
-      //Flags -- http://www.paypal.com/be/cgi-bin/webscr?cmd=_display-approved-signup-countries-outside
-      //Unicode -- http://www.ling.upenn.edu/~kurisuto/germanic/aa_character_encoding.html
+      //Codes -- http://www.loc.gov/standards/iso639-2/php/code_list.php
+      //Flags -- https://www.paypal.com/be/cgi-bin/webscr?cmd=_display-approved-signup-countries-outside
       { "Giorgio Ponza",          "http://www.janxes.it/jsp/societa/Giorgio.jsp" },  //"it"
       { "Pasc&aacute;l Bihler",   "http://www.bi-on.de/pascal/" },                   //"de"
       { "Carlos Maltzahn",        "http://homepage.mac.com/carlosmalt/" },           //"de"
