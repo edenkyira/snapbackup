@@ -11,8 +11,7 @@ Steps:
 
 This approach is simple, but there is no practical way to test your properties file before submitting it to the mailing list.  However, your properties file will be incorporated into the project, and an updated version of the Snap Backup application will be posted so you can test it.
 
-Download Test Version:
-   [http://www.snapbackup.com/translate/test.html www.snapbackup.com/translate/test.html]
+Download Test Version: [http://www.snapbackup.com/translate/test.html www.snapbackup.com/translate/test.html]
 
 
 === B) Direct Contribution ===
