@@ -52,7 +52,8 @@ public class AboutDialog extends JDialog {
 
    AboutUIProperties ui = new AboutUIProperties();
    final String copyrightStr =   startHtml + ui.aboutCopyright + space +
-      SystemAttributes.appCopyright + endHtml;
+      SystemAttributes.appCopyright + space + ui.aboutAnd + space +
+      ui.aboutContributors + endHtml;
    final String licenseStr =     ui.aboutLicense + newLine + newLine +
       ui.aboutDownload + newLine + tab + SystemAttributes.downloadURL;
    final String contactInfoStr = (ui.aboutContact + newLine +
