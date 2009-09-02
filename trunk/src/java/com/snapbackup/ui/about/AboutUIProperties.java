@@ -44,6 +44,7 @@ public class AboutUIProperties {
    public final String aboutCfgTitle =     AppProperties.getPropertyPadded("AboutConfigurationTitle");
    public final String aboutContact =      AppProperties.getProperty("AboutContactInfo");
    public final String aboutCopyright =    AppProperties.getProperty("AboutCopyright");
+   public final String aboutContributors = /* AppProperties.getProperty("AboutContributors"); */ "Individual Contributors";
    public final String aboutButtonWeb =    AppProperties.getProperty("AboutButtonWeb");
    public final String aboutButtonClose =  AppProperties.getProperty("AboutButtonClose");
    }
