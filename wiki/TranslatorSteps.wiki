@@ -19,6 +19,7 @@ This approach involves setting up the Snap Backup project on your computer and s
 
 Instructions:
    * TranslatorStepsMac
+   * TranslatorStepsUbuntu
    * TranslatorStepsWindows
 
 
