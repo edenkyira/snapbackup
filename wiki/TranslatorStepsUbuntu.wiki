@@ -1,27 +1,34 @@
 = UNDER CONSTRUCTION =
-
-http://www.snapbackup.com/download/ubuntu.html
-A: Install Java on Ubuntu
+----
 
 = Snap Backup Translator Steps for Ubuntu =
 
 Follow these steps on Ubuntu to use Subversion (SVN) to access the appropriate Snap Backup properties file and submit your changes.
 
 == 1. One-Time Environment and SVN Setup ==
-*A) Get Your Password*
-   To obtain your password (needed for next step), visit:
+*A) Install Java*
+   To install Java, follow the instructions for "A: Install Java on Ubuntu" at:
+      http://www.snapbackup.com/download/ubuntu.html
+
+*B) Get Your Password*
+   To obtain your password (needed for step D), visit:
       http://code.google.com/hosting/settings
 
-*B) Download Code*
-   Run _Terminal_ (it's in `/Applications/Utilities`) and enter the following commands at the Unix shell prompt:
+*C) Install Subversion and Ant*
+   Run _Terminal_ (_Applications_ --> _Accessories_ --> _Terminal_) and enter the following commands at the Linux shell prompt:
+   || `$ sudu apt-get install subversion` ||
+   || `$ sudu apt-get install ant` ||
+
+*D) Download Code*
+   While still at the Linux shell prompt, enter the following commands:
    || `$ mkdir ~/Projects` ||
    || `$ cd ~/Projects` ||
    || `$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
-   In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.  If you get an "Error validating server certificate", you can enter "p" to permanently accept the certificate.
+   In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.
 
 == 2. Core Translator Steps ==
 *A) Build Current Project and Verify*
-   Open _Finder_ --> Go to the folder `~/Projects/snapbackup/src/tools/` --> Double-click the file _*build.sh.command*_ --> Go to the folder `~/Projects/snapbackup/build/` --> Double-click the file _*snapbackup.jar*_ -->  Verify that the Snap Backup application launches and works properly.
+   Open _File Browser_ --> Go to the folder `~/Projects/snapbackup/src/tools/` --> Double-click the file _*build.sh*_ --> Go to the folder `~/Projects/snapbackup/build/` --> Double-click the file _*snapbackup.jar*_ -->  Verify that the Snap Backup application launches and works properly.
 
 *B) Edit Properties File*
    Use your editor to make changes to the appropriate properties file located in the `~/Projects/snapbackup/src/resources/properties/` folder.  Be sure to save the file with Unicode UTF-8 (no BOM) encoding.
