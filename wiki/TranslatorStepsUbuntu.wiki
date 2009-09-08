@@ -1,26 +1,19 @@
-= UNDER CONSTRUCTION =
-----
-
 = Snap Backup Translator Steps for Ubuntu =
 
 Follow these steps on Ubuntu to use Subversion (SVN) to access the appropriate Snap Backup properties file and submit your changes.
 
 == 1. One-Time Environment and SVN Setup ==
-*A) Install Java*
-   To install Java, follow the instructions for "A: Install Java on Ubuntu" at:
-      http://www.snapbackup.com/download/ubuntu.html
-
-*B) Get Your Password*
-   To obtain your password (needed for step D), visit:
-      http://code.google.com/hosting/settings
-
-*C) Install Subversion and Ant*
+*A) Install Subversion and Ant*
    Run _Terminal_ (_Applications_ --> _Accessories_ --> _Terminal_) and enter the following commands at the Linux shell prompt:
    || `$ sudu apt-get install subversion` ||
    || `$ sudu apt-get install ant` ||
 
-*D) Download Code*
-   While still at the Linux shell prompt, enter the following commands:
+*B) Get Your Password*
+   To obtain your password (needed for the next step), visit:
+      http://code.google.com/hosting/settings
+
+*C) Download Code*
+   Back at the Linux shell prompt, enter the following commands:
    || `$ mkdir ~/Projects` ||
    || `$ cd ~/Projects` ||
    || `$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
@@ -28,7 +21,12 @@ Follow these steps on Ubuntu to use Subversion (SVN) to access the appropriate S
 
 == 2. Core Translator Steps ==
 *A) Build Current Project and Verify*
-   Open _File Browser_ --> Go to the folder `~/Projects/snapbackup/src/tools/` --> Double-click the file _*build.sh*_ --> Go to the folder `~/Projects/snapbackup/build/` --> Double-click the file _*snapbackup.jar*_ -->  Verify that the Snap Backup application launches and works properly.
+   # Open _File Browser_ (_Places_ --> _Home Folder_)
+   # Go to the folder `~/Projects/snapbackup/src/tools/`
+   # Double-click and the file _*build.sh*_ and choose _Run in Terminal_
+   # Go to the folder `~/Projects/snapbackup/build/`
+   # Bring up the context menu (a.k.a. control-click menu, speed menu, or right-click menu) for _*snapbackup.jar*_ choose the "Open with OpenJDK Java 6 Runtime" option
+   # Verify that the Snap Backup application launches and works properly.
 
 *B) Edit Properties File*
    Use your editor to make changes to the appropriate properties file located in the `~/Projects/snapbackup/src/resources/properties/` folder.  Be sure to save the file with Unicode UTF-8 (no BOM) encoding.
