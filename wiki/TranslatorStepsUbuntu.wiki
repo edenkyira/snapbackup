@@ -35,7 +35,7 @@ Follow these steps on Ubuntu to use Subversion (SVN) to access the appropriate S
    Repeat step A above.
 
 *D) Check Changes into SVN Repository (Server)*
-   Run _Terminal_ (_Applications_ --> _Accessories_ --> _Terminal_) and enter the following commands at the Linux shell prompt:
+   Run _Terminal_ and enter the following commands at the Linux shell prompt:
    || `$ cd ~/Projects/snapbackup` ||
    || `$ svn update` ||
    || `$ svn status` ||
