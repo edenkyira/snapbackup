@@ -1,0 +1,69 @@
+= UNDER CONSTRUCTION =
+
+= Snap Backup Contributor Steps for Ubuntu =
+
+Follow these steps on Ubuntu to use Subversion (SVN) to access the Snap Backup source code and submit your changes.
+
+== 1. One-Time Environment and SVN Setup ==
+*A) Get Your Password*
+   To obtain your password (needed for next step), visit:
+      http://code.google.com/hosting/settings
+
+*B) Download Code*
+   Run _Terminal_ (it's in `/Applications/Utilities`) and enter the following commands at the Linux shell prompt:
+   || `$ mkdir ~/Projects` ||
+   || `$ cd ~/Projects` ||
+   || `$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
+   In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.  If you get an "Error validating server certificate", you can enter "p" to permanently accept the certificate.
+
+*C) Download and Install Xcode (optional)*
+   If you plan to create the installer (see step 3B below), you need to get _*Xcode for Mac Development*_ at:
+      http://developer.apple.com/tools/download/
+   Open the downloaded _*.dmg*_ file and run _*!XcodeTools.mpkg*_ to complete the Xcode installation.  Use the default options.
+
+== 2. Core Contributor Steps ==
+*A) Build Current Project and Verify*
+   Open _Finder_ --> Go to the folder `~/Projects/snapbackup/src/tools` --> Double-click the file _*build.sh.command*_ --> Go to the folder `~/Projects/snapbackup/build` --> Double-click the file _*snapbackup.jar*_ -->  Verify that the Snap Backup application launches and works properly
+
+*B) Edit Code*
+   The project files are under the `~/Projects/snapbackup` folder.  Use your editor or IDE to make changes to the appropriate files.
+
+*C) Build the Project and Verify*
+   Repeat step A above.
+
+*D) Check Changes into SVN Repository (Server)*
+   || `$ cd ~/Projects/snapbackup` ||
+   || `$ svn update` ||
+   || `$ svn status` ||
+   || `$ svn commit --message "<COMMENT HERE>."` ||
+   || `$ svn status` ||
+   In the above instructions, replace "`<COMMENT HERE>`" with a short description of the changes you made.
+
+== 3. Mac OS X Application with Installer ==
+*A) Create Mac Application*
+   To turn the Executable Java Archive (JAR) file into a proper [http://www.centerkey.com/mac/java/ Mac OS X application], open _Jar Bundler_  (it's in `/Developer/Applications/Utilities`) and follow these steps:
+      # For "Main Class:", use the _*Choose...*_ button to navigate to the `~/Projects/snapbackup/build` folder and then _*Choose*_ the _*snapbackup.jar*_ file
+      # Check the "Use Macintosh Menu Bar" option
+      # Use the _*Choose Icon*_ button to navigate to the `~/Projects/snapbackup/src/installer/mac` folder and then _*Open*_ the _*snap-backup.icns*_ file
+      # Click the _*Properties*_ tab and enter the version number (ex: `5.0`) from step 2C into the fields "Version:" and "Get-Info String:"
+      # Click the _*Create Application...*_ button
+      # Navigate to the `~/Projects/snapbackup/build` folder
+      # In the "File:" field, enter `Snap Backup`
+      # Click the _*Create*_ button
+      # Quit _Jar Bundler_
+   The new Mac application you just created will be at: `~/Projects/snapbackup/build/Snap Backup`
+
+*B) Create Mac Installer (optional)*
+   To wrap the application into a native [http://www.centerkey.com/mac/java/ Mac OS X installer], follow these steps:
+      # Using _Finder_, navigate to the `~/Projects/snapbackup/src/installer/mac` folder
+      # Double-click _*snap-backup.pmdoc*_
+      # Click the _*Build*_ hammer icon
+      # Navigate to the `~/Projects/snapbackup/build` folder
+      # Deselect the "Hide extension" option
+      # Click the _*Save*_ button
+      # Quit _!PackageMaker_ and choose _*Don't Save*_ your changes
+   The new installer you just created will be at: `~/Projects/snapbackup/build/SnapBackupInstaller.mpkg`
+
+
+----
+[http://www.snapbackup.com/about/ Snap Backup Contributors]
