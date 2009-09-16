@@ -3,6 +3,7 @@
 
 Instructions:
    * ContributorStepsMac
+   * ContributorStepsUbuntu
    * ContributorStepsWindows
 
 
