@@ -19,7 +19,7 @@ Follow these steps on Ubuntu to use Subversion (SVN) to access the Snap Backup s
    || `$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
    In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.
 
-== 2. Core Translator Steps ==
+== 2. Core Contributor Steps ==
 *A) Build Current Project and Verify*
    # Open _File Browser_ (_Places_ --> _Home Folder_)
    # Go to the folder `~/Projects/snapbackup/src/tools/`
