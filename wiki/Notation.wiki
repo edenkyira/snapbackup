@@ -1,4 +1,3 @@
-= Notation =
 The following notation is used on the wiki pages:
 || *Item* || *Format* || *Example* ||
 || Selectable or clickable items || _*Bold/Italics*_ || Click the _*Download*_ button. ||
