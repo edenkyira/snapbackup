@@ -80,17 +80,24 @@ public class OptionsDialog extends JDialog {
 
    JPanel       fileOverwritePanel =   new JPanel();
    JLabel       askBackupLabel =       new JLabel(ui.overwriteBackupPrompt);
-   JLabel       askArchiveLabel =      new JLabel(ui.overwriteArchivePrompt);
    JCheckBox    askBackupCheckbox =    new JCheckBox();
+   JLabel       askArchiveLabel =      new JLabel(ui.overwriteArchivePrompt);
    JCheckBox    askArchiveCheckbox =   new JCheckBox();
 
    JPanel       numRowsPanel =         new JPanel();
    JLabel       srcRowsPromptLabel =   new JLabel(ui.numRowsSrcPrompt);
-   JLabel       logRowsPromptLabel =   new JLabel(ui.numRowsLogPrompt);
    SpinnerModel srcNumRowsModel =      new SpinnerNumberModel(4, 4, 25, 1);  //min < 4 seems to be ignored
-   SpinnerModel logNumRowsModel =      new SpinnerNumberModel(2, 2, 25, 1);
    JSpinner     srcRowsSpinner =       new JSpinner(srcNumRowsModel);
+   JLabel       logRowsPromptLabel =   new JLabel(ui.numRowsLogPrompt);
+   SpinnerModel logNumRowsModel =      new SpinnerNumberModel(2, 2, 25, 1);
    JSpinner     logRowsSpinner =       new JSpinner(logNumRowsModel);
+
+   JPanel       msgLogInfoPanel =      new JPanel();
+   JLabel       msgLogInfoSkippedLabel =     new JLabel(ui.msgLogInfoSkippedPrompt);
+   JCheckBox    msgLogInfoSkippedCheckbox =  new JCheckBox();
+   JLabel       msgLogInfoLargestLabel =    new JLabel(ui.msgLogInfoLargestPrompt);
+   String[] lfo = { "0", "1", "2", "3", "4" };
+   JComboBox    msgLogInfoLargestDropDown = new JComboBox(lfo);
 
    JPanel       buttonPanel =          new JPanel();
    JButton      cancelButton =         new JButton(ui.buttonCancel);
@@ -149,6 +156,10 @@ public class OptionsDialog extends JDialog {
          BorderFactory.createTitledBorder(ui.numRowsTitle),
          BorderFactory.createEmptyBorder(0, 5, 5, 5)));
 
+      msgLogInfoPanel.setBorder(BorderFactory.createCompoundBorder(
+         BorderFactory.createTitledBorder(ui.msgLogInfoTitle),
+         BorderFactory.createEmptyBorder(0, 5, 5, 5)));
+
       buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
       buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
       cancelButton.addActionListener(new ActionListener() {
@@ -203,6 +214,14 @@ public class OptionsDialog extends JDialog {
       numRowsPanel.add(logRowsPromptLabel);
       numRowsPanel.add(logRowsSpinner);
       optionsPanel.add(numRowsPanel);
+      optionsPanel.add(Box.createRigidArea(new Dimension(0,10)));
+
+      msgLogInfoPanel.add(msgLogInfoSkippedCheckbox);
+      msgLogInfoPanel.add(msgLogInfoSkippedLabel);
+      msgLogInfoPanel.add(new JLabel(SystemAttributes.tab + SystemAttributes.tab));
+      msgLogInfoPanel.add(msgLogInfoLargestLabel);
+      msgLogInfoPanel.add(msgLogInfoLargestDropDown);
+      optionsPanel.add(msgLogInfoPanel);
       optionsPanel.add(Box.createRigidArea(new Dimension(0,15)));
 
       buttonPanel.add(cancelButton);
