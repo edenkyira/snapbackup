@@ -34,7 +34,6 @@ public class SystemAttributes {
 
    //Release constants
    public static final String   appName = "SnapBackup";  //".properties" name
-   public static final String   appCopyright = "&copy; 2009 Center Key Software and Individual Contributors";
    public static final String   appVersion = "5.2";
    // 5.2 - X/X/20XX -   Added Message Log Information to options (# largest fiels)
    // 5.1 - 6/2/2009 -   Added Check for Updates feature (and moved prefs)
@@ -71,6 +70,9 @@ public class SystemAttributes {
       };
    public static final String[] localeCodes = {
       "en", "eo", "es", "de", "fr", "it", "ko", "nl", "pt", "ru", "sl" };
+   public static final String   appCopyright =
+      "Copyright &copy; 2009 Center Key Software and Individual Contributors<br>" +
+      "Snap Backup&reg; is a registered trademark of Center Key Software";
 
    //Useful constants
    public static final String nullStr =         "";

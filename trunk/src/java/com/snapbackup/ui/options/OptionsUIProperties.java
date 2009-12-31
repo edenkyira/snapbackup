@@ -57,6 +57,7 @@ class OptionsUIProperties {
 
    final String msgLogInfoTitle =           AppProperties.getPropertyPadded("OptionsMessageLogInfoTitle");
    final String msgLogInfoSkippedPrompt =   AppProperties.getProperty("OptionsMessageLogInfoSkippedPrompt");
+   final Integer[] largestFileOptions =     { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
    final String msgLogInfoLargestPrompt =   AppProperties.getProperty("OptionsMessageLogInfoLargestPrompt");
 
    final String buttonCancel =              AppProperties.getProperty("ButtonCancel");

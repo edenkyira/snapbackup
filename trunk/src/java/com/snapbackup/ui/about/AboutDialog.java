@@ -51,9 +51,8 @@ public class AboutDialog extends JDialog {
    static final String hey =             "Hey, don't press the '[' key!";
 
    AboutUIProperties ui = new AboutUIProperties();
-   final String copyrightStr =   startHtml + ui.aboutCopyright + space +
-      SystemAttributes.appCopyright + space + ui.aboutAnd + space +
-      ui.aboutContributors + endHtml;
+   final String copyrightStr =   startHtml + "<small>" +
+      SystemAttributes.appCopyright + "</small>" + endHtml;
    final String licenseStr =     ui.aboutLicense + newLine + newLine +
       ui.aboutDownload + newLine + tab + SystemAttributes.downloadURL;
    final String contactInfoStr = (ui.aboutContact + newLine +

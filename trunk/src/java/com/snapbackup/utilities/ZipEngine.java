@@ -69,8 +69,8 @@ public class ZipEngine {
    final String sizePost =           space + AppProperties.getProperty("FilterMarkerUnits") + "]";
    final String outline =            ")" + space;
    NumberFormat nf = NumberFormat.getNumberInstance(new Locale(UserPreferences.readLocalePref()));
-   int numLargestFiles = 3;   //needs to be enhanced to use preferences
-   TopMap<Long, String> largestFiles = new TopMap<Long, String>(numLargestFiles);
+   int numLargestFiles;
+   TopMap<Long, String> largestFiles;
    boolean useRelativePaths = true;
    String rootPath;
    int rootPathLen;
@@ -85,7 +85,7 @@ public class ZipEngine {
 
    java.lang.Runtime rt = Runtime.getRuntime();  //memory leak!!!
 
-   boolean filterIncludeOn, filterExcludeOn, filterFolderOn, filterSizeOn;
+   boolean filterIncludeOn, filterExcludeOn, filterFolderOn, filterSizeOn, showSkipped;
    Pattern filterIncludeP, filterExcludeP, filterFolderP;
    int filterSize;
    
@@ -94,6 +94,7 @@ public class ZipEngine {
       filterExcludeOn = false;
       filterFolderOn =  false;
       filterSizeOn =    false;
+      showSkipped = UserPreferences.readPref(Options.prefShowSkipped).equals(Options.skipYes);
       }
 
    Pattern compileRegEx(String regEx) {
@@ -126,6 +127,11 @@ public class ZipEngine {
          filterSize = Integer.parseInt(filterInfo.get(3).get(loc)) * kb;
       }
 
+   void logSkippedMsg(String msg) {
+      if (showSkipped)
+         Logger.logMsg(skippingLogMsg + msg);
+      }
+
    public void zipFile(String filePath) {
       if (zipCount % 500 == 0)  //attempt to address performance issues on large backups
           rt.gc();  //testing not yet done to see if this improves performance
@@ -133,11 +139,11 @@ public class ZipEngine {
          file = new File(filePath);
          String displayPath = useRelativePaths ? filePath.substring(rootPathLen) : filePath;
          if (filterIncludeOn && !filterIncludeP.matcher(file.getName()).matches())
-             Logger.logMsg(skippingLogMsg + displayPath);
+             logSkippedMsg(displayPath);
          else if (filterExcludeOn && filterExcludeP.matcher(file.getName()).matches())
-             Logger.logMsg(skippingLogMsg + displayPath + exclusionNote);
+             logSkippedMsg(displayPath + exclusionNote);
          else if (filterSizeOn && file.length() > filterSize)
-             Logger.logMsg(skippingLogMsg + displayPath + exclusionNote + sizePre +
+             logSkippedMsg(displayPath + exclusionNote + sizePre +
                 nf.format(file.length() / kb) + sizePost);
          else if (!SystemAttributes.isMac || !file.getName().equals(".DS_Store")) {
             if (backupProgress != null)
@@ -166,7 +172,7 @@ public class ZipEngine {
    public void zipDirectory(String dirName, File dir) {
       String displayPath = useRelativePaths ? dirName.substring(rootPathLen) : dirName;
       if (filterFolderOn && filterFolderP.matcher(dir.getName()).matches())
-         Logger.logMsg(skippingLogMsg + displayPath + fileSeparator + exclusionNote);
+         logSkippedMsg(displayPath + fileSeparator + exclusionNote);
       else {
          Logger.logMsg(folderLogMsg + displayPath);
          File[] itemList = dir.listFiles();  //list folder's sub-items
@@ -208,6 +214,8 @@ public class ZipEngine {
          boolean filtersOn, List<List<String>> filterInfo) {
       abortBackup = false;
       initFilterInfo();
+      numLargestFiles = Integer.parseInt(UserPreferences.readPref(Options.prefNumLargestFiles));
+      largestFiles = new TopMap<Long, String>(numLargestFiles);
       nf.setMaximumFractionDigits(1);
       Logger.logMsg(UIProperties.current.logMsgCreating + zipFileName);
       if (useRelativePaths) {
@@ -254,8 +262,8 @@ public class ZipEngine {
             zipOut.close();
             fileOut.close();
             int count = 1;
-            if (numLargestFiles > 0) {  // !!!!!!!! move text into properties file for localization
-               Logger.logMsg("Largest Files (zipped):");
+            if (numLargestFiles > 0) {
+               Logger.logMsg(UIProperties.current.logMsgLargestFiles);
                for (Map.Entry<Long, String> largeFile : largestFiles.entrySet())
                   Logger.logMsg(tab + count++ + outline + largeFile.getValue() + sizePre +
                      zipNF.format(largeFile.getKey() / kb) + sizePost);
@@ -264,12 +272,10 @@ public class ZipEngine {
             Logger.logMsg(UIProperties.current.logMsgBackupCreated + space +
                zipFileName + sizePre + zipNF.format(backupKB) + sizePost);
             if (backupKB > 3800000) //Until Zip64 in Java 7, zip files are limited to 4 GB
-               Logger.logMsg(
-                  "*** ERROR: Backup file may exceed 4 GB limit -- file corruption possible!");
+               Logger.logMsg(UIProperties.current.err40BackupTooLarge);
             }
          catch (IOException e) {
-            abortBackup(UIProperties.current.err01CreatingBackupFile,
-               e.getMessage());
+            abortBackup(UIProperties.current.err01CreatingBackupFile, e.getMessage());
             }
       }
 
