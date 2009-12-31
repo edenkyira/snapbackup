@@ -96,8 +96,7 @@ public class OptionsDialog extends JDialog {
    JLabel       msgLogInfoSkippedLabel =     new JLabel(ui.msgLogInfoSkippedPrompt);
    JCheckBox    msgLogInfoSkippedCheckbox =  new JCheckBox();
    JLabel       msgLogInfoLargestLabel =    new JLabel(ui.msgLogInfoLargestPrompt);
-   String[] lfo = { "0", "1", "2", "3", "4" };
-   JComboBox    msgLogInfoLargestDropDown = new JComboBox(lfo);
+   JComboBox    msgLogInfoLargestDropDown = new JComboBox(ui.largestFileOptions);
 
    JPanel       buttonPanel =          new JPanel();
    JButton      cancelButton =         new JButton(ui.buttonCancel);
@@ -253,6 +252,9 @@ public class OptionsDialog extends JDialog {
 
       srcRowsSpinner.setValue(Integer.valueOf(UserPreferences.readPref(Options.prefNumRowsSrc)));
       logRowsSpinner.setValue(Integer.valueOf(UserPreferences.readPref(Options.prefNumRowsLog)));
+
+      msgLogInfoSkippedCheckbox.setSelected(UserPreferences.readPref(Options.prefShowSkipped).equals(Options.skipYes));
+      msgLogInfoLargestDropDown.setSelectedItem(Integer.valueOf(UserPreferences.readPref(Options.prefNumLargestFiles)));
       }
 
    void updateFileName() {
@@ -309,6 +311,9 @@ public class OptionsDialog extends JDialog {
 
       srcRowsSpinner.setValue(Integer.valueOf(Options.numRowsSrcDefault));
       logRowsSpinner.setValue(Integer.valueOf(Options.numRowsLogDefault));
+
+      msgLogInfoSkippedCheckbox.setSelected(Options.showSkippedDefault.equals(Options.skipYes));
+      msgLogInfoLargestDropDown.setSelectedItem(Integer.valueOf(Options.numLargestFilesDefault));
       }
 
    void actionOk() {
@@ -325,6 +330,9 @@ public class OptionsDialog extends JDialog {
 
       UserPreferences.savePref(Options.prefNumRowsSrc, ((Integer)srcRowsSpinner.getValue()).toString());
       UserPreferences.savePref(Options.prefNumRowsLog, ((Integer)logRowsSpinner.getValue()).toString());
+
+      UserPreferences.savePref(Options.prefShowSkipped, msgLogInfoSkippedCheckbox.isSelected() ? Options.skipYes : Options.skipNo);
+      UserPreferences.savePref(Options.prefNumLargestFiles, "" + msgLogInfoLargestDropDown.getSelectedIndex());
 
       this.dispose();
       }

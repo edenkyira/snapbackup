@@ -402,6 +402,8 @@ public class DataModel {
       AppProperties.addSupplimentalProperty(Options.prefAskArchive, Options.askArchiveDefault);
       AppProperties.addSupplimentalProperty(Options.prefNumRowsSrc, Options.numRowsSrcDefault);
       AppProperties.addSupplimentalProperty(Options.prefNumRowsLog, Options.numRowsLogDefault);
+      AppProperties.addSupplimentalProperty(Options.prefShowSkipped,     Options.showSkippedDefault);
+      AppProperties.addSupplimentalProperty(Options.prefNumLargestFiles, Options.numLargestFilesDefault);
       }
 
    static String calcDestPath(String backupDir, String backupName) {

@@ -168,6 +168,7 @@ public class UIProperties {
    public final String logMsgSkipping =       AppProperties.getPropertyPadded("LogMsgSkipping");
    public final String logMsgFolder =         AppProperties.getPropertyPadded("LogMsgFolder");
    public final String logMsgFilesZipped =    AppProperties.getProperty("LogMsgFilesZipped");
+   public final String logMsgLargestFiles =   AppProperties.getProperty("LogMsgLargestFiles");
    public final String logMsgBackupCreated =  AppProperties.getProperty("LogMsgBackupCreated");
    public final String logMsgArchivedBackup = AppProperties.getProperty("LogMsgArchivedBackup");
    public final String logMsgElapsedTime =    AppProperties.getProperty("LogMsgElapsedTime");
@@ -213,6 +214,7 @@ public class UIProperties {
    public final String err20BrowserFailure =     AppProperties.getProperty("Err20BrowserFailure");
    public final String err25PrintFailure =       AppProperties.getProperty("Err25PrintFailure");
    public final String err30ProfileNotFound =    AppProperties.getProperty("Err30ProfileNotFound");
+   public final String err40BackupTooLarge =     AppProperties.getProperty("Err40BackupTooLarge");
 
    public static UIProperties current;
    public UIProperties() {
