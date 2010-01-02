@@ -15,8 +15,8 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2009 Center Key Software                                     //
-// Snap Backup is a trademark of Dem Pilafian                                 //
+// Copyright (c) 2010 Center Key Software and Individual Contributors         //
+// Snap Backup is a registered trademark of Center Key Software               //
 // http://www.snapbackup.com                                                  //
 //                                                                            //
 // Filter Dialog:                                                             //
