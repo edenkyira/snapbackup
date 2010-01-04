@@ -802,7 +802,7 @@ public class SnapBackupFrame extends JFrame {
          ui.profilesAddTitle, JOptionPane.PLAIN_MESSAGE);
       if (profileName != null) {
          profileName = profileName.trim();
-         if (profileName.length() == 0) {
+         if (profileName.isEmpty()) {
             popupMsg(ui.profilesAddMsgBlank, ui.profilesTitle);
             profilesNewButtonAction();  //prompt again
             }
@@ -819,6 +819,7 @@ public class SnapBackupFrame extends JFrame {
             if (!UserPreferences.profileInDB())
                DataModel.saveSettings(this); //handles edge case for very first new profile added
             setCurrentProfile(profileName);
+            destBackupNameTextField.setText(profileName);
             DataModel.saveSettings(this);  //copies last profile into new profile
             profilesDropDown.addItem(profileName);
             profilesDropDown.setSelectedItem(profileName);  //trigger callback
