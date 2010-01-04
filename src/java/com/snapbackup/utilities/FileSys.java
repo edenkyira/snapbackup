@@ -108,7 +108,7 @@ public class FileSys {
             zip.abortBackup(UIProperties.current.err04BackupFileMissing, sourceFileName);
          else if (!ensureParentFolderExists(destFileName, frame,
                UIProperties.current.fileUtilTitleArchiveFolder)) {
-            if (getErrMsg().length() == 0)
+            if (getErrMsg().isEmpty())
                zip.abortBackup(UIProperties.current.err05NoArchiveFolder);
             else
                zip.abortBackup(UIProperties.current.err05NoArchiveFolder, destFileName);
