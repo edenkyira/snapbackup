@@ -33,19 +33,22 @@ import com.snapbackup.logger.Logger;
 import com.snapbackup.settings.SystemAttributes;
 
 public class CheckForUpdates {
+   final static String verificationCheck = "Snap Backup";
 
    public static String getLatestVersion() {
       String version = null;
+      String verification = null;
       try {
          BufferedReader reader = new BufferedReader(
             new InputStreamReader(new URL(SystemAttributes.updatesURL).openStream()));
          version = reader.readLine();
+         verification = reader.readLine();
          reader.close();
          }
       catch (Exception e) { //NoRouteToHostException or ConnectException
          Logger.logMsg(e.toString());
          }
-      return version;
+      return verificationCheck.equals(verification) ? version : null;
       }
 
    }
