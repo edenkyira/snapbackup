@@ -61,7 +61,7 @@
       <copy file="${Resources}/SnapBackupUserGuide.html" todir="${WebFolder}"/>
       <copy file="${Resources}/ReadMe.txt" todir="${WebFolder}"/>
       <copy todir="${WebFolder}">
-         <fileset dir="${Resources}/properties"/>
+         <fileset dir="${Resources}/properties" includes="SnapBackup*.properties"/>
          <globmapper from="*" to="*.txt"/>
          </copy>
       <move file="${WebFolder}/SnapBackup.properties.txt"
