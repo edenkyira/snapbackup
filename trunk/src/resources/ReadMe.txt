@@ -23,4 +23,4 @@ JAR on your system.
 
 ============================
 http://www.snapbackup.com
-Copyright (c) 2009 Center Key Software
+Copyright (c) 2010 Center Key Software and Individual Contributors

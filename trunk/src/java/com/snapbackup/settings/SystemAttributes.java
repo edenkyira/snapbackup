@@ -71,7 +71,7 @@ public class SystemAttributes {
    public static final String[] localeCodes = {
       "en", "eo", "es", "de", "fr", "it", "ko", "nl", "pt", "ru", "sl" };
    public static final String   appCopyright =
-      "Copyright &copy; 2009 Center Key Software and Individual Contributors<br>" +
+      "Copyright &copy; 2010 Center Key Software and Individual Contributors<br>" +
       "Snap Backup&reg; is a registered trademark of Center Key Software";
 
    //Useful constants
