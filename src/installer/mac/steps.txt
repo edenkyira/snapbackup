@@ -1,0 +1,8 @@
+Mac Installer Notes (abbreviated)
+=================================
+See project wiki for full instructions:
+     http://code.google.com/p/snapbackup/wiki/ContributorSteps
+
+1) Save application from "Jar Bundler" to "/snapbackup/build"
+2) Save installer from "Package Maker" to "/snapbackup/build"
+3) Compress "SnapBackupInstaller.pkg"
