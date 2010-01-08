@@ -34,7 +34,7 @@ public class SystemAttributes {
 
    //Release constants
    public static final String   appName = "SnapBackup";  //".properties" name
-   public static final String   appVersion = "5.2";
+   public static final String   appVersion = "5.2a";
    // 5.2 - 1/2/2010 -   Added reporting of largest files to the Message Log
    // 5.1 - 6/2/2009 -   Added Check for Updates feature (and moved prefs)
    // 5.0 - 5/6/2009 -   Added import/export and switched to Java 5.0
