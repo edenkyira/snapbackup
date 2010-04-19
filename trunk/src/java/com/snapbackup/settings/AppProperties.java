@@ -37,9 +37,12 @@ public class AppProperties {
    static final HashMap<String, String> supplimentalProperty =
       new HashMap<String, String>();
 
-   static ResourceBundle applicationResources =
-      ResourceBundle.getBundle(SystemAttributes.appName,
-      new Locale(UserPreferences.readLocalePref()));
+   static ResourceBundle applicationResources = getLocalizedBundle();
+
+   static ResourceBundle getLocalizedBundle() {
+      return ResourceBundle.getBundle(SystemAttributes.appName,
+         new Locale(UserPreferences.readLocalePref()));
+      }
 
    public static String getProperty(String propertyName) {
       //Reads a property from the ".properties" file.
@@ -82,9 +85,7 @@ public class AppProperties {
       }
 
    public static void reload() {
-      applicationResources =
-           ResourceBundle.getBundle(SystemAttributes.appName,
-           new Locale(UserPreferences.readLocalePref()));
+      applicationResources = getLocalizedBundle();
       }
    
    }

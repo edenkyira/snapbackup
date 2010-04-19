@@ -34,7 +34,8 @@ public class SystemAttributes {
 
    //Release constants
    public static final String   appName = "SnapBackup";  //".properties" name
-   public static final String   appVersion = "5.2c";
+   public static final String   appVersion = "5.3";
+   // 5.3 - 4/17/2010 -  Indonesian
    // 5.2 - 1/2/2010 -   Added reporting of largest files to the Message Log
    // 5.1 - 6/2/2009 -   Added Check for Updates feature (and moved prefs)
    // 5.0 - 5/6/2009 -   Added import/export and switched to Java 5.0
@@ -57,19 +58,22 @@ public class SystemAttributes {
    public static final String[][] appTranslators = {
       //Codes -- http://www.loc.gov/standards/iso639-2/php/code_list.php
       //Flags -- https://www.paypal.com/be/cgi-bin/webscr?cmd=_display-approved-signup-countries-outside
-      { "Giorgio Ponza",          "http://www.janxes.it/jsp/societa/Giorgio.jsp" },  //"it"
-      { "Pasc&aacute;l Bihler",   "http://www.bi-on.de/pascal/" },                   //"de"
-      { "Carlos Maltzahn",        "http://homepage.mac.com/carlosmalt/" },           //"de"
-      //{ "Angelo Brillout",      null },                                            //"fr" [with Pascal]
-      { "Suzanne Bolduc",         "http://www.esperanto.net/" },                     //"eo"
-      { "Elena Kogan",            "http://speakrussian.report.ru/" },                //"ru"
-      { "Oscar Laurens Schrover", "http://www.macfan.nl/" },                         //"nl"
-      { "Angel Herr&aacute;ez",   "http://www2.uah.es/biomodel/" },                  //"es"
+      { "Giorgio Ponza",          "http://www.janxes.it/jsp/societa/Giorgio.jsp" },      //"it"
+      { "Pasc&aacute;l Bihler",   "http://www.bi-on.de/pascal/" },                       //"de"
+      { "Carlos Maltzahn",        "http://homepage.mac.com/carlosmalt/" },               //"de"
+      //{ "Angelo Brillout",      null },                                                //"fr" [with Pascal]
+      { "Suzanne Bolduc",         "http://www.esperanto.net/" },                         //"eo"
+      { "Elena Kogan",            "http://speakrussian.report.ru/" },                    //"ru"
+      { "Oscar Laurens Schrover", "http://www.macfan.nl/" },                             //"nl"
+      { "Angel Herr&aacute;ez",   "http://www2.uah.es/biomodel/" },                      //"es"
       { "Antonio de Rezende Jr.", "http://en.wikipedia.org/wiki/Portuguese_language" },  //"pt"
-      { "Sa&#353;o Topolovec",    "http://en.wikipedia.org/wiki/Slovene_language" }  //"sl" [&scaron;]
-      };
+      { "Sa&#353;o Topolovec",    "http://en.wikipedia.org/wiki/Slovene_language" },     //"sl" [&scaron;]
+      { "Andy Saksono",           "http://en.wikipedia.org/wiki/Indonesian_language" },  //"id"
+   };
    public static final String[] localeCodes = {
-      "en", "eo", "es", "de", "fr", "it", "ko", "nl", "pt", "ru", "sl" };
+      "en", "eo", "es", "de", "fr", "id", "it", "ko", "nl", "pt", "ru", "sl" };
+   //See build.xml for workaround to "in" bug regarding Indonesian:
+   //   http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6457127
    public static final String   appCopyright =
       "Copyright &copy; 2010 Center Key Software and Individual Contributors<br>" +
       "Snap Backup&reg; is a registered trademark of Center Key Software";
