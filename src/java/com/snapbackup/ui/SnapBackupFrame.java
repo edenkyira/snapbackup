@@ -320,7 +320,7 @@ public class SnapBackupFrame extends JFrame {
       //sortLocaleCodes(SystemAttributes.localeCodes, currentLocale);
       Arrays.sort(SystemAttributes.localeCodes,
          new LocaleCodeComparator(currentLocale));
-      for (int count = 0; count < SystemAttributes.localeCodes.length; count ++) {
+      for (int count = 0; count < SystemAttributes.localeCodes.length; count++) {
          String localeCode = SystemAttributes.localeCodes[count];
          Locale locale = new Locale(localeCode);
          JLabel langLabel = new JLabel(Icons.langIcon(localeCode));
