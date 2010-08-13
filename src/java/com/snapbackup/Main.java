@@ -31,7 +31,6 @@ import javax.swing.UIManager;
 import com.snapbackup.business.DataModel;
 import com.snapbackup.ui.Application;
 import com.snapbackup.ui.UIProperties;
-import com.snapbackup.ui.SplashScreen;
 import com.snapbackup.settings.AppProperties;
 import com.snapbackup.settings.UserPreferences;
 
@@ -54,9 +53,7 @@ public class Main {
                UIProperties.skinErrMsg, JOptionPane.ERROR_MESSAGE);
             UserPreferences.deletePref(DataModel.prefSkinName);
             }
-         SplashScreen splash = new SplashScreen();
          new Application();
-         splash.delete();
          }
       }
 
