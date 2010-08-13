@@ -52,6 +52,7 @@
          <fileset dir="." includes="*.class"/>
          <manifest>
             <attribute name="Main-Class" value="com.snapbackup.Main"/>
+            <attribute name="SplashScreen-Image" value="com/snapbackup/ui/images/splash.png"/>
             </manifest>
          </jar>
 
