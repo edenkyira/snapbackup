@@ -22,5 +22,5 @@ Consult your Java documentation for the exact steps to launch an executable
 JAR on your system.
 
 ============================
-http://www.snapbackup.com
-Copyright (c) 2010 Center Key Software and Individual Contributors
+http://www.snapbackup.org
+Copyright (c) individual contributors to the Snap Backup project

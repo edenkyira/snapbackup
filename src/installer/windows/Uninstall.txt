@@ -15,5 +15,5 @@ harmless to leave them there, but you can safely delete them at any time
 if you like.
 
 ====================
-http://www.snapbackup.com
-Copyright (c) 2009 Center Key Software
+http://www.snapbackup.org
+Copyright (c) individual contributors to the Snap Backup project
