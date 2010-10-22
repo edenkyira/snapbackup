@@ -15,9 +15,9 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2010 Center Key Software and Individual Contributors         //
+// Copyright (c) individual contributors to the Snap Backup project           //
 // Snap Backup is a registered trademark of Center Key Software               //
-// http://www.snapbackup.com                                                  //
+// http://www.snapbackup.org                                                  //
 //                                                                            //
 // Main Startup:                                                              //
 //    This object launches the command line or GUI version of appliction.     //
@@ -39,8 +39,7 @@ public class Main {
    //Run Snap Backup in either command line mode where the parameter is the profile name
    //or in GUI (Swing) mode if there are no parameters.
    public static void main(String[] argv) {
-      if (argv.length > 0 && !"foo".contentEquals(argv[0]))  //workaround for Java Store foo parameter
-      //if (argv.length > 0)
+      if (argv.length > 0)
          DataModel.doCmdLineBackup(argv[0], argv.length > 1 ? argv[1] : null);
       else {
          AppProperties.addSupplimentalProperty(DataModel.prefSkinName,

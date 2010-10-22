@@ -15,9 +15,9 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2010 Center Key Software and Individual Contributors         //
+// Copyright (c) individual contributors to the Snap Backup project           //
 // Snap Backup is a registered trademark of Center Key Software               //
-// http://www.snapbackup.com                                                  //
+// http://www.snapbackup.org                                                  //
 //                                                                            //
 // Icons:                                                                     //
 //    This object holds icons for display in the UI.                          //

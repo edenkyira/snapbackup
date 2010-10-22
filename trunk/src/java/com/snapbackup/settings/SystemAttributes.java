@@ -15,9 +15,9 @@
 // See the GNU General Public License at http://www.gnu.org for more          //
 // details.                                                                   //
 //                                                                            //
-// Copyright (c) 2010 Center Key Software and Individual Contributors         //
+// Copyright (c) individual contributors to the Snap Backup project           //
 // Snap Backup is a registered trademark of Center Key Software               //
-// http://www.snapbackup.com                                                  //
+// http://www.snapbackup.org                                                  //
 //                                                                            //
 // System Attributes:                                                         //
 //    This object...                                                          //
@@ -93,9 +93,9 @@ public class SystemAttributes {
    public static final String headerMid =       "</font></b>";
    public static final String headerSplashTag = "<br><br><b><font color=gray>Center Key Software</font></b>";
    public static final String headerPost =      "<br>&nbsp;</center>" + endHtml;
-   public static final String feedbackEMail =   "feedback" + atSign + "snapbackup.com";
+   public static final String feedbackEMail =   "feedback" + atSign + "snapbackup.org";
    public static final String postalAddress =   "Center Key Software\nBox 21\nSan Carlos, California  94070\nUSA";
-   public static final String homeURL =         "http://www.snapbackup.com";  //on About Box
+   public static final String homeURL =         "http://www.snapbackup.org";  //on About Box
    public static final String updatesURL =      homeURL + "/version/";  //not displayed
    public static final String downloadURL =     homeURL + "/download";  //on About Box
    public static final String visitURL =        homeURL + "/app?v=" + appVersion;  //not displayed
