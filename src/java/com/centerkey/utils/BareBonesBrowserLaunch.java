@@ -14,12 +14,13 @@ import java.util.Arrays;
  * Latest Version: <a href="http://www.centerkey.com/java/browser/">www.centerkey.com/java/browser</a><br>
  * Author: Dem Pilafian<br>
  * Public Domain Software -- Free to Use as You Like
- * @version 3.0, February 7, 2010
+ * @version 3.2, October 24, 2010
  */
 public class BareBonesBrowserLaunch {
 
-   static final String[] browsers = { "google-chrome", "firefox", "opera",
-      "konqueror", "epiphany", "seamonkey", "galeon", "kazehakase", "mozilla" };
+   static final String[] browsers = { "x-www-browser", "google-chrome",
+      "firefox", "opera", "epiphany", "konqueror", "conkeror", "midori",
+      "kazehakase", "mozilla" };
    static final String errMsg = "Error attempting to launch web browser";
 
    /**
@@ -27,13 +28,12 @@ public class BareBonesBrowserLaunch {
     * @param url A web address (URL) of a web page (ex: "http://www.google.com/")
     */
    public static void openURL(String url) {
-      try {  //attempt to use Desktop library from JDK 1.6+ (even if on 1.5)
+      try {  //attempt to use Desktop library from JDK 1.6+
          Class<?> d = Class.forName("java.awt.Desktop");
          d.getDeclaredMethod("browse", new Class[] {java.net.URI.class}).invoke(
             d.getDeclaredMethod("getDesktop").invoke(null),
             new Object[] {java.net.URI.create(url)});
-         //above code mimics:
-         //   java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+         //above code mimicks:  java.awt.Desktop.getDesktop().browse()
          }
       catch (Exception ignore) {  //library not available or failed
          String osName = System.getProperty("os.name");
@@ -47,15 +47,12 @@ public class BareBonesBrowserLaunch {
                Runtime.getRuntime().exec(
                   "rundll32 url.dll,FileProtocolHandler " + url);
             else { //assume Unix or Linux
-               boolean found = false;
-               for (String browser : browsers)
-                  if (!found) {
-                     found = Runtime.getRuntime().exec(
-                        new String[] {"which", browser}).waitFor() == 0;
-                     if (found)
-                        Runtime.getRuntime().exec(new String[] {browser, url});
-                     }
-               if (!found)
+               String browser = null;
+               for (String b : browsers)
+                  if (browser == null && Runtime.getRuntime().exec(new String[]
+                        {"which", b}).getInputStream().read() != -1)
+                     Runtime.getRuntime().exec(new String[] {browser = b, url});
+               if (browser == null)
                   throw new Exception(Arrays.toString(browsers));
                }
             }
