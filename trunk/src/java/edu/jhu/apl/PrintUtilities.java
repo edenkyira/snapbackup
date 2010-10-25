@@ -13,7 +13,7 @@ package edu.jhu.apl;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.print.*;
-import com.snapbackup.ui.UIProperties;
+import org.snapbackup.ui.UIProperties;
 
 public class PrintUtilities implements Printable {
   Component componentToBePrinted;
