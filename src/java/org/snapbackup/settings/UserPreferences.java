@@ -42,6 +42,24 @@ public class UserPreferences {
    static final String prefValueNotFound = "NOT FOUND";
    static String cmdLineProfileName = null;
 
+   public static void migrateOldSettings() {  //pre v5.4 --> v5.4
+      try {
+         //System.out.println("Migrate New: " + prefs.name() + prefs.keys().length);
+         if (prefs.keys().length == 0) {
+            Preferences prefsOld = Preferences.userNodeForPackage(
+               com.snapbackup.settings.UserPreferences.class);
+            //System.out.println("Migrate Old: " + prefsOld.name() + prefsOld.keys().length);
+            //if (prefsOld.keys().length > 0) System.out.println("Do migration!");
+            for (String key : prefsOld.keys())
+               if (!prefsOld.get(key, prefValueNotFound).equals(prefValueNotFound))
+                  prefs.put(key, prefsOld.get(key, ""));
+            }
+         }
+      catch (BackingStoreException e) {
+         System.out.println("Migrate: " + e.getMessage());
+         }
+      }
+
    /*
    static String boolean2String (boolean tf) {
       return (tf ? SystemAttributes.trueStr : SystemAttributes.falseStr);
