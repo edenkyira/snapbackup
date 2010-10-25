@@ -37,7 +37,6 @@ public final class Application {
       //UIUtilities.centerDialog(splash);
       SnapBackupFrame frame = new SnapBackupFrame();
       Logger.initLogArea(frame.getLogTextArea());
-      org.snapbackup.utilities.settings.UserPreferencesOLD.copyOldPrefsToNewLocation();  //pre v5.1 --> v5.1
       DataModel.initSettings(frame);
       UIUtilities.lockInMinSize(frame);
       UIUtilities.setInitialNumRows(frame);
