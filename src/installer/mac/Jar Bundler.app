@@ -1,1 +1,0 @@
-/usr/share/java/Tools/Jar Bundler.app
