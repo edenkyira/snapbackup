@@ -20,7 +20,8 @@
 // http://www.snapbackup.org                                                  //
 //                                                                            //
 // System Attributes:                                                         //
-//    This object...                                                          //
+//    This object is for system level settings such as version numbers, list  //
+//    of languages, constants, and other system attributes.                   //
 ////////////////////////////////////////////////////////////////////////////////
 
 package org.snapbackup.settings;
@@ -34,7 +35,8 @@ public class SystemAttributes {
 
    //Release constants
    public static final String   appName = "SnapBackup";  //".properties" name
-   public static final String   appVersion = "5.4";
+   public static final String   appVersion = "5.5";
+   // 5.5 - ?/?/2011 -   Romanian
    // 5.4 - 10/24/2010 - Manifest splash screen and convert to .org
    // 5.3 - 4/17/2010 -  Indonesian
    // 5.2 - 1/2/2010 -   Added reporting of largest files to the Message Log
@@ -55,10 +57,13 @@ public class SystemAttributes {
    // 3.2 - 6/17/2005 -  Italian
    // 3.1 - 6/1/2005 -   Filters
    // 3.0 - 5/9/2005 -   Multiple profiles
-   public static final String     appAuthors = "Dem Pilafian";  //Names of code contributor go here
-   public static final String[][] appTranslators = {
+   public static final String[] localeCodes = {
+      "en", "eo", "es", "de", "fr", "id", "it", "ko", "nl", "pt", "ro", "ru", "sl" };
       //Codes -- http://www.loc.gov/standards/iso639-2/php/code_list.php
       //Flags -- https://www.paypal.com/be/cgi-bin/webscr?cmd=_display-approved-signup-countries-outside
+      //See build.xml for workaround to "in" bug regarding Indonesian:
+      //   http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6457127
+   public static final String[][] appTranslators = {
       { "Giorgio Ponza",          "http://www.janxes.it/jsp/societa/Giorgio.jsp" },      //"it"
       { "Pasc&aacute;l Bihler",   "http://www.bi-on.de/pascal/" },                       //"de"
       { "Carlos Maltzahn",        "http://homepage.mac.com/carlosmalt/" },               //"de"
@@ -70,12 +75,10 @@ public class SystemAttributes {
       { "Antonio de Rezende Jr.", "http://en.wikipedia.org/wiki/Portuguese_language" },  //"pt"
       { "Sa&#353;o Topolovec",    "http://en.wikipedia.org/wiki/Slovene_language" },     //"sl" [&scaron;]
       { "Andy Saksono",           "http://en.wikipedia.org/wiki/Indonesian_language" },  //"id"
+      { "Dany",                   "http://dragut8912.hi5.com" },                         //"ro"
    };
-   public static final String[] localeCodes = {
-      "en", "eo", "es", "de", "fr", "id", "it", "ko", "nl", "pt", "ru", "sl" };
-   //See build.xml for workaround to "in" bug regarding Indonesian:
-   //   http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6457127
-   public static final String   appCopyright =
+   public static final String appAuthors = "Dem Pilafian";  //Names of code contributors
+   public static final String appCopyright =
       "Copyright &copy; individual contributors to the Snap Backup project<br>" +
       "Snap Backup&reg; is a registered trademark of Center Key Software";
 
@@ -111,7 +114,7 @@ public class SystemAttributes {
    public static final String   prefProfilePostfix = "~" + prefChar;
    //public static final String   trueStr =  "true";  //Used to save pref data as text
    //public static final String   falseStr = "false";
-   public static final String   splitStr = "~@~";  //Delimitter for multi-line data
+   public static final String   splitStr = "~@~";  //Delimiter for multi-line data
    public static final String   cmdLineDefaultProfile = "~";
 
    //System information retrieved from JVM

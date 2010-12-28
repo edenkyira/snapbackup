@@ -20,7 +20,7 @@
 // http://www.snapbackup.org                                                  //
 //                                                                            //
 // User Preferences:                                                          //
-//    This object...                                                          //
+//    This object is for user specific settings related to user preferences.  //
 ////////////////////////////////////////////////////////////////////////////////
 
 package org.snapbackup.settings;
@@ -111,7 +111,7 @@ public class UserPreferences {
       }
 
    public static boolean exists(String prefName) {
-      //Returns true if the preferene has a value.
+      //Returns true if the preference has a value.
       return !prefs.get(prefix + prefName.toLowerCase(),
             prefValueNotFound).equals(prefValueNotFound);
       }
