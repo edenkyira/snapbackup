@@ -64,9 +64,9 @@ public class AboutDialog extends JDialog {
    JLabel    logo =              new JLabel(Icons.logoIcon);
    JLabel    productName =       new JLabel(UIProperties.current.header);
    JLabel    version =           new JLabel(ui.aboutVersion);
-   JLabel    author =            new JLabel(ui.aboutCreatedBy);
    JPanel    translatorsPanel =  new JPanel();
    JLabel    translatedBy =      new JLabel(ui.aboutTranslatedBy + space);
+   JLabel    author =            new JLabel(ui.aboutCreatedBy);
    JLabel    copyright =         new JLabel(copyrightStr);
    JTextArea license =           new JTextArea(licenseStr);
    JTextArea configInfo =        new JTextArea();
@@ -179,8 +179,8 @@ public class AboutDialog extends JDialog {
    public void addContols() {
       aboutPanel.add(productName);
       aboutPanel.add(version);
-      aboutPanel.add(author);
       aboutPanel.add(translatorsPanel);
+      aboutPanel.add(author);
       aboutPanel.add(Box.createRigidArea(new Dimension(0,10)));
       aboutPanel.add(license);
       aboutPanel.add(Box.createRigidArea(new Dimension(0,10)));

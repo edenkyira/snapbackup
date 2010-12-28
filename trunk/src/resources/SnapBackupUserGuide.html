@@ -4,28 +4,43 @@
 <!-- - - - - - - - - - - - - - -->
 <html>
 <head>
-<style>body { font-family: trebuchet ms, sans-serif; margin: 2px 10px }</style>
+<style type="text/css">
+   body { font-family: sans-serif; margin: 2px 10px; }
+   ul   { margin-top: 2px; }
+   hr   { border: 1px solid silver; }
+   </style>
 <title>Snap Backup User Guide</title>
 </head>
-<body>
+<body><div>
 
 <h1>Snap Backup User Guide</h1>
 
-Snap Backup<sup>&reg;</sup> stores your important work with a single click.&nbsp;  This guide
+Snap Backup<sup>&reg;</sup> stores your important work with a single click.&nbsp; This guide
    is intended to help individual computer users incorporate Snap Backup into
    their daily backup routine for a simple and convenient way to backup
    their valuable files.<br><br>
-Contents:<ul><b>
-   1) Best Practices<br>
-   2) Getting Started<br>
-   3) Configuration Settings<br>
-   4) Advanced Configuration Settings<br>
-   5) Export/Import Settings<br>
-   6) 100% Java<br>
-   7) Command-Line Option<br>
-   8) Upgrading<br>
-   9) Known Issues
-   </b></ul>
+
+<hr style="border: 1px solid silver;">
+<small>
+Snap Backup is free for all to use.&nbsp; To the maximum extent allowed by law,
+there are no warranties whatsoever included with this software.&nbsp; Before
+relying on any backup files, be sure to check their validity and verify
+that the correct files were indeed backed up.&nbsp; The source code for Snap
+Backup is available under the GNU General Public License.<br>
+</small>
+<hr><br>
+
+Contents:<ul style="list-style-type: none; font-weight: bold">
+   <li>1) Best Practices
+   <li>2) Getting Started
+   <li>3) Configuration Settings<br>
+   <li>4) Advanced Configuration Settings<br>
+   <li>5) Export/Import Settings<br>
+   <li>6) 100% Java<br>
+   <li>7) Command-Line Option<br>
+   <li>8) Upgrading<br>
+   <li>9) Known Issues
+   </ul>
 The "Best Practices" section covers backup philosophy, while the sections for
    "Getting Started", "Configuration Settings", "Advanced Configuration
    Settings", and "Export/Import Settings" cover the details of using Snap
@@ -37,22 +52,22 @@ The "Best Practices" section covers backup philosophy, while the sections for
 
 <b>1) Best Practices</b><br>
 How often do you backup?&nbsp;  How much work would you lose if your hard
-   drive crashed right now?&nbsp;  People typically fail to backup their
-   data frequently because of some combination of the following:<ul>
-   <li>Users do not know which files to backup
-   <li>If a procedure is in place, it is inconvenient or takes a long time
+   drive crashed right now?<br><br>
+People typically fail to backup their data frequently because:<ul>
+   <li>They do not know which files to backup
+   <li>If a backup procedure is in place, it is inconvenient or takes a long time
    <li>Resulting backup file is too big and cumbersome
    </ul>
 Corporate system administrators have backup procedures for their company
    servers, databases, and network files.&nbsp;  Individual computer users,
-   on the other hand, are usually left to fend for themselves.&nbsp;  The
-   following strategies should help you create a backup procedure that is
-   quick and easy:<ul><b>
-   <li>Separate Data (work files) from Applications (program files)
-   <li>Store All Data for Backup Under a Single High-Level Folder
-   <li>Store Large Multimedia Files Separately (for less frequent backups)
-   <li>Use Snap Backup to Save Your Data (work) Frequently
-   </b></ul>
+   on the other hand, are usually left to fend for themselves.<br><br>
+The following strategies will help you create a backup procedure that is
+   quick and easy:<ul>
+   <li>Separate data (work files) from applications (program files)
+   <li>Store all data for backup under a single high-level folder
+   <li>Store large M,ultimedia files separately (for less frequent backups)
+   <li>Use Snap Backup to save your data (work) frequently
+   </ul>
 <i>Data vs. Applications</i><br>
 You have probably at some time been advised to backup your entire hard
 drive.&nbsp;  While this may be appropriate for some people, it is
@@ -76,8 +91,8 @@ data (work files) from your applications (program files).<br>
 <i>Centralize Work Files</i><br>
 Make your backups easier to configure by putting your data (work files)
 into a single high-level folder, and name the folder something like
-"My Work" or "Data".&nbsp;  Then when you backup your high-level data folder, you
-have backed up all your work.<br>
+"My Work" or "Data".&nbsp;  Then when you backup your high-level data folder,
+you have backed up all your work.<br>
 <br>
 <i>Handling Large Work Files</i><br>
 Multimedia files, such as pictures and videos, present a special
@@ -261,27 +276,28 @@ To upgrade your version of Snap Backup, simply install the new
 version.&nbsp;  The new version will cleanly replace the old version, and all
 your backup settings will automatically be preserved.<br><br>
 
-<b>9) Known Issues</b><ui>
-<li><b>Backup the Backup File Lock:</b> Putting the backup file into a
+<b>9) Known Issues</b><br>
+Existing problems:<ul>
+<li><b>Backup the Backup File Lock &mdash;</b> Putting the backup file into a
    folder designated to be backed up will cause a lock up (as the backup
    file will contain itself).
-<li><b>Empty Zip File on Windows XP:</b> A bug in Windows XP Compressed
+<li><b>Empty Zip File on Windows XP &mdash;</b> A bug in Windows XP Compressed
    Folder causes some zip files to show up empty even though they are
    not.&nbsp;  Use a different compression utility, like 7-Zip, to
    workaround this XP bug.
-<li><b>User Guide Only in English:</b> This guide is currently only available
+<li><b>User Guide Only in English &mdash;</b> This guide is currently only available
    in English.
 </ul>
 
 <!-- Conclusion -->
-<p align=center>
+<p style="text-align: center;">
 &#9674; &#9674; &#9674;<br>
 Snap Backup is a registered trademark of Center Key Software.&nbsp;
-Java is a registered trademark of Sun Microsystems, Inc.&nbsp;
+Java is a registered trademark of Sun Microsystems, Inc. (Oracle).&nbsp;
 Other trademarks belong to their respective owners.<br>
-</br>
 Copyright &copy; individual contributors to the Snap Backup project<br>
 http://www.snapbackup.org
 </p>
-</body>
+
+</div></body>
 </html>

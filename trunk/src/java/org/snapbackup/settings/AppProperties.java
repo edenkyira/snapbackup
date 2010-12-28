@@ -20,7 +20,8 @@
 // http://www.snapbackup.org                                                  //
 //                                                                            //
 // Application Properties:                                                    //
-//    This object...                                                          //
+//    This object is for application specific settings related to the         //
+//    properites file.                                                        //
 ////////////////////////////////////////////////////////////////////////////////
 
 package org.snapbackup.settings;
@@ -30,7 +31,7 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-// Reads values from the poperties file and provides access to those
+// Reads values from the properties file and provides access to those
 // values.  Additional properties with values may added at run-time.
 public class AppProperties {
 
