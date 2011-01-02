@@ -17,7 +17,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
 *C) Download and Install SVN Client*
    Click the _*Silk SVN*_ download icon (there's a 32-bit edition and a 64-bit edition) at:
       http://www.sliksvn.com/en/download
-   Install with the default options.
+   Install with the default "Typical" options.
 
 *D) Get Your !GoogleCode.com Password*
    To obtain your password, visit:
