@@ -24,7 +24,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
       http://code.google.com/hosting/settings
 
 *E) Download Code*
-   Launch _*Command Prompt*_ (_*Start* -->  *Programs*  --> *Accessories*  -->  *Command Prompt*_), and enter the following commands:
+   Launch _*Command Prompt*_ (_*Start* -->  *All Programs*  --> *Accessories*  -->  *Command Prompt*_), and enter the following commands:
    || `> mkdir \Projects` ||
    || `> cd \Projects` ||
    || `> svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
