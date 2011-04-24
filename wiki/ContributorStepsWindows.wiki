@@ -5,7 +5,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
 
 == 1. One-Time Environment and SVN Setup ==
 *A) Download and Install JDK*
-   Click the _*Download JDK*_ button for _*Java SE 6 Update X*_ (where _*X*_ is the current update version) at:
+   Click the _*Download JDK*_ button for the current version of _*Java Platform, Standard Edition*_:
       http://www.oracle.com/technetwork/java/javase/downloads/
    Install the JDK with all the default options.
 
@@ -15,7 +15,7 @@ Follow these steps on Windows to use Subversion (SVN) to access the Snap Backup 
    Unzip the file into the folder `C:\Apps\Ant` so that you end up with a folder named: `C:\Apps\Ant\apache-ant-X.Y.Z`
 
 *C) Download and Install SVN Client*
-   Click the _*Silk SVN*_ download icon (there's a 32-bit edition and a 64-bit edition) at:
+   Click the _*Silk SVN*_ download icon (most likely you'll need the 32-bit edition) at:
       http://www.sliksvn.com/en/download
    Install with the default "Typical" options.
 
