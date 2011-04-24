@@ -34,9 +34,10 @@ import javax.swing.filechooser.FileSystemView;
 public class SystemAttributes {
 
    //Release constants
-   public static final String   appName = "SnapBackup";  //".properties" name
-   public static final String   appVersion = "5.5";
-   // 5.5 - ?/?/2011 -   Romanian
+   public static final String appName = "SnapBackup";  //".properties" name
+   public static final String appVersion = "5.6";
+   // 5.6 - 4/23/2011 -  Albanian
+   // 5.5 - 1/2/2011 -   Romanian
    // 5.4 - 10/24/2010 - Manifest splash screen and convert to .org
    // 5.3 - 4/17/2010 -  Indonesian
    // 5.2 - 1/2/2010 -   Added reporting of largest files to the Message Log
@@ -58,7 +59,7 @@ public class SystemAttributes {
    // 3.1 - 6/1/2005 -   Filters
    // 3.0 - 5/9/2005 -   Multiple profiles
    public static final String[] localeCodes = {
-      "en", "eo", "es", "de", "fr", "id", "it", "ko", "nl", "pt", "ro", "ru", "sl" };
+      "en", "eo", "es", "de", "fr", "id", "it", "ko", "nl", "pt", "ro", "ru", "sl", "sq" };
       //Codes -- http://www.loc.gov/standards/iso639-2/php/code_list.php
       //Flags -- https://www.paypal.com/be/cgi-bin/webscr?cmd=_display-approved-signup-countries-outside
       //See build.xml for workaround to "in" bug regarding Indonesian:
@@ -76,6 +77,7 @@ public class SystemAttributes {
       { "Sa&#353;o Topolovec",    "http://en.wikipedia.org/wiki/Slovene_language" },     //"sl" [&scaron;]
       { "Andy Saksono",           "http://en.wikipedia.org/wiki/Indonesian_language" },  //"id"
       { "Dany",                   "http://dragut8912.hi5.com" },                         //"ro"
+      { "Vahidin Qerimi",         "http://vahidin.wordpress.com" },                      //"sq"
    };
    public static final String appAuthors = "Dem Pilafian";  //Names of code contributors
    public static final String appCopyright =
@@ -86,7 +88,7 @@ public class SystemAttributes {
    public static final String nullStr =         "";
    public static final String space =           " ";
    public static final String comma =           ",";
-   public static final String atSign =           "@";
+   public static final String atSign =          "@";
    public static final String dataPrompt =      ": ";
    public static final String tab =             "     ";
    public static final String dividerStr =      " / ";
@@ -105,26 +107,24 @@ public class SystemAttributes {
    public static final String visitURL =        homeURL + "/app?v=" + appVersion;  //not displayed
 
    //Bootstrap data needed before reading properties file
-   public static final String   errMsgHeader = "ERROR -- '";
-   public static final String   errMsgMissingResource = "' property not found in: ";
-   public static final String   prefLocale = "locale";
-   public static final String   prefChar = ".";
-   public static final String   prefPrefix = appName.toLowerCase() + prefChar;
-   public static final String   prefProfilePrefix = prefPrefix + "~";
-   public static final String   prefProfilePostfix = "~" + prefChar;
-   //public static final String   trueStr =  "true";  //Used to save pref data as text
-   //public static final String   falseStr = "false";
-   public static final String   splitStr = "~@~";  //Delimiter for multi-line data
-   public static final String   cmdLineDefaultProfile = "~";
+   public static final String errMsgHeader = "ERROR -- '";
+   public static final String errMsgMissingResource = "' property not found in: ";
+   public static final String prefLocale = "locale";
+   public static final String prefChar = ".";
+   public static final String prefPrefix = appName.toLowerCase() + prefChar;
+   public static final String prefProfilePrefix = prefPrefix + "~";
+   public static final String prefProfilePostfix = "~" + prefChar;
+   public static final String splitStr = "~@~";  //Delimiter for multi-line data
+   public static final String cmdLineDefaultProfile = "~";
 
    //System information retrieved from JVM
-   static final Properties sysInfo = System.getProperties();
-   public static final String userName = sysInfo.getProperty("user.name");
-   public static final String userHomeDir = sysInfo.getProperty("user.home");
-   public static final String fileSeparator = sysInfo.getProperty("file.separator");
-   public static final boolean isMac = sysInfo.getProperty("mrj.version") != null;
-   public static final boolean evilWinSys = fileSeparator.equals("\\");
-   public static final String evilWinDrive = (userHomeDir.indexOf(":\\") == 1 ?
+   static final Properties     sysInfo =       System.getProperties();
+   public static final String  userName =      sysInfo.getProperty("user.name");
+   public static final String  userHomeDir =   sysInfo.getProperty("user.home");
+   public static final String  fileSeparator = sysInfo.getProperty("file.separator");
+   public static final boolean isMac =         sysInfo.getProperty("mrj.version") != null;
+   public static final boolean evilWinSys =    fileSeparator.equals("\\");
+   public static final String  evilWinDrive =  (userHomeDir.indexOf(":\\") == 1 ?
       userHomeDir.substring(0, 2) : "");  //example: "C:\zzz" --> "C:"
    public static final String osInfo =  //example: "Mac OS X (10.5.7/x86_64/en)"
       sysInfo.getProperty("os.name") + " (" +
