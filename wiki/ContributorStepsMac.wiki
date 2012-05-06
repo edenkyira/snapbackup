@@ -12,8 +12,8 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup
    Run _Terminal_ (it's in `/Applications/Utilities`) and enter the following commands at the Unix shell prompt:
    || `$ mkdir ~/projects` ||
    || `$ cd ~/projects` ||
-   || `$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME HERE>` ||
-   In the above instructions, replace "`<USERNAME HERE>`" with your Google Code username.  If you get an "Error validating server certificate", you can enter "p" to permanently accept the certificate.
+   || `$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME>` ||
+   In the above instructions, replace "`<USERNAME>`" with your Google Code username.  If you get an "Error validating server certificate", you can enter "p" to permanently accept the certificate.
 
 *C) Download and Install Xcode (optional)*
    If you plan to create the installer (see step 3B below), you need to get _*Xcode for Mac Development*_ at:
@@ -34,9 +34,9 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup
    || `$ cd ~/projects/snapbackup` ||
    || `$ svn update` ||
    || `$ svn status` ||
-   || `$ svn commit --message "<COMMENT HERE>."` ||
+   || `$ svn commit --message "<COMMENT>"` ||
    || `$ svn status` ||
-   In the above instructions, replace "`<COMMENT HERE>`" with a short description of the changes you made.
+   In the above instructions, replace "`<COMMENT>`" with a short description of the changes you made.
 
 == 3. Mac OS X Installer ==
 To wrap the Mac application (`~/projects/snapbackup/build/Snap Backup.app`) into a native [http://www.centerkey.com/mac/java/ Mac OS X installer], follow these steps:
