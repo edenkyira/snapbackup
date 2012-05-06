@@ -8,8 +8,9 @@ Follow these steps on Mac OS X to use Subversion (SVN) to access the Snap Backup
    To obtain your Google Code username and password, visit:
       http://code.google.com/hosting/settings
 
-*B) Download Code*
+*B) Verify Java and Download Code*
    Run _Terminal_ (it's in `/Applications/Utilities`) and enter the following commands at the Unix shell prompt:
+   || `$ java -version` ||
    || `$ mkdir ~/projects` ||
    || `$ cd ~/projects` ||
    || `$ svn checkout https://snapbackup.googlecode.com/svn/trunk/ snapbackup --username <USERNAME>` ||
